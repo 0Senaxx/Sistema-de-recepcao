@@ -1,0 +1,348 @@
+/* =================== RESET E VARIÁVEIS =================== */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CABEÇALHO E RODAPÉ*/
+
+:root {
+    --cor-primaria: #293264;
+    --cor-secundaria: #0A853D;
+    --cor-branco: #fff;
+    --cor-hover: rgba(255, 255, 255, 0.2);
+    --font-size: 11pt;
+    /* Tamanho de fonte padrão */
+    --spacing: 0.5rem;
+    /* Espaçamento padrão */
+}
+
+/* =================== LAYOUT GERAL =================== */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
+    /* Deixa espaço para a topbar */
+
+    /*FUNDO PONTILHADO*/
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+/* =================== CABECALHO =================== */
+.cabecalho {
+    /* Posicionamento fixo no topo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    /* Layout flexível */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Estilo visual */
+    background: linear-gradient(93deg, var(--cor-primaria) 19%, var(--cor-secundaria) 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Ajuste de padding com rem */
+}
+
+.cabecalho nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.cabecalho nav a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-size: var(--font-size);
+    /* Usando unidade relativa */
+    padding: 0.3125rem 0.625rem;
+    /* Ajustando padding */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cabecalho nav a:hover {
+    text-decoration: none;
+    background-color: var(--cor-hover);
+    border-color: var(--cor-branco);
+}
+
+/* =================== RODAPÉ =================== */
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    /* Ajustado para centralizar o conteúdo */
+    align-items: center;
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Usando variáveis e unidades relativas */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Container principal */
+main {
+    padding: 20px;
+    max-width: 2000px;
+}
+
+.Modulo {
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.card {
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    padding: 5px 25px 25px 25px;
+
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.cabecalho-visitas {
+    position: relative;
+    height: 60px;
+    /* ou a altura que quiser */
+    display: flex;
+    align-items: center;
+    /* centraliza verticalmente */
+    justify-content: space-between;
+
+margin-bottom: 10px;
+}
+
+.bnt-nova {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #293264;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    /* tira o sublinhado do link */
+}
+
+.bnt-nova:hover {
+    background-color:#343f83;
+    /* cor diferente ao passar o mouse */
+}
+
+
+.txt-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.campo-buscar {
+    Width: 300px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #aaa;
+    padding: 8px;
+}
+
+th {
+    background-color: #eee;
+}
+
+
+/* Estilos básicos para o modal */
+.modal {
+    display: none;
+    /* escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* fundo escuro */
+}
+
+.modal-conteudo {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-conteudo label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modal-conteudo input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.modal-botoes {
+    text-align: right;
+}
+
+.modal-botoes button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.bntSalvar {
+    background-color: #28a745;
+    color: white;
+}
+
+.bntSalvar:hover {
+    background-color: #218838;
+}
+
+.bntCancelar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bntCancelar:hover {
+    background-color: #c82333;
+}
+
+.form-localizacao input, 
+.form-localizacao select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+.form-campo input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.form-campo label,
+.form-localizacao label {
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+
+.btnEditar {
+    background-color: #0A853D;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btnEditar:hover {
+    background-color: #14b658;
+}
+
+
+.bntExcluir {
+    background-color: #dc3545;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.bntExcluir:hover {
+    background-color: #c82333;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+    input#inputSigla,
+    input#inputNome {
+        text-transform: uppercase;
+    }
