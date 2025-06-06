@@ -56,7 +56,7 @@ $resultServidores = $conn->query($sqlServidores);
 
   <main>
     <section class="card">
-      <h2>Registrar Nova Visita</h2>
+      <h2>Registro de visita</h2>
       <form class="formulario" action="salvar_visita.php" method="POST" enctype="multipart/form-data">
 
         <!-- Campos principais -->
@@ -190,7 +190,7 @@ $resultServidores = $conn->query($sqlServidores);
           <!-- 4ª linha: Servidor e Status -->
           <div class="quarta-linha">
             <div class="form-control">
-              <label for="servidorInput">Servidor <span class="required">*</span></label>
+              <label for="servidorInput">Servidor a ser visitado<span class="required">*</span></label>
               <select id="servidorInput" name="servidor" class="choices-select" required>
                 <option value="">Selecione um servidor...</option>
                 <?php while ($row = $resultServidores->fetch_assoc()): ?>
