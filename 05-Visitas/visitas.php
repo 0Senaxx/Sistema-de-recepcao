@@ -63,9 +63,9 @@ $result = $conn->query($sql);
                 <h2>Lista de Visitas</h2>
                 <div>
                     <label class="txt-label">Buscar: </label>
-                    <input class="campo-buscar" type="text" id="filtro" autocomplete="none" placeholder="Digite para buscar..."
+                    <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..."
                         onkeyup="filtrarTabela()">
-                <button id="abrirModal" class="botao-relatorio">📊 Gerar Relatório</button>
+                    <button id="abrirModal" class="botao-relatorio">📊 Gerar Relatório</button>
                 </div>
             </div>
 

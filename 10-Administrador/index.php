@@ -53,6 +53,7 @@ $row_setores = mysqli_fetch_assoc($result_setores);
                 <li><a href="../08-Servidores/index.php">Servidores</a></li>
                 <li><a href="../09-Setores/index.php">Setores</a></li>
                 <li><a href="../07-Relatorio/gerar_relatorio.php">Relatórios</a></li>
+                <li><a href="documentos.php">Repositório</a></li>
                 <li><a href="../01-Login/logout.php">Sair</a></li>
             </ul>
         </nav>
