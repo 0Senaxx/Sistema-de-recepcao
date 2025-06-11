@@ -18,14 +18,13 @@ $result = $conn->query($sql);
 <body>
 <header class="cabecalho">
   <h1>Recepção SEAD</h1>
-  <nav>
-    <a href="../02-Inicio/index.php">Início</a>
-    <a href="../03-Registrar/nova_visita.php">+ Nova Visita</a>
-    <a href="../05-Visitas/visitas.php">Lista de Visitas</a>
-    <a href="../04-Visitantes/visitantes.php">Lista de Visitantes</a>
-    <a href="../06-Ramais/ramais.php">Ramais SEAD</a>
-    <a href="../01-Login/logout.php">Sair</a>
-  </nav>
+        <nav>
+            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
+            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
+            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
+            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
+            <a href="../01-Login/logout.php">Sair</a>
+        </nav>
 </header>
 
 <main>

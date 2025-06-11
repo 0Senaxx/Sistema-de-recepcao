@@ -130,7 +130,7 @@ document.getElementById('btnBuscarCPF').addEventListener('click', function () {
     .then(data => {
       if (data.encontrado) {
         document.getElementById('nome').value = data.nome;
-        document.getElementById('contato').value = data.telefone;
+        document.getElementById('social').value = data.social;
         document.getElementById('orgao').value = data.orgao;
 
         if (data.foto) {
@@ -194,26 +194,6 @@ document.getElementById('btnLimpar').addEventListener('click', () => {
 // ======================================================
 document.getElementById('cpf').addEventListener('blur', () => {
   document.getElementById('btnBuscarCPF').click();
-});
-
-
-
-// ======================================================
-// MÁSCARA PARA TELEFONE
-// ======================================================
-
-document.getElementById('contato').addEventListener('input', function (event) {
-  let value = event.target.value.replace(/\D/g, '');
-
-  if (value.length <= 2) {
-    event.target.value = `(${value}`;
-  } else if (value.length <= 6) {
-    event.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-  } else if (value.length <= 10) {
-    event.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-  } else {
-    event.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
-  }
 });
 
 // ======================================================

@@ -46,8 +46,6 @@ $resultServidores = $conn->query($sqlServidores);
         <nav>
             <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
             <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../05-Visitas/visitas.php" onclick="fadeOut(event, this)">Lista de Visitas</a>
-            <a href="../04-Visitantes/visitantes.php" onclick="fadeOut(event, this)">Lista de Visitantes</a>
             <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
             <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
             <a href="../01-Login/logout.php">Sair</a>
@@ -85,15 +83,15 @@ $resultServidores = $conn->query($sqlServidores);
             </div>
           </div>
 
-          <!-- 2ª linha: Nome • Contato -->
+          <!-- 2ª linha: Nome -->
           <div class="segunda-linha">
             <div class="form-control nome">
               <label for="nome">Nome completo <span class="required">*</span></label>
               <input type="text" id="nome" name="nome" placeholder="Nome do visitante" autocomplete="off" required>
             </div>
             <div class="form-control contato">
-              <label for="contato">Contato</label>
-              <input type="text" id="contato" name="telefone" autocomplete="off" placeholder="(00) 00000-0000">
+              <label for="social">Nome social (opcional)</label>
+              <input type="text" id="social" name="social" placeholder="Informe o nome social, se desejar" autocomplete="off">
             </div>
           </div>
 

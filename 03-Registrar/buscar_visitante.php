@@ -15,7 +15,7 @@ if (isset($_GET['cpf'])) {
         echo json_encode([
             'encontrado' => true,
             'nome' => $visitante['nome'],
-            'telefone' => $visitante['telefone'],
+            'social' => $visitante['social'],
             'orgao' => $visitante['orgao'],
             'foto' => $visitante['foto'] ? '../04-Visitantes/Fotos/' . basename($visitante['foto']) : ''
         ]);
