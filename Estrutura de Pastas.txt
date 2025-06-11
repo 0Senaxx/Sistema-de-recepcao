@@ -1,4 +1,4 @@
-o meu desenvolvimento foi divido por pastas:
+ESTRUTURAS DAS PASTAS
 
 //AUTENTICAÇÃO
     01-Login
@@ -64,9 +64,7 @@ o meu desenvolvimento foi divido por pastas:
         salvar.php
 
 //Outros
-
     libs\fpdf
-
     uploads
 
 conexao.php

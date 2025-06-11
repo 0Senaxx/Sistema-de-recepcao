@@ -42,6 +42,7 @@ $result = $stmt->get_result();
 
 <head>
     <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Visitas - SEAD</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -89,7 +90,13 @@ $result = $stmt->get_result();
                     <tr>
                         <td><?= $row['hora'] ?></td>
                             <td><?= $row['nome_visitante'] ?></td>
-                            <td><?= $row['cpf'] ?></td>
+                            <td>
+                                <?php
+                                $cpf = $row['cpf'];
+                                $cpf_masked = substr($cpf, 0, 3) . '.' . '***.***-**';
+                                echo $cpf_masked;
+                                ?>
+                            </td>
                             <td><?= $row['nome_setor'] ?? '---' ?></td>
                             <td><?= $row['nome_servidor'] ?? '---' ?></td>
                             <td><?= $row['saida'] ? $row['saida'] : '---' ?></td>
