@@ -29,9 +29,8 @@
             <form action="verificar_login.php" method="POST">
 
                 <div class="campo-usuario">
-                    <label for="usuario">CPF:</label>
-                    <input type="text" name="cpf" id="cpf" class="form-control" autocomplete="off" placeholder="Digite seu CPF" maxlength="14" required>
-
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" name="matricula" id="matricula" class="form-control" autocomplete="off" placeholder="Digite sua matrícula" maxlength="12" required>
                 </div>
 
                 <div class="campo-senha">

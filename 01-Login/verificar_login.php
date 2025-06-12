@@ -2,12 +2,12 @@
 session_start();
 include '../conexao.php';
 
-$cpf = $_POST['cpf'];
+$matricula = $_POST['matricula'];
 $senha = $_POST['senha'];
 
-$sql = "SELECT * FROM usuarios WHERE cpf = ?";
+$sql = "SELECT * FROM usuarios WHERE matricula = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $cpf);
+$stmt->bind_param("s", $matricula);
 $stmt->execute();
 $result = $stmt->get_result();
 
