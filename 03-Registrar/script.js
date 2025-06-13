@@ -260,8 +260,8 @@ selectServidor.addEventListener('change', function () {
   // Atualiza o texto do status
   statusSpan.textContent = status || '--';
 
-  // Habilita o botão apenas se o status for "Ativo"
-  if (status === 'Ativo') {
+  // Habilita o botão apenas se o status for "Disponível"
+  if (status === 'Disponível') {
     btnSalvar.disabled = false;
   } else {
     btnSalvar.disabled = true;

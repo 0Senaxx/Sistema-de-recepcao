@@ -165,10 +165,8 @@ $result = $conn->query($sql);
           <div class="form-lista">
             <label>Status:</label>
             <select name="status" id="status">
-                <option value="Ativo" selected>Ativo</option>
-                <option value="De Férias">De Férias</option>
-                <option value="Licença Médica">Licença Médica</option>
-                <option value="Licença Maternidade">Licença Maternidade</option>
+                <option value="Disponível" selected>Disponível</option>
+                <option value="Indisponível">Indisponível</option>
             </select>
           </div>
 
