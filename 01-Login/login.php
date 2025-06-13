@@ -38,6 +38,10 @@
                     <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required>
                 </div>
                 <button type="submit" class="btn-login">Entrar</button>
+                <div class="esqueci-senha" style="margin-top: 10px; text-align: center;">
+                    <a href="esqueci_senha.php" style="color: #0056b3; text-decoration: none;">Esqueci minha senha</a>
+                </div>
+
             </form>
         </section>
     </main>
