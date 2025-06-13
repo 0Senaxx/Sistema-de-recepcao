@@ -9,9 +9,9 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-include '../01-Login/autenticacao.php';
-
-require_once '../conexao.php';
+include '../01-Login/Auth/autenticacao.php';
+include '../01-Login/Auth/controle_sessao.php';
+include '../conexao.php';
 
 // Filtro por setor (opcional)
 $setor_filter = $_GET['setor'] ?? '';
@@ -52,7 +52,7 @@ $result = $conn->query($sql);
     <header class="cabecalho">
         <h1>Recepção SEAD</h1>
         <nav>
-            <a href="../01-Login/logout.php">Sair</a>
+            <a href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 

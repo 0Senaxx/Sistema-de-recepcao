@@ -15,13 +15,13 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: usuarios.php");
         exit;
     } else {
         echo "Erro ao excluir usuário: " . $conn->error;
     }
 } else {
-    header("Location: index.php");
+    header("Location: usuarios.php");
     exit;
 }
 ?>

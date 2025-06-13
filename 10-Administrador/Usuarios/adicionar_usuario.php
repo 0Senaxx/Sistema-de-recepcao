@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include '../../conexao.php';
 
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
+    $matricula = $_POST['matricula'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
     $perfil = $_POST['perfil'];
 
-    $sql = "INSERT INTO usuarios (nome, cpf, senha, perfil) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO usuarios (nome, matricula, senha, perfil) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nome, $cpf, $senha, $perfil);
+    $stmt->bind_param("ssss", $nome, $matricula, $senha, $perfil);
 
     if ($stmt->execute()) {
         header("Location: index.php");
@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Nome:</label><br>
         <input type="text" name="nome" required><br><br>
 
-        <label>CPF:</label><br>
-        <input type="text" name="cpf" required><br><br>
+        <label>matricula:</label><br>
+        <input type="text" name="matricula" required><br><br>
 
         <label>Senha:</label><br>
         <input type="password" name="senha" required><br><br>
@@ -54,6 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Salvar</button>
     </form>
-    <a href="index.php">Voltar</a>
+    <a href="usuarios.php">Voltar</a>
 </body>
 </html>

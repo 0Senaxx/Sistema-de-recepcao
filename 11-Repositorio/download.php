@@ -1,5 +1,5 @@
 <?php
-require_once '../01-Login/autenticacao.php';
+require_once '../01-Login/Auth/autenticacao.php';
 require_once '../conexao.php';
 
 if (!isset($_GET['id'])) {

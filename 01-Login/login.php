@@ -26,7 +26,7 @@
             
             <?php endif; ?>
 
-            <form action="verificar_login.php" method="POST">
+            <form action="Auth/verificar_login.php" method="POST">
 
                 <div class="campo-usuario">
                     <label for="matricula">Matrícula:</label>
@@ -46,7 +46,22 @@
     <footer class="rodape">
         Copyright © 2025 SEAD | EPP. Todos os direitos reservados 
     </footer>
-    <script src="script.js"></script>
-</body>
 
+    <script>
+        document.getElementById('matricula').addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase().replace(/[^0-9A-Z]/g, ''); // Só números e letras maiúsculas
+
+            // Separando partes da matrícula: 000.000-0A
+            let formatted = '';
+
+            if (value.length > 0) formatted += value.substring(0, 3);
+            if (value.length > 3) formatted += '.' + value.substring(3, 6);
+            if (value.length > 6) formatted += '-' + value.substring(6, 7);
+            if (value.length > 7) formatted += value.substring(7, 8);
+
+            e.target.value = formatted;
+        });
+    </script>
+
+</body>
 </html>

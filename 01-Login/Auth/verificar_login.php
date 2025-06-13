@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../conexao.php';
+include '../../conexao.php';
 
 $matricula = $_POST['matricula'];
 $senha = $_POST['senha'];
@@ -22,17 +22,17 @@ if ($result->num_rows === 1) {
         // Redireciona de acordo com o perfil
         switch ($usuario['perfil']) {
             case 'ADM':
-                header("Location: ../10-Administrador/index.php");
+                header("Location: ../../10-Administrador/index.php");
                 break;
             case 'GEPES':
-                header("Location: ../08-Servidores/index.php");
+                header("Location: ../../08-Servidores/index.php");
                 break;
             case 'GCP':
-                header("Location: ../09-Setores/index.php");
+                header("Location: ../../09-Setores/index.php");
                 break;
             case 'Recepcionista':
             default:
-                header("Location: ../02-Inicio/index.php");
+                header("Location: ../../02-Inicio/index.php");
                 break;
         }
         exit;
@@ -40,5 +40,5 @@ if ($result->num_rows === 1) {
 }
 
 $_SESSION['erro'] = "CPF ou senha inválidos!";
-header("Location: login.php");
+header("Location: ../login.php");
 exit;

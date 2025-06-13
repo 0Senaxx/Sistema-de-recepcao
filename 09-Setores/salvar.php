@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-include '../01-Login/autenticacao.php';
+include '../01-Login/Auth/autenticacao.php';
 
 require_once '../conexao.php';
 

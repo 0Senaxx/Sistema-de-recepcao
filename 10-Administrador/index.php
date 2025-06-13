@@ -8,8 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-include '../01-Login/autenticacao.php';
-
+include '../01-Login/Auth/autenticacao.php';
 include '../conexao.php';
 
 // Consulta rápida de dados
@@ -54,7 +53,7 @@ $row_setores = mysqli_fetch_assoc($result_setores);
                 <li><a href="../09-Setores/index.php">Setores</a></li>
                 <li><a href="../07-Relatorio/gerar_relatorio.php">Relatórios</a></li>
                 <li><a href="documentos.php">Repositório</a></li>
-                <li><a href="../01-Login/logout.php">Sair</a></li>
+                <li><a href="../01-Login/Auth/logout.php">Sair</a></li>
             </ul>
         </nav>
     </header>

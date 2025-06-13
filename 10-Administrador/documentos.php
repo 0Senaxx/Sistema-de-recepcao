@@ -1,5 +1,5 @@
 <?php
-require_once '../01-Login/autenticacao.php';
+require_once '../01-Login/Auth/autenticacao.php';
 require_once '../conexao.php'; // ajuste para seu arquivo de conexão
 
 // Upload de novo documento

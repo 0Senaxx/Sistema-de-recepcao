@@ -16,18 +16,18 @@ $id = $_GET['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
+    $matricula = $_POST['matricula'];
     $perfil = $_POST['perfil'];
 
     if (!empty($_POST['senha'])) {
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-        $sql = "UPDATE usuarios SET nome=?, cpf=?, senha=?, perfil=? WHERE id=?";
+        $sql = "UPDATE usuarios SET nome=?, matricula=?, senha=?, perfil=? WHERE id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssi", $nome, $cpf, $senha, $perfil, $id);
+        $stmt->bind_param("ssssi", $nome, $matricula, $senha, $perfil, $id);
     } else {
-        $sql = "UPDATE usuarios SET nome=?, cpf=?, perfil=? WHERE id=?";
+        $sql = "UPDATE usuarios SET nome=?, matricula=?, perfil=? WHERE id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssi", $nome, $cpf, $perfil, $id);
+        $stmt->bind_param("sssi", $nome, $matricula, $perfil, $id);
     }
 
     if ($stmt->execute()) {
@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Nome:</label><br>
         <input type="text" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required><br><br>
 
-        <label>CPF:</label><br>
-        <input type="text" name="cpf" value="<?= htmlspecialchars($usuario['cpf']) ?>" required><br><br>
+        <label>matricula:</label><br>
+        <input type="text" name="matricula" value="<?= htmlspecialchars($usuario['matricula']) ?>" required><br><br>
 
         <label>Senha (deixe em branco para não alterar):</label><br>
         <input type="password" name="senha"><br><br>

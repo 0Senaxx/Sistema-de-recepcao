@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['perfil'] != 'ADM') {
 include '../../conexao.php';
 
 // Buscar usuários
-$sql = "SELECT id, nome, cpf, perfil FROM usuarios";
+$sql = "SELECT id, nome, matricula, perfil FROM usuarios";
 $result = $conn->query($sql);
 ?>
 
@@ -30,7 +30,7 @@ $result = $conn->query($sql);
                 <li><a href="../../08-Servidores/index.php">Servidores</a></li>
                 <li><a href="../../09-Setores/index.php">Setores</a></li>
                 <li><a href="../../07-Relatorio/gerar_relatorio.php">Relatórios</a></li>
-                <li><a href="../../01-Login/logout.php">Sair</a></li>
+                <li><a href="../../01-Login/Auth/logout.php">Sair</a></li>
             </ul>
         </nav>
     </header>
@@ -43,7 +43,7 @@ $result = $conn->query($sql);
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>CPF</th>
+                        <th>MATRÍCULA</th>
                         <th>Perfil</th>
                         <th>Ações</th>
                     </tr>
@@ -53,7 +53,7 @@ $result = $conn->query($sql);
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
                         <td><?= htmlspecialchars($row['nome']) ?></td>
-                        <td><?= htmlspecialchars($row['cpf']) ?></td>
+                        <td><?= htmlspecialchars($row['matricula']) ?></td>
                         <td><?= htmlspecialchars($row['perfil']) ?></td>
                         <td>
                             <a href="editar_usuario.php?id=<?= $row['id'] ?>">Editar</a> |

@@ -1,5 +1,6 @@
 <?php
-require_once '../01-Login/autenticacao.php';
+require_once '../01-Login/Auth/autenticacao.php';
+include '../01-Login/Auth/controle_sessao.php';
 require_once '../conexao.php';
 
 // Busca os documentos
@@ -23,7 +24,7 @@ $result = $conn->query($sql);
             <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
             <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
             <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/logout.php">Sair</a>
+            <a href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
 </header>
 
