@@ -33,11 +33,12 @@ $resultSetores = $conn->query($sqlSetores);
     <header class="cabecalho">
         <h1>Recepção SEAD</h1>
         <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
+            <a class="nav" href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">Nova Visita</a>
+            <a class="nav" href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
+            <a class="nav" href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
+            <a class="nav" href="../12-Ocorrencias/registro_ocorrencia.php" onclick="fadeOut(event, this)">Ocorrências</a>
+            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
@@ -72,7 +73,7 @@ $resultSetores = $conn->query($sqlSetores);
                         $ramal = $setor['ramal'];
 
                         // Buscar servidores
-                        $sqlServidores = "SELECT nome, contato FROM servidores WHERE setor_id = ? ORDER BY nome ASC";
+                        $sqlServidores = "SELECT nome FROM servidores WHERE setor_id = ? ORDER BY nome ASC";
                         $stmtServ = $conn->prepare($sqlServidores);
                         $stmtServ->bind_param("i", $setorId);
                         $stmtServ->execute();
@@ -94,19 +95,7 @@ $resultSetores = $conn->query($sqlSetores);
                                     <td colspan="3" ></td>
                                     <td><?= htmlspecialchars($servidor['nome']) ?></td>
                                     <td class="text-center">
-                                  
-                                        <!-- Verifica se o contato do servidor está preenchido -->
-                                        <?php if (!empty($servidor['contato'])) : ?>
-                                            <img src="../uploads/Logozap.svg" alt="WhatsApp" style="height:16px; vertical-align:middle; margin-left:4px;">
-                                        <?php endif; ?>
-                                        
-                                        <?php if (!empty($servidor['contato'])) : ?>
-                                            <a href="https://wa.me/55<?= preg_replace('/\D/', '', $servidor['contato']) ?>" target="_blank" rel="noopener noreferrer">
-                                                <?= htmlspecialchars($servidor['contato']) ?>
-                                            </a>
-                                        <?php else : ?>
                                             —
-                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
@@ -160,12 +149,26 @@ $resultSetores = $conn->query($sqlSetores);
 
                     // Se for linha de servidor, mostra também o setor correspondente
                     if (linha.classList.contains('linha-servidor')) {
-                        // Exibir setor (linha anterior com classe linha-setor)
-                        let setorLinha = linha.previousElementSibling;
-                        if (setorLinha && setorLinha.classList.contains('linha-setor')) {
+                        // Procura a linha do setor correspondente subindo na árvore
+                        let setorLinha = linha;
+                        while (setorLinha && !setorLinha.classList.contains('linha-setor')) {
+                            setorLinha = setorLinha.previousElementSibling;
+                        }
+                        if (setorLinha) {
                             setorLinha.style.display = 'table-row';
+
+                            // também mostra todos os outros servidores do setor, para manter coerência
+                            let classeSetor = setorLinha.getAttribute('data-setor-id');
+                            document.querySelectorAll('.' + classeSetor).forEach(linhaServidor => {
+                                linhaServidor.style.display = 'table-row';
+                            });
+
+                            // troca o ícone para 🔽
+                            let icone = document.getElementById("icone-" + classeSetor);
+                            if (icone) icone.textContent = "🔽";
                         }
                     }
+
                 } else {
                     linha.style.display = 'none';
                 }

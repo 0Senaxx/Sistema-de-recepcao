@@ -28,7 +28,7 @@ if ($setor_filter !== '') {
 
 if ($busca !== '') {
     $busca_esc = $conn->real_escape_string($busca);
-    $sql .= " AND (s.nome LIKE '%$busca_esc%' OR s.cpf LIKE '%$busca_esc%')";
+    $sql .= " AND (s.nome LIKE '%$busca_esc%' OR s.matricula LIKE '%$busca_esc%')";
 }
 
 $sql .= " ORDER BY s.nome ASC";
@@ -44,8 +44,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <title>Lista de Servidores</title>
-
 </head>
 
 <body>
@@ -58,7 +59,7 @@ $result = $conn->query($sql);
 
     <main>
         <section class="Modulo">
-            <h1>Módulo de Gestão de Servidores da SEAD</h1>
+            <h1>Módulo de Gestão de Pessoal - SEAD</h1>
         </section>
 
         <section class="card">
@@ -66,8 +67,8 @@ $result = $conn->query($sql);
           <div class="cabecalho-visitas">
             <form method="GET" class="filtro-form">
 
-              <!-- CAMPO DE BUSCA POR CPF OU NOME -->
-              <input class="campo-buscar" type="text" name="busca" placeholder="Buscar por nome ou CPF"
+              <!-- CAMPO DE BUSCA POR matricula OU NOME -->
+              <input class="campo-buscar" type="text" name="busca" placeholder="Buscar por nome ou matricula"
                 value="<?php echo htmlspecialchars($busca); ?>" />
 
               <!-- FILTRO POR SETOR -->
@@ -95,8 +96,7 @@ $result = $conn->query($sql);
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Contato</th>
+                        <th class="text-center">Matrícula</th>
                         <th class="text-center">Status</th>
                         <th>Setor</th>
                         <th class="text-center">Ações</th>
@@ -109,11 +109,8 @@ $result = $conn->query($sql);
                         <td>
                             <?php echo htmlspecialchars($row['nome']); ?>
                         </td>
-                        <td>
-                            <?php echo htmlspecialchars($row['cpf']); ?>
-                        </td>
-                        <td>
-                            <?php echo htmlspecialchars($row['contato']); ?>
+                        <td class="text-center">
+                            <?php echo htmlspecialchars($row['matricula']); ?>
                         </td>
                         <td class="text-center">
                             <?php echo htmlspecialchars($row['status']); ?>
@@ -152,14 +149,8 @@ $result = $conn->query($sql);
           </div>
           
           <div class="form-campo">
-            <label>CPF:</label>
-            <input type="text" name="cpf" id="cpf" maxlength="14" required autocomplete="off" />
-          </div>
-
-
-          <div class="form-campo">
-            <label>Contato:</label> 
-            <input type="text" name="contato" id="contato" maxlength="15" autocomplete="off" />
+            <label>Matrícula:</label>
+            <input type="text" name="matricula" id="matricula" maxlength="10" required autocomplete="off" />
           </div>
 
           <div class="form-lista">

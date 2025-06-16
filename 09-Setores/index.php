@@ -34,7 +34,7 @@ $res = $conn->query($sql);
 
     <main>
         <section class="Modulo">
-            <h1>Módulo de Gestão Telefônia</h1>
+            <h1>Módulo de Gestão Telefônica</h1>
         </section>
 
         <section class="card">

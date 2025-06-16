@@ -68,23 +68,22 @@ body {
     gap: var(--spacing);
 }
 
-.cabecalho nav a {
+.nav {
     color: var(--cor-branco);
     text-decoration: none;
     font-size: var(--font-size);
-    /* Usando unidade relativa */
     padding: 0.3125rem 0.625rem;
-    /* Ajustando padding */
     border: 1px solid transparent;
     border-radius: 4px;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.cabecalho nav a:hover {
+.nav:hover {
     text-decoration: none;
     background-color: var(--cor-hover);
     border-color: var(--cor-branco);
 }
+
 
 /* =================== RODAPÉ =================== */
 

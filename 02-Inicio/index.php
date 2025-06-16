@@ -52,11 +52,12 @@ $result = $stmt->get_result();
     <header class="cabecalho">
         <h1>Recepção SEAD</h1>
         <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
+            <a class="nav" href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">Nova Visita</a>
+            <a class="nav" href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
+            <a class="nav" href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
+            <a class="nav" href="../12-Ocorrencias/registro_ocorrencia.php" onclick="fadeOut(event, this)">Ocorrências</a>
+            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
@@ -74,34 +75,41 @@ $result = $stmt->get_result();
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Entrada</th>
+                        <th class="text-center">Entrada</th>
                         <th>Nome do Visitante</th>
-                        <th>CPF</th>
+                        <th class="text-center">CPF</th>
                         <th>Setor Visitado</th>
                         <th>Servidor Visitado</th>
-                        <th>Saída</th>
+                        <th class="text-center">Saída</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?= $row['hora'] ?></td>
-                            <td>
-                                <?= !empty($row['social']) ? $row['social'] : $row['nome']; ?>
-                            </td>
+                        <td class="text-center"><?= $row['hora'] ?></td>
+                        <td><?= !empty($row['social']) ? $row['social'] : $row['nome']; ?></td>
+                        <td class="text-center">
+                            <?php
+                                $cpf = $row['cpf']; // Ex: "123.456.789-00"
 
-                            <td>
-                                <?php
-                                $cpf = $row['cpf'];
-                                $cpf_masked = substr($cpf, 0, 3) . '.' . '***.***-**';
+                                // Quebra o CPF pela máscara
+                                $partes = explode('.', $cpf); // $partes[0] = "123", $partes[1] = "456", etc.
+
+                                if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
+                                    $subpartes = explode('-', $partes[2]); // $subpartes[0] = "789", $subpartes[1] = "00"
+                                    $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
+                                } else {
+                                    $cpf_masked = 'CPF inválido';
+                                }
+
                                 echo $cpf_masked;
                                 ?>
-                            </td>
-                            <td><?= $row['nome_setor'] ?? '---' ?></td>
-                            <td><?= $row['nome_servidor'] ?? '---' ?></td>
-                            <td><?= $row['saida'] ? $row['saida'] : '---' ?></td>
-                            <td class="text-center">
+                        </td>
+                        <td><?= $row['nome_setor'] ?? '---' ?></td>
+                        <td><?= $row['nome_servidor'] ?? '---' ?></td>
+                        <td class="text-center"><?= $row['saida'] ? $row['saida'] : '---' ?></td>
+                        <td class="text-center">
                             <?php if (!$row['saida']): ?>
                             <form action="registrar_saida.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="visita_id" value="<?= $row['id'] ?>">

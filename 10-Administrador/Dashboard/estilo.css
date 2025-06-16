@@ -1,0 +1,178 @@
+/* =================== RESET E VARIÁVEIS =================== */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CABEÇALHO E RODAPÉ*/
+
+:root {
+    --cor-primaria: #293264;
+    --cor-secundaria: #0A853D;
+    --cor-amarelo: #FFFF00;
+    --cor-branco: #fff;
+    --cor-hover: rgba(255, 255, 255, 0.2);
+    --font-size: 11pt;
+    /* Tamanho de fonte padrão */
+    --spacing: 0.5rem;
+    /* Espaçamento padrão */
+}
+
+/* =================== LAYOUT GERAL =================== */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
+    /* Deixa espaço para a topbar */
+
+    /*FUNDO PONTILHADO*/
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+}
+
+.card {
+    background: #ddd;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+
+.grid-area {
+    grid-column: span 2;
+}
+
+table {
+    width: 100%;
+    background: #eee;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #bbb;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+
+.Grafico {
+    background-color: rgb(38, 204, 216);
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.Topo {
+    background-color: rgb(38, 204, 216);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Espaço entre os cards */
+    padding: 15px;
+    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+    margin: 20px;
+}
+
+.Topo .card {
+    flex: 1;
+    min-width: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.Topo .card small {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #666;
+    margin: 5px;
+}
+.painel {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.lado-esquerdo,
+.lado-direito {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lado-esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lado-direito {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.box-info {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.box-info h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.box-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.box-info li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #444;
+}

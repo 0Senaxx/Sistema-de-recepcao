@@ -25,7 +25,7 @@ $result_visitantes = mysqli_query($conn, $sql_visitantes);
 $row_visitantes = mysqli_fetch_assoc($result_visitantes);
 
 // Servidores ativos
-$sql_servidores = "SELECT COUNT(*) AS total FROM servidores WHERE status = 'Ativo'";
+$sql_servidores = "SELECT COUNT(*) AS total FROM servidores WHERE status = 'Disponível'";
 $result_servidores = mysqli_query($conn, $sql_servidores);
 $row_servidores = mysqli_fetch_assoc($result_servidores);
 
@@ -40,10 +40,10 @@ $row_setores = mysqli_fetch_assoc($result_setores);
 <head>
     <meta charset="UTF-8">
     <title>Painel do Administrador - Recepção SEAD</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header>
+    <header class="cabecalho">
         <h1>Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h1>
         <nav>
             <ul>
@@ -51,8 +51,9 @@ $row_setores = mysqli_fetch_assoc($result_setores);
                 <li><a href="Usuarios/usuarios.php">Usuários</a></li>
                 <li><a href="../08-Servidores/index.php">Servidores</a></li>
                 <li><a href="../09-Setores/index.php">Setores</a></li>
-                <li><a href="../07-Relatorio/gerar_relatorio.php">Relatórios</a></li>
+                <li><a href="../05-Visitas/visitas.php">Relatórios</a></li>
                 <li><a href="documentos.php">Repositório</a></li>
+                <li><a href="dashboard_admin.php">dashboard_admin</a></li>
                 <li><a href="../01-Login/Auth/logout.php">Sair</a></li>
             </ul>
         </nav>

@@ -20,10 +20,10 @@ if ($result->num_rows === 1) {
         $_SESSION['perfil'] = $usuario['perfil'];
 
         // Primeiro acesso: senha temporária
-        if ($usuario['senha_temporaria']) {
-            header("Location: ../primeiro_acesso.php");
-            exit;
-        }
+        //if ($usuario['senha_temporaria']) {
+          //  header("Location: ../primeiro_acesso.php");
+            //exit;
+        //}
 
         // Verificar expiração de senha
         if (!empty($usuario['data_ultima_troca'])) {

@@ -17,16 +17,17 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../11-Repositorio/estilo.css" />
 </head>
 <body>
-<header class="cabecalho">
-  <h1>Recepção SEAD</h1>
+    <header class="cabecalho">
+        <h1>Recepção SEAD</h1>
         <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
+            <a class="nav" href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">Nova Visita</a>
+            <a class="nav" href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
+            <a class="nav" href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
+            <a class="nav" href="../12-Ocorrencias/registro_ocorrencia.php" onclick="fadeOut(event, this)">Ocorrências</a>
+            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
-</header>
+    </header>
 
 <main>
   <section class="card">

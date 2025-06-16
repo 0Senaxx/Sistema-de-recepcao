@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <title>Editar Usuário</title>
 </head>
 <body>
@@ -59,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Nome:</label><br>
         <input type="text" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required><br><br>
 
-        <label>matricula:</label><br>
+        <label>Matricula:</label><br>
         <input type="text" name="matricula" value="<?= htmlspecialchars($usuario['matricula']) ?>" required><br><br>
 
         <label>Senha (deixe em branco para não alterar):</label><br>
@@ -77,4 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <a href="../index.php">Voltar</a>
 </body>
+    <script>
+        function aplicarMascaraCPF(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            input.value = value;
+        }
+
+          $('#matricula').mask('000.000-0 A', {
+            translation: {
+                'A': { pattern: /[A-Za-z]/ }
+                }
+            });
+    </script>
 </html>

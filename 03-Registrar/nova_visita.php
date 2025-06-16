@@ -40,16 +40,16 @@ $resultServidores = $conn->query($sqlServidores);
 
 <body class="container py-4">
 
-
   <header class="cabecalho">
     <h1>Recepção SEAD</h1>
-        <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/Auth/logout.php">Sair</a>
-        </nav>
+    <nav>
+      <a class="nav" href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
+      <a class="nav" href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">Nova Visita</a>
+      <a class="nav" href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
+      <a class="nav" href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
+      <a class="nav" href="../12-Ocorrencias/registro_ocorrencia.php" onclick="fadeOut(event, this)">Ocorrências</a>
+      <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
+    </nav>
   </header>
 
 
@@ -67,9 +67,10 @@ $resultServidores = $conn->query($sqlServidores);
             <div class="campo-documento">
               <label for="cpf">Documento (CPF) <span class="required">*</span></label>
               <div class="input-with-icon">
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" autocomplete="off" required>
+                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" autocomplete="off" required onblur="validarCPF()">
                 <button type="button" id="btnBuscarCPF" title="Pesquisar">🔍</button>
               </div>
+              <small id="cpfErro" style="color: red; display: none;">CPF inválido</small>
             </div>
 
             <div class="campo-data">

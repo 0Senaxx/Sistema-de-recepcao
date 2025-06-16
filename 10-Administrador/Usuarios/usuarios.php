@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['perfil'] != 'ADM') {
 include '../../conexao.php';
 
 // Buscar usuários
-$sql = "SELECT id, nome, matricula, perfil FROM usuarios";
+$sql = "SELECT id, nome, cpf, matricula, perfil FROM usuarios";
 $result = $conn->query($sql);
 ?>
 
@@ -43,6 +43,7 @@ $result = $conn->query($sql);
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>CPF</th>
                         <th>MATRÍCULA</th>
                         <th>Perfil</th>
                         <th>Ações</th>
@@ -53,6 +54,7 @@ $result = $conn->query($sql);
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
                         <td><?= htmlspecialchars($row['nome']) ?></td>
+                        <td><?= htmlspecialchars($row['cpf']) ?></td>
                         <td><?= htmlspecialchars($row['matricula']) ?></td>
                         <td><?= htmlspecialchars($row['perfil']) ?></td>
                         <td>
