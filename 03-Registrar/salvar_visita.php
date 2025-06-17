@@ -1,5 +1,8 @@
 <?php
+session_start();
 include '../conexao.php';
+
+$usuario_id = $_SESSION['usuario_id'] ?? null;
 
 // Função para salvar foto (base64 ou arquivo)
 function salvarFoto() {
@@ -23,7 +26,7 @@ function salvarFoto() {
 // === DADOS DO FORMULÁRIO === //
 $cpf      = $_POST['cpf'];
 $nome     = $_POST['nome'];
-$social   = $_POST['social'] ?? null; // <-- novo nome da variável
+$social   = $_POST['social'] ?? null;
 $telefone = $_POST['telefone'];
 $orgao    = $_POST['orgao'];
 $data     = $_POST['data'];
@@ -54,7 +57,6 @@ if ($result->num_rows > 0) {
     }
 
     $stmtUpdate->execute();
-
 } else {
     $sqlInsert = "INSERT INTO visitantes (cpf, nome, social, telefone, orgao, foto) VALUES (?, ?, ?, ?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
@@ -64,10 +66,10 @@ if ($result->num_rows > 0) {
     $visitante_id = $stmtInsert->insert_id;
 }
 
-// === REGISTRA A VISITA === //
-$sqlVisita = "INSERT INTO visitas (visitante_id, data, hora, servidor, setor) VALUES (?, ?, ?, ?, ?)";
+// === REGISTRA A VISITA COM USUÁRIO === //
+$sqlVisita = "INSERT INTO visitas (visitante_id, data, hora, servidor, setor, usuario_id) VALUES (?, ?, ?, ?, ?, ?)";
 $stmtVisita = $conn->prepare($sqlVisita);
-$stmtVisita->bind_param("isssi", $visitante_id, $data, $hora, $servidor, $setor);
+$stmtVisita->bind_param("isssii", $visitante_id, $data, $hora, $servidor, $setor, $usuario_id);
 $stmtVisita->execute();
 
 // === REDIRECIONA === //

@@ -10,7 +10,8 @@ if (!isset($_SESSION['usuario_id'])) {
 $erro = "";
 
 // Função para validar CPF completo
-function validaCPF($cpf) {
+function validaCPF($cpf)
+{
     // Remove caracteres não numéricos
     $cpf = preg_replace('/\D/', '', $cpf);
 
@@ -53,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validar CPF completo
     if (!validaCPF($cpf_numeros)) {
         $erro = "CPF inválido. Digite um CPF válido.";
-    } 
+    }
     // Validação de senha
     elseif ($nova_senha !== $confirmar) {
         $erro = "As senhas não coincidem.";
@@ -61,10 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = "A senha deve conter no mínimo 6 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.";
     } else {
         // Formatar CPF com pontuação: 000.000.000-00
-        $cpf_formatado = substr($cpf_numeros,0,3) . '.' .
-                        substr($cpf_numeros,3,3) . '.' .
-                        substr($cpf_numeros,6,3) . '-' .
-                        substr($cpf_numeros,9,2);
+        $cpf_formatado = substr($cpf_numeros, 0, 3) . '.' .
+            substr($cpf_numeros, 3, 3) . '.' .
+            substr($cpf_numeros, 6, 3) . '-' .
+            substr($cpf_numeros, 9, 2);
 
         $id = $_SESSION['usuario_id'];
         $hash = password_hash($nova_senha, PASSWORD_DEFAULT);
@@ -74,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssi", $hash, $cpf_formatado, $id);
         $stmt->execute();
 
-        header("Location: ../02-Inicio/index.php");
+        header("Location: Auth/verificar_login.php");
         exit;
     }
 }
@@ -82,41 +83,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Primeiro Acesso - SEAD</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
 
-    <script>
+<body class="container py-5">
+
+    <header class="cabecalho">
+        <h1>Recepção SEAD</h1>
+    </header>
+
+    <main>
+        <section class="card">
+
+            <h2>Primeiro Acesso</h2>
+            <p>Para proteger sua conta, altere sua senha e cadastre seu CPF.</p>
+
+            <?php if ($erro): ?>
+                <p style="color:red"><?= htmlspecialchars($erro) ?></p>
+            <?php endif; ?>
+
+            <form action="Auth/verificar_login.php" method="POST">
+
+                <div class="campo-senha">
+                    <label>Nova Senha:</label>
+                    <input type="password" name="nova_senha" required>
+                </div>
+
+                <div class="campo-senha">
+                    <label>Confirmar Senha:</label>
+                    <input type="password" name="confirmar" required>
+                </div>
+
+                <div class="campo-senha">
+                    <label>CPF:</label>
+                    <input type="text" name="cpf" autocomplete="off" maxlength="14" oninput="mascaraCPF(this)" required placeholder="000.000.000-00">
+                </div>
+
+                <button type="submit" class="btn-login">Salvar e Acessar</button>
+
+            </form>
+        </section>
+    </main>
+
+
+    <footer class="rodape">
+        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
+    </footer>
+
+</body>
+<script>
     // Máscara simples para CPF no campo de input
-    function mascaraCPF(i){
-        var v = i.value.replace(/\D/g,''); // Remove não números
+    function mascaraCPF(i) {
+        var v = i.value.replace(/\D/g, ''); // Remove não números
         v = v.replace(/(\d{3})(\d)/, "$1.$2");
         v = v.replace(/(\d{3})(\d)/, "$1.$2");
         v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
         i.value = v;
     }
-    </script>
+</script>
 
-</head>
-<body>
-    <h2>Primeiro Acesso</h2>
-    <p>Para proteger sua conta, altere sua senha e cadastre seu CPF.</p>
-
-    <?php if ($erro): ?>
-        <p style="color:red"><?= htmlspecialchars($erro) ?></p>
-    <?php endif; ?>
-
-    <form method="POST">
-        <label>Nova Senha:</label>
-        <input type="password" name="nova_senha" required><br><br>
-
-        <label>Confirmar Senha:</label>
-        <input type="password" name="confirmar" required><br><br>
-
-        <label>CPF:</label>
-        <input type="text" name="cpf" maxlength="14" oninput="mascaraCPF(this)" required placeholder="000.000.000-00"><br><br>
-
-        <button type="submit">Salvar e Acessar</button>
-    </form>
-</body>
 </html>

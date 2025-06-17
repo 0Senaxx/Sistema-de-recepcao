@@ -14,16 +14,28 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $usuario = $result->fetch_assoc();
 
+    if (!$usuario['ativo']) {
+        $_SESSION['erro'] = "Usuário inativo. Procure o administrador do sistema.";
+        header("Location: ../login.php");
+        exit;
+    }
+
     if (password_verify($senha, $usuario['senha'])) {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['nome'] = $usuario['nome'];
         $_SESSION['perfil'] = $usuario['perfil'];
 
+        // Atualizar o último login
+        $sqlUpdate = "UPDATE usuarios SET ultimo_login = NOW() WHERE id = ?";
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+        $stmtUpdate->bind_param("i", $usuario['id']);
+        $stmtUpdate->execute();
+
         // Primeiro acesso: senha temporária
-        //if ($usuario['senha_temporaria']) {
-          //  header("Location: ../primeiro_acesso.php");
-            //exit;
-        //}
+        if ($usuario['senha_temporaria']) {
+            header("Location: ../primeiro_acesso.php");
+            exit;
+        }
 
         // Verificar expiração de senha
         if (!empty($usuario['data_ultima_troca'])) {
@@ -37,7 +49,7 @@ if ($result->num_rows === 1) {
             }
         }
 
-        // Login normal (sem senha expirada)
+        // Redirecionamento por perfil
         switch ($usuario['perfil']) {
             case 'ADM':
                 header("Location: ../../10-Administrador/index.php");

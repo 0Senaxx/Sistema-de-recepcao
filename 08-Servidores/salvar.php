@@ -14,20 +14,28 @@ $matricula = $conn->real_escape_string($_POST['matricula'] ?? '');
 $status = $conn->real_escape_string($_POST['status'] ?? 'Ativo');
 $setor_id = intval($_POST['setor_id'] ?? 0);
 
+// Captura nome do usuário da sessão
+$usuario = $conn->real_escape_string($_SESSION['nome'] ?? 'Desconhecido');
+
 if ($nome == '' || $matricula == '' || $setor_id == 0) {
     echo "Preencha os campos obrigatórios.";
     exit;
 }
 
 if ($id > 0) {
-    // Update
+    // Atualização
     $sql = "UPDATE servidores SET 
-        nome = '$nome', matricula = '$matricula', status = '$status', setor_id = $setor_id 
+        nome = '$nome', 
+        matricula = '$matricula', 
+        status = '$status', 
+        setor_id = $setor_id,
+        updated_at = NOW(),
+        updated_by = '$usuario'
         WHERE id = $id";
 } else {
-    // Insert
-    $sql = "INSERT INTO servidores (nome, matricula, status, setor_id) VALUES 
-        ('$nome', '$matricula', '$status', $setor_id)";
+    // Inserção
+    $sql = "INSERT INTO servidores (nome, matricula, status, setor_id, updated_at, updated_by) VALUES 
+        ('$nome', '$matricula', '$status', $setor_id, NOW(), '$usuario')";
 }
 
 if ($conn->query($sql)) {
@@ -35,3 +43,4 @@ if ($conn->query($sql)) {
 } else {
     echo "Erro: " . $conn->error;
 }
+?>

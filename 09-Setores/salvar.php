@@ -1,16 +1,12 @@
 <?php
-
 session_start();
 
-// Verifica se o usuário está logado, ou seja, se a sessão 'usuario_id' existe
 if (!isset($_SESSION['usuario_id'])) {
-    // Se não estiver logado, redireciona para a página de login
     header("Location: ../01-Login/login.php");
     exit;
 }
 
 include '../01-Login/Auth/autenticacao.php';
-
 require_once '../conexao.php';
 
 $id = $_POST['id'] ?? '';
@@ -18,6 +14,7 @@ $sigla = $conn->real_escape_string($_POST['sigla'] ?? '');
 $nome = $conn->real_escape_string($_POST['nome'] ?? '');
 $localizacao = $conn->real_escape_string($_POST['localizacao'] ?? '');
 $ramal = $conn->real_escape_string($_POST['ramal'] ?? '');
+$usuario = $conn->real_escape_string($_SESSION['nome'] ?? 'Desconhecido');
 
 if (empty($sigla) || empty($nome)) {
     echo "Sigla e nome são obrigatórios.";
@@ -26,11 +23,15 @@ if (empty($sigla) || empty($nome)) {
 
 if (empty($id)) {
     // Inserir novo
-    $sql = "INSERT INTO setores (sigla, nome, localizacao, ramal) VALUES ('$sigla', '$nome', '$localizacao', '$ramal')";
+    $sql = "INSERT INTO setores (sigla, nome, localizacao, ramal, updated_at, updated_by)
+            VALUES ('$sigla', '$nome', '$localizacao', '$ramal', NOW(), '$usuario')";
 } else {
     // Atualizar existente
     $id = intval($id);
-    $sql = "UPDATE setores SET sigla='$sigla', nome='$nome', localizacao='$localizacao', ramal='$ramal' WHERE id=$id";
+    $sql = "UPDATE setores 
+            SET sigla='$sigla', nome='$nome', localizacao='$localizacao', ramal='$ramal', 
+                updated_at=NOW(), updated_by='$usuario'
+            WHERE id=$id";
 }
 
 if ($conn->query($sql)) {

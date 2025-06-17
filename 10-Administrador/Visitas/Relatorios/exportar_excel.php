@@ -1,5 +1,5 @@
 <?php
-include '../conexao.php';
+include '../../../conexao.php';
 
 // Cabeçalhos com charset UTF-8
 header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
@@ -28,11 +28,18 @@ if (!empty($condicoes)) {
     $where = 'WHERE ' . implode(' AND ', $condicoes);
 }
 
-// Consulta
+// Consulta atualizada com joins para setor, servidor e usuário
 $sql = "
-    SELECT v.data, v.hora, vis.nome AS nome_visitante, vis.cpf, v.setor, v.servidor, v.saida
+    SELECT v.data, v.hora, v.saida,
+           vis.nome AS nome_visitante, vis.cpf,
+           s.sigla AS sigla_setor,
+           srv.nome AS nome_servidor,
+           u.nome AS nome_usuario_registro
     FROM visitas v
     JOIN visitantes vis ON v.visitante_id = vis.id
+    LEFT JOIN setores s ON v.setor = s.id
+    LEFT JOIN servidores srv ON v.servidor = srv.id
+    LEFT JOIN usuarios u ON v.usuario_id = u.id
     $where
     ORDER BY v.data DESC, v.hora DESC
 ";
@@ -49,17 +56,34 @@ echo "<tr>
         <th>Setor</th>
         <th>Servidor</th>
         <th>Saída</th>
+        <th>Duração</th>
+        <th>Registrado por</th>
       </tr>";
 
 while ($row = $result->fetch_assoc()) {
+    // CPF Anonimizado
+    $cpf = preg_replace('/\D/', '', $row['cpf']);
+    $cpf_anon = '***.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-**';
+
+    // Duração
+    $duracao = '';
+    if ($row['hora'] && $row['saida']) {
+        $entrada_dt = new DateTime($row['hora']);
+        $saida_dt = new DateTime($row['saida']);
+        $intervalo = $entrada_dt->diff($saida_dt);
+        $duracao = $intervalo->format('%H:%I:%S');
+    }
+
     echo "<tr>
             <td>" . date('d/m/Y', strtotime($row['data'])) . "</td>
             <td>" . $row['hora'] . "</td>
             <td>" . htmlspecialchars($row['nome_visitante']) . "</td>
-            <td>" . $row['cpf'] . "</td>
-            <td>" . htmlspecialchars($row['setor']) . "</td>
-            <td>" . htmlspecialchars($row['servidor']) . "</td>
-            <td>" . $row['saida'] . "</td>
+            <td>" . $cpf_anon . "</td>
+            <td>" . htmlspecialchars($row['sigla_setor'] ?? '---') . "</td>
+            <td>" . htmlspecialchars($row['nome_servidor'] ?? '---') . "</td>
+            <td>" . ($row['saida'] ?: '---') . "</td>
+            <td>" . ($duracao ?: '---') . "</td>
+            <td>" . htmlspecialchars($row['nome_usuario_registro'] ?? '---') . "</td>
           </tr>";
 }
 echo "</table>";
