@@ -195,8 +195,22 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
             <!-- LADO DIREITO: DUAS TABELAS -->
             <div class="lado-direito">
                 <div class="box-info">
-                    <h3>🏆 Setores mais visitados</h3>
+                    <h3>🏆 Setores mais visitados no mês de <span id="mesAtualTexto">...</span></h3>
                     <canvas id="graficoSetores" height="200"></canvas>
+                    <div class="botoes-grafico" id="mes-botoes">
+                        <button class="btn-grafico2" id="btn-mes-1" onclick="carregarGraficoSetores(1, this)">Jan</button>
+                        <button class="btn-grafico2" id="btn-mes-2" onclick="carregarGraficoSetores(2, this)">Fev</button>
+                        <button class="btn-grafico2" id="btn-mes-3" onclick="carregarGraficoSetores(3, this)">Mar</button>
+                        <button class="btn-grafico2" id="btn-mes-4" onclick="carregarGraficoSetores(4, this)">Abr</button>
+                        <button class="btn-grafico2" id="btn-mes-5" onclick="carregarGraficoSetores(5, this)">Mai</button>
+                        <button class="btn-grafico2" id="btn-mes-6" onclick="carregarGraficoSetores(6, this)">Jun</button>
+                        <button class="btn-grafico2" id="btn-mes-7" onclick="carregarGraficoSetores(7, this)">Jul</button>
+                        <button class="btn-grafico2" id="btn-mes-8" onclick="carregarGraficoSetores(8, this)">Ago</button>
+                        <button class="btn-grafico2" id="btn-mes-9" onclick="carregarGraficoSetores(9, this)">Set</button>
+                        <button class="btn-grafico2" id="btn-mes-10" onclick="carregarGraficoSetores(10, this)">Out</button>
+                        <button class="btn-grafico2" id="btn-mes-11" onclick="carregarGraficoSetores(11, this)">Nov</button>
+                        <button class="btn-grafico2" id="btn-mes-12" onclick="carregarGraficoSetores(12, this)">Dez</button>
+                    </div>
                 </div>
 
                 <div class="box-info">
@@ -220,6 +234,11 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
         const diasData = <?= json_encode($quantidades) ?>;
         const mesesLabels = <?= json_encode($mesesLabels) ?>;
         const mesesData = <?= json_encode($totaisMes) ?>;
+        const nomesMeses = [
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
 
         const ctx = document.getElementById('graficoVisitas').getContext('2d');
         const grafico = new Chart(ctx, {
@@ -272,14 +291,84 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
         }
 
 
+        let graficoSetores;
+
+        async function carregarGraficoSetores(mes) {
+            // Marcar botão ativo
+            document.querySelectorAll('#mes-botoes button').forEach(btn => btn.classList.remove('ativo'));
+            event.target.classList.add('ativo');
+
+            const response = await fetch(`get_top_setores.php?mes=${mes}`);
+            const dados = await response.json();
+
+            if (graficoSetores) {
+                graficoSetores.data.labels = dados.labels;
+                graficoSetores.data.datasets[0].data = dados.data;
+                graficoSetores.update();
+            } else {
+                const ctxSetores = document.getElementById('graficoSetores').getContext('2d');
+                graficoSetores = new Chart(ctxSetores, {
+                    type: 'bar',
+                    data: {
+                        labels: dados.labels,
+                        datasets: [{
+                            label: 'Visitas por Setor',
+                            data: dados.data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Chama ao carregar a página (mês atual)
+async function carregarGraficoSetores(mes, botaoClicado = null) {
+    // Atualiza o nome do mês no título
+    const nomeMes = nomesMeses[mes - 1];
+    document.getElementById('mesAtualTexto').textContent = nomeMes;
+
+    // Remove destaque de todos os botões
+    document.querySelectorAll('#mes-botoes button').forEach(btn => btn.classList.remove('ativo'));
+
+    // Adiciona destaque ao botão clicado ou ao botão do mês atual
+    if (botaoClicado) {
+        botaoClicado.classList.add('ativo');
+    } else {
+        const btnAtual = document.getElementById('btn-mes-' + mes);
+        if (btnAtual) btnAtual.classList.add('ativo');
+    }
+
+    // Busca os dados do gráfico
+    const response = await fetch(`get_top_setores.php?mes=${mes}`);
+    const dados = await response.json();
+
+    // Atualiza ou cria o gráfico
+    if (graficoSetores) {
+        graficoSetores.data.labels = dados.labels;
+        graficoSetores.data.datasets[0].data = dados.data;
+        graficoSetores.update();
+    } else {
         const ctxSetores = document.getElementById('graficoSetores').getContext('2d');
-        const graficoSetores = new Chart(ctxSetores, {
+        graficoSetores = new Chart(ctxSetores, {
             type: 'bar',
             data: {
-                labels: <?= json_encode($setoresSigla) ?>,
+                labels: dados.labels,
                 datasets: [{
                     label: 'Visitas por Setor',
-                    data: <?= json_encode($visitasSetores) ?>,
+                    data: dados.data,
                     backgroundColor: 'rgba(54, 162, 235, 0.7)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
@@ -297,6 +386,17 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
                 }
             }
         });
+    }
+}
+
+
+        // Chamar ao abrir a página
+const mesAtual = new Date().getMonth() + 1;
+carregarGraficoSetores(mesAtual);
+
+
+
+
 
         const setores = <?= json_encode($setoresTempo) ?>;
         const temposMinutos = <?= json_encode($temposMediosMinutos) ?>;
@@ -343,6 +443,7 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
             }
 
         });
+
 
         function formatarMinutos(valorMinutos) {
             const horas = Math.floor(valorMinutos / 60);
