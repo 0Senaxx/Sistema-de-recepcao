@@ -75,12 +75,7 @@ $visitante = $result->fetch_assoc();
                             <label>Nome:</label>
                             <input type="text" name="nome" value="<?= $visitante['nome'] ?>" required>
                         </div>
-
-                        <div class="campo">
-                            <label>Telefone:</label>
-                            <input type="text" name="telefone" value="<?= $visitante['telefone'] ?>">
-                        </div>
-
+                        
                         <div class="campo">
                             <label>Órgão/Entidade:</label>
                             <input type="text" name="orgao" value="<?= $visitante['orgao'] ?>">

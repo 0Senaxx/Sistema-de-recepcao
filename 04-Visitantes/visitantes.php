@@ -13,7 +13,10 @@ include '../01-Login/Auth/autenticacao.php';
 include '../01-Login/Auth/controle_sessao.php';
 include '../conexao.php';
 
-$sql = "SELECT * FROM visitantes ORDER BY nome";
+$sql = "SELECT v.*, u.nome AS nome_usuario 
+        FROM visitantes v
+        LEFT JOIN usuarios u ON v.atualizado_por = u.id
+        ORDER BY v.nome";
 $result = $conn->query($sql);
 ?>
 
@@ -29,15 +32,15 @@ $result = $conn->query($sql);
 <body class="container py-4">
 
     <header class="cabecalho">
-        <h1>Recepção SEAD</h1>
+        <h1>Painel do Administrador</h1>
         <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../05-Visitas/visitas.php" onclick="fadeOut(event, this)">Lista de Visitas</a>
-            <a href="../04-Visitantes/visitantes.php" onclick="fadeOut(event, this)">Lista de Visitantes</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../10-Administrador/index.php">Início</a>
+            <a class="nav" href="../10-Administrador/Usuarios/usuarios.php">Usuários</a>
+            <a class="nav" href="visitantes.php">Visitantes</a>
+            <a class="nav" href="../10-Administrador/Setores/index.php">Setores</a>
+            <a class="nav" href="../10-Administrador/Visitas/visitas.php">Visitas</a>
+            <a class="nav" href="../10-Administrador/Documentos/documentos.php">Repositório</a>
+            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
@@ -58,7 +61,7 @@ $result = $conn->query($sql);
                         <th>CPF</th>
                         <th>Nome</th>
                         <th>Órgão/Entidade</th>
-                        <th class="text-center">Telefone</th>
+                        <th class="text-center">Última Atualização</th>
                         <th class="text-center">Foto</th>
                         <th class="text-center">Ação</th>
                     </tr>
@@ -66,9 +69,23 @@ $result = $conn->query($sql);
                 <tbody id="tabela-corpo">
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td>
-                            <?= $row['cpf'] ?>
-                        </td>
+                        <td class="text-center">
+                                <?php
+                                $cpf = $row['cpf']; // Ex: "123.456.789-00"
+
+                                // Quebra o CPF pela máscara
+                                $partes = explode('.', $cpf); // $partes[0] = "123", $partes[1] = "456", etc.
+
+                                if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
+                                    $subpartes = explode('-', $partes[2]); // $subpartes[0] = "789", $subpartes[1] = "00"
+                                    $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
+                                } else {
+                                    $cpf_masked = 'CPF inválido';
+                                }
+
+                                echo $cpf_masked;
+                                ?>
+                            </td>
                         <td>
                             <?= $row['nome'] ?>
                         </td>
@@ -76,10 +93,7 @@ $result = $conn->query($sql);
                         <td>
                             <?= $row['orgao'] ?>
                         </td>
-                        <td class="text-center">
-                            <?= $row['telefone'] ?>
-                        </td>
-
+                        <td class="text-center"><?= $row['nome_usuario'] ?? '---' ?></td>
                         <td class="text-center">
                             <?php if ($row['foto']): ?>
                             <img src="<?= $row['foto'] ?>" alt="Foto" width="60">

@@ -29,13 +29,12 @@ $result = $conn->query($sql);
         <h1>Painel do Administrador</h1>
         <nav>
             <a class="nav" href="../index.php">Início</a>
-            <a class="nav" href="Usuarios/usuarios.php">Usuários</a>
-            <a class="nav" href="../08-Servidores/index.php">Servidores</a>
-            <a class="nav" href="../09-Setores/index.php">Setores</a>
-            <a class="nav" href="../05-Visitas/visitas.php">Relatórios</a>
-            <a class="nav" href="documentos.php">Repositório</a>
-            <a class="nav" href="Dashboard/dashboard_admin.php">dashboard</a>
-            <a class="nav" href="../../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../Usuarios/usuarios.php">Usuários</a>
+            <a class="nav" href="../../04-Visitantes/visitantes.php">Visitantes</a>
+            <a class="nav" href="../Setores/index.php">Setores</a>
+            <a class="nav" href="../Visitas/visitas.php">Visitas</a>
+            <a class="nav" href="../Documentos/documentos.php">Repositório</a>
+            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 

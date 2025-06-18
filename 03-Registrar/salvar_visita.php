@@ -27,7 +27,6 @@ function salvarFoto() {
 $cpf      = $_POST['cpf'];
 $nome     = $_POST['nome'];
 $social   = $_POST['social'] ?? null;
-$telefone = $_POST['telefone'];
 $orgao    = $_POST['orgao'];
 $data     = $_POST['data'];
 $hora     = $_POST['hora'];
@@ -47,20 +46,20 @@ if ($result->num_rows > 0) {
     $visitante_id = $row['id'];
 
     if ($foto) {
-        $sqlUpdate = "UPDATE visitantes SET nome = ?, social = ?, telefone = ?, orgao = ?, foto = ? WHERE id = ?";
+        $sqlUpdate = "UPDATE visitantes SET nome = ?, social = ?, orgao = ?, foto = ? WHERE id = ?";
         $stmtUpdate = $conn->prepare($sqlUpdate);
-        $stmtUpdate->bind_param("sssssi", $nome, $social, $telefone, $orgao, $foto, $visitante_id);
+        $stmtUpdate->bind_param("ssssi", $nome, $social, $orgao, $foto, $visitante_id);
     } else {
-        $sqlUpdate = "UPDATE visitantes SET nome = ?, social = ?, telefone = ?, orgao = ? WHERE id = ?";
+        $sqlUpdate = "UPDATE visitantes SET nome = ?, social = ?, orgao = ? WHERE id = ?";
         $stmtUpdate = $conn->prepare($sqlUpdate);
-        $stmtUpdate->bind_param("ssssi", $nome, $social, $telefone, $orgao, $visitante_id);
+        $stmtUpdate->bind_param("ssssi", $nome, $social, $orgao, $visitante_id);
     }
 
     $stmtUpdate->execute();
 } else {
-    $sqlInsert = "INSERT INTO visitantes (cpf, nome, social, telefone, orgao, foto) VALUES (?, ?, ?, ?, ?, ?)";
+    $sqlInsert = "INSERT INTO visitantes (cpf, nome, social, orgao, foto) VALUES (?, ?, ?, ?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
-    $stmtInsert->bind_param("ssssss", $cpf, $nome, $social, $telefone, $orgao, $foto);
+    $stmtInsert->bind_param("sssss", $cpf, $nome, $social, $orgao, $foto);
     $stmtInsert->execute();
 
     $visitante_id = $stmtInsert->insert_id;
