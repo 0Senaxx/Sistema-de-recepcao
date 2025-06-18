@@ -504,54 +504,55 @@ button:disabled {
 
 /* ===== Responsividade para tablets e celulares ===== */
 @media (max-width: 768px) {
+  /* Coloca tudo em coluna no formulário */
+  .formulario {
+    flex-direction: column;
+  }
 
-    /* Coloca tudo em coluna no formulário */
-    .formulario {
-        flex-direction: column;
-    }
+  .form-esquerdo,
+  .form-direito {
+    width: 100%;
+  }
 
-    /* Foto abaixo dos campos */
-    .form-esquerda {
-        width: 100%;
-    }
+  .form-direito {
+    order: 2;
+    margin-top: 20px;
+  }
 
-    .form-right {
-        width: 100%;
-        order: 2;
-        /* Foto vem depois do form-left */
-        margin-top: 20px;
-        /* Espaço antes da foto */
-    }
+  /* Campos organizados em uma coluna */
+  .primeira-linha,
+  .segunda-linha,
+  .terceira-linha,
+  .quarta-linha {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    /* Campos de primeira linha e grupos empilham verticalmente */
-    .first-row,
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+  /* Ajuste os campos com 100% da largura */
+  .form-control input,
+  .form-control select,
+  .campo-data input,
+  .campo-hora input,
+  .input-with-icon input {
+    width: 100%;
+  }
 
-    .first-row {
-        grid-template-columns: 1fr;
-    }
+  .input-with-icon {
+    flex-direction: row;
+  }
 
-    .foto-box {
-        width: 100%;
-        height: 200px;
-    }
+  .foto-box {
+    width: 100%;
+    height: 220px;
+  }
 
-    .form-direito .form-actions {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .campo input,
-    .campo select,
-    .form-control input,
-    .form-control select {
-        width: 100%;
-    }
+  .form-direito .form-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
+
 
 
 .Aviso {
