@@ -34,10 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Senha Expirada - SEAD</title>
 </head>
+
 <body>
     <h2>Senha Expirada</h2>
     <p>Sua senha expirou. Para continuar, por favor, crie uma nova senha segura.</p>
@@ -56,4 +58,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar Nova Senha</button>
     </form>
 </body>
+
 </html>

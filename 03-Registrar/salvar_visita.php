@@ -5,7 +5,8 @@ include '../conexao.php';
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 
 // Função para salvar foto (base64 ou arquivo)
-function salvarFoto() {
+function salvarFoto()
+{
     if (!empty($_POST['foto_base64'])) {
         $foto_base64 = str_replace('data:image/jpeg;base64,', '', $_POST['foto_base64']);
         $foto_base64 = str_replace(' ', '+', $foto_base64);
@@ -74,4 +75,3 @@ $stmtVisita->execute();
 // === REDIRECIONA === //
 header("Location: ../02-Inicio/index.php");
 exit();
-?>

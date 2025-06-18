@@ -23,10 +23,11 @@
             <h2>LOGIN</h2>
 
             <?php if (isset($_SESSION['erro'])): ?>
-            <div class="alert alert-danger">
-                <?= $_SESSION['erro']; unset($_SESSION['erro']); ?>
-            </div>
-            
+                <div class="alert alert-danger">
+                    <?= $_SESSION['erro'];
+                    unset($_SESSION['erro']); ?>
+                </div>
+
             <?php endif; ?>
 
             <form action="Auth/verificar_login.php" method="POST">
@@ -51,18 +52,21 @@
         </section>
     </main>
 
-    
+
     <footer class="rodape">
-        Copyright © 2025 SEAD | EPP. Todos os direitos reservados 
+        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 
     <script>
-            $('#matricula').mask('000.000-0 A', {
-                translation: {
-                'A': { pattern: /[A-Za-z]/ }
+        $('#matricula').mask('000.000-0 A', {
+            translation: {
+                'A': {
+                    pattern: /[A-Za-z]/
                 }
-            });
+            }
+        });
     </script>
 
 </body>
+
 </html>

@@ -132,6 +132,7 @@ main {
     color: green;
     margin-bottom: 10px;
 }
+
 .descricao {
     width: 100%;
     height: 80px;
@@ -146,7 +147,8 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Faz com que as colunas respeitem a largura */
+    table-layout: fixed;
+    /* Faz com que as colunas respeitem a largura */
 }
 
 thead th {
@@ -156,7 +158,8 @@ thead th {
     text-align: left;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
@@ -164,15 +167,28 @@ th, td {
 }
 
 /* Largura das colunas */
-th:nth-child(1), td:nth-child(1) { width: 5%; }
-th:nth-child(2), td:nth-child(2) { width: 15%; }
-th:nth-child(3), td:nth-child(3) {
+th:nth-child(1),
+td:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 15%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
     width: 60%;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
-th:nth-child(4), td:nth-child(4) { width: 20%; }
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 20%;
+}
 
 .text-center {
     text-align: center;
@@ -191,5 +207,5 @@ th:nth-child(4), td:nth-child(4) { width: 20%; }
 }
 
 .bnt-registrar:hover {
-    background-color: #218838; 
+    background-color: #218838;
 }

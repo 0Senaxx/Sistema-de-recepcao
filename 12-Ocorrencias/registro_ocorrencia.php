@@ -40,11 +40,13 @@ $resultOcorrencias = $conn->query($sqlOcorrencias);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="estilo.css">
     <title>Registro de Ocorrências</title>
 </head>
+
 <body>
 
     <header class="cabecalho">
@@ -104,4 +106,5 @@ $resultOcorrencias = $conn->query($sqlOcorrencias);
         2025 SEAD | Todos os direitos reservados
     </footer>
 </body>
+
 </html>

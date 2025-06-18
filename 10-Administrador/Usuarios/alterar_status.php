@@ -18,4 +18,3 @@ if ($id > 0 && in_array($acao, ['ativar', 'desativar'])) {
 
 header("Location: usuarios.php");
 exit;
-?>

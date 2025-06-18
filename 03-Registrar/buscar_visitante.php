@@ -25,4 +25,3 @@ if (isset($_GET['cpf'])) {
 } else {
     echo json_encode(['encontrado' => false]);
 }
-?>

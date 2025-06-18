@@ -92,10 +92,10 @@ $resultSetores = $conn->query($sqlSetores);
                         <?php if ($resultServidores->num_rows > 0) : ?>
                             <?php while ($servidor = $resultServidores->fetch_assoc()) : ?>
                                 <tr class="linha-servidor <?= $classeServidores ?>" style="display:none;">
-                                    <td colspan="3" ></td>
+                                    <td colspan="3"></td>
                                     <td><?= htmlspecialchars($servidor['nome']) ?></td>
                                     <td class="text-center">
-                                            —
+                                        —
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

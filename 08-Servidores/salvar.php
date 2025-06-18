@@ -43,4 +43,3 @@ if ($conn->query($sql)) {
 } else {
     echo "Erro: " . $conn->error;
 }
-?>

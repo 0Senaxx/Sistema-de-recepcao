@@ -37,4 +37,3 @@ if ($result && $result->num_rows > 0) {
 } else {
     die('Documento não encontrado.');
 }
-?>

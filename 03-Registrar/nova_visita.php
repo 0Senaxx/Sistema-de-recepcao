@@ -4,9 +4,9 @@ session_start();
 
 // Verifica se o usuário está logado, ou seja, se a sessão 'usuario_id' existe
 if (!isset($_SESSION['usuario_id'])) {
-    // Se não estiver logado, redireciona para a página de login
-    header("Location: ../01-Login/login.php");
-    exit;
+  // Se não estiver logado, redireciona para a página de login
+  header("Location: ../01-Login/login.php");
+  exit;
 }
 
 include '../01-Login/Auth/autenticacao.php';
@@ -63,7 +63,7 @@ $resultServidores = $conn->query($sqlServidores);
 
           <!-- 1ª linha: Tipo doc • Documento • Data -->
           <div class="primeira-linha">
-            
+
             <div class="campo-documento">
               <label for="cpf">Documento (CPF) <span class="required">*</span></label>
               <div class="input-with-icon">
@@ -101,10 +101,10 @@ $resultServidores = $conn->query($sqlServidores);
             <div class="form-control">
               <label for="orgao">Órgão/Entidade</label>
               <input list="orgaos" id="orgao" name="orgao" autocomplete="off" placeholder="Selecione um órgão...">
-                <datalist id="orgaos">
-                  <option value="SECRETARIA DE ESTADO DA CASA CIVIL">
+              <datalist id="orgaos">
+                <option value="SECRETARIA DE ESTADO DA CASA CIVIL">
 
-                </datalist>
+              </datalist>
 
             </div>
 

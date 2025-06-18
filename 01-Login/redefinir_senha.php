@@ -59,11 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Redefinir Senha</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
     <section class="card">
         <h2>Redefinir Senha</h2>
@@ -84,4 +86,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>Dica: use uma senha forte com letras, números e símbolos.</p>
     </section>
 </body>
+
 </html>

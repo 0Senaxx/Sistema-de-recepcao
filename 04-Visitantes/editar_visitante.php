@@ -68,14 +68,14 @@ $visitante = $result->fetch_assoc();
                     <div class="info">
                         <div class="campo">
                             <label>CPF:</label>
-                            <input type="text" name="cpf"  value="<?= $visitante['cpf'] ?>" required>
+                            <input type="text" name="cpf" value="<?= $visitante['cpf'] ?>" required>
                         </div>
 
                         <div class="campo">
                             <label>Nome:</label>
                             <input type="text" name="nome" value="<?= $visitante['nome'] ?>" required>
                         </div>
-                        
+
                         <div class="campo">
                             <label>Órgão/Entidade:</label>
                             <input type="text" name="orgao" value="<?= $visitante['orgao'] ?>">
@@ -86,15 +86,15 @@ $visitante = $result->fetch_assoc();
                             <a class="bnt-voltar" href="visitantes.php">Voltar</a>
                         </div>
                     </div>
-                    
+
                     <div class="foto">
                         <label>Foto Atual:</label>
                         <?php if ($visitante['foto']): ?>
-                        <img id="fotoCapturada" src="<?= $visitante['foto'] ?>" style="border: 2px solid green;">
+                            <img id="fotoCapturada" src="<?= $visitante['foto'] ?>" style="border: 2px solid green;">
                         <?php else: ?>
 
-                        <img id="fotoCapturada" src="" style="display:none; border: 2px solid green;">
-                        <p id="semFoto">Sem foto</p>
+                            <img id="fotoCapturada" src="" style="display:none; border: 2px solid green;">
+                            <p id="semFoto">Sem foto</p>
                         <?php endif; ?>
 
                         <div class="camera-area">

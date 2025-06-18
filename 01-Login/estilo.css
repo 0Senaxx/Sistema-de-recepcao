@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-  
+
 /* Tipografia e fundo */
 body {
     font-family: Arial, sans-serif;
@@ -16,23 +16,24 @@ body {
     flex-direction: column;
     background: linear-gradient(93deg, #293264 19%, rgba(10, 133, 61, 1) 100%);
 }
+
 .cabecalho {
-  /* Posicionamento fixo no topo */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+    /* Posicionamento fixo no topo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 
-  /* Layout flexível */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+    /* Layout flexível */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 
-  /* Estilo visual */
-  color: #fff;
-  padding: 10px 30px;
+    /* Estilo visual */
+    color: #fff;
+    padding: 10px 30px;
 }
 
 .rodape {
@@ -49,12 +50,15 @@ body {
 }
 
 main {
-    flex: 1; /* Faz o main ocupar o espaço restante */
+    flex: 1;
+    /* Faz o main ocupar o espaço restante */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 55px; /* espaço para o cabeçalho */
-    padding-bottom: 55px; /* espaço para o rodapé */
+    padding-top: 55px;
+    /* espaço para o cabeçalho */
+    padding-bottom: 55px;
+    /* espaço para o rodapé */
 }
 
 .card {
@@ -63,11 +67,12 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 50px;
     width: 100%;
-    max-width: 500px; /* Limita a largura em telas grandes */
+    max-width: 500px;
+    /* Limita a largura em telas grandes */
     margin: 60px;
     text-align: center;
     font-size: 20px;
-    color:  rgba(41, 50, 100, 1);
+    color: rgba(41, 50, 100, 1);
 }
 
 label {
@@ -82,10 +87,11 @@ label {
     font-weight: 100;
     margin-bottom: 2px;
     font-family: Arial, sans-serif;
-    font-size: 14pt;;
-  }
+    font-size: 14pt;
+    ;
+}
 
- input {
+input {
     width: 100%;
     border: 1px solid #d6d3d3;
     border-radius: 10px;
@@ -97,11 +103,11 @@ label {
     outline: none;
 }
 
-.campo-usuario { 
+.campo-usuario {
     margin-top: 30px;
 }
 
-.campo-senha { 
+.campo-senha {
     margin-top: 20px;
 }
 
@@ -115,8 +121,8 @@ label {
     outline: none;
     text-transform: uppercase;
     font-weight: 800;
-    color:  rgba(41, 50, 100, 1);
-    background-color:rgb(21, 206, 98);
+    color: rgba(41, 50, 100, 1);
+    background-color: rgb(21, 206, 98);
     cursor: pointer;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -141,10 +147,11 @@ label {
 
 @media (max-width: 480px) {
     .card {
-      padding: 15px;
+        padding: 15px;
     }
-  
-    input, .btn-login {
-      font-size: 14px;
+
+    input,
+    .btn-login {
+        font-size: 14px;
     }
-  }
+}

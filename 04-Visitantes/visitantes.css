@@ -210,11 +210,11 @@ form {
 }
 
 .svg {
-  width: 11px;
-  right: 0;
-  fill: rgb(255, 255, 255);
-  transition-duration: .3s;
-  margin-right: 5px;
+    width: 11px;
+    right: 0;
+    fill: rgb(255, 255, 255);
+    transition-duration: .3s;
+    margin-right: 5px;
 }
 
 .text-center {

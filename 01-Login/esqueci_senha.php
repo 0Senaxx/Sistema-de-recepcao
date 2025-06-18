@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Criar link para redefinir senha
             $linkGerado = "http://" . $_SERVER['HTTP_HOST'] . "/controle-visitas/01-Login/redefinir_senha.php?token=$token";
-
         } else {
             $mensagem = "Últimos 4 dígitos do CPF incorretos.";
         }
@@ -50,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         /* Tipografia e fundo */
         body {
             font-family: Arial, sans-serif;
@@ -74,23 +74,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             flex-direction: column;
             background: linear-gradient(93deg, #293264 19%, rgba(10, 133, 61, 1) 100%);
         }
+
         .cabecalho {
-        /* Posicionamento fixo no topo */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
+            /* Posicionamento fixo no topo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
 
-        /* Layout flexível */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
+            /* Layout flexível */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
 
-        /* Estilo visual */
-        color: #fff;
-        padding: 10px 30px;
+            /* Estilo visual */
+            color: #fff;
+            padding: 10px 30px;
         }
 
         .rodape {
@@ -107,12 +108,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         main {
-            flex: 1; /* Faz o main ocupar o espaço restante */
+            flex: 1;
+            /* Faz o main ocupar o espaço restante */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-top: 55px; /* espaço para o cabeçalho */
-            padding-bottom: 55px; /* espaço para o rodapé */
+            padding-top: 55px;
+            /* espaço para o cabeçalho */
+            padding-bottom: 55px;
+            /* espaço para o rodapé */
         }
 
         .card {
@@ -121,11 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 50px;
             width: 100%;
-            max-width: 500px; /* Limita a largura em telas grandes */
+            max-width: 500px;
+            /* Limita a largura em telas grandes */
             margin: 60px;
             text-align: center;
             font-size: 20px;
-            color:  rgba(41, 50, 100, 1);
+            color: rgba(41, 50, 100, 1);
         }
 
         label {
@@ -139,7 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 100;
             margin-bottom: 2px;
             font-family: Arial, sans-serif;
-            font-size: 14pt;;
+            font-size: 14pt;
+            ;
         }
 
         input {
@@ -154,11 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             outline: none;
         }
 
-        .campo-matricula { 
+        .campo-matricula {
             margin-top: 30px;
         }
 
-        .campo-cpf { 
+        .campo-cpf {
             margin-top: 20px;
         }
 
@@ -171,8 +177,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             outline: none;
             text-transform: uppercase;
             font-weight: 700;
-            color:  rgba(41, 50, 100, 1);
-            background-color:rgb(21, 206, 98);
+            color: rgba(41, 50, 100, 1);
+            background-color: rgb(21, 206, 98);
             cursor: pointer;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
@@ -201,21 +207,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .link-box p {
             margin-bottom: 10px;
             font-size: 13px;
-        }   
+        }
 
-        .btn-voltar{
+        .btn-voltar {
             margin-top: 20px;
             text-align: center;
             font-size: 15px;
             color: #293264;
         }
 
-        .btn-voltar a{
-           text-decoration: none;
+        .btn-voltar a {
+            text-decoration: none;
         }
-
     </style>
 </head>
+
 <body>
     <header class="cabecalho">
         <h1>Recepção SEAD</h1>
@@ -240,16 +246,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </form>
 
-                <?php if ($mensagem): ?>
-                    <p class="mensagem"><?= htmlspecialchars($mensagem) ?></p>
-                <?php endif; ?>
+            <?php if ($mensagem): ?>
+                <p class="mensagem"><?= htmlspecialchars($mensagem) ?></p>
+            <?php endif; ?>
 
-                <?php if ($linkGerado): ?>
-                    <div class="link-box">
-                        <p>Token gerado com sucesso! Use o link abaixo para redefinir sua senha. O link expira em 1 hora.</p><br>
-                        <a href="<?= htmlspecialchars($linkGerado) ?>" target="_blank"><?= htmlspecialchars($linkGerado) ?></a>
-                    </div>
-                <?php endif; ?>
+            <?php if ($linkGerado): ?>
+                <div class="link-box">
+                    <p>Token gerado com sucesso! Use o link abaixo para redefinir sua senha. O link expira em 1 hora.</p><br>
+                    <a href="<?= htmlspecialchars($linkGerado) ?>" target="_blank"><?= htmlspecialchars($linkGerado) ?></a>
+                </div>
+            <?php endif; ?>
 
             <div class="btn-voltar">
                 <a href="login.php">Voltar</a>
@@ -258,15 +264,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <footer class="rodape">
-        Copyright © 2025 SEAD | EPP. Todos os direitos reservados 
+        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 </body>
 <script>
-  $('#matricula').mask('000.000-0 A', {
-    translation: {
-      'A': { pattern: /[A-Za-z]/ }
-    }
-  });
+    $('#matricula').mask('000.000-0 A', {
+        translation: {
+            'A': {
+                pattern: /[A-Za-z]/
+            }
+        }
+    });
 </script>
 
 </html>

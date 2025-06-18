@@ -231,9 +231,12 @@ main {
     text-decoration: none;
     text-align: center;
 
-    display: inline-flex; /* Para centralizar conteúdo */
-    align-items: center;  /* Alinha verticalmente */
-    justify-content: center; /* Alinha horizontalmente */
+    display: inline-flex;
+    /* Para centralizar conteúdo */
+    align-items: center;
+    /* Alinha verticalmente */
+    justify-content: center;
+    /* Alinha horizontalmente */
 }
 
 
@@ -305,7 +308,6 @@ main {
 .btnEditar:hover {
     background-color: #14b658;
 }
-
 
 .bntExcluir {
     background-color: #dc3545;
@@ -404,7 +406,7 @@ a.button:hover {
 }
 
 .btnSalvar {
-    background-color:  #0A853D;
+    background-color: #0A853D;
     color: white;
 }
 
@@ -451,7 +453,7 @@ a.button:hover {
     margin-bottom: 10px;
 }
 
-.form-lista input, 
+.form-lista input,
 .form-lista select {
     padding: 10px;
     border-radius: 5px;

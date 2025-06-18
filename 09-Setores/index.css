@@ -152,7 +152,7 @@ main {
     /* centraliza verticalmente */
     justify-content: space-between;
 
-margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .bnt-nova {
@@ -172,7 +172,7 @@ margin-bottom: 10px;
 }
 
 .bnt-nova:hover {
-    background-color:#343f83;
+    background-color: #343f83;
     /* cor diferente ao passar o mouse */
 }
 
@@ -276,7 +276,7 @@ th {
     background-color: #c82333;
 }
 
-.form-localizacao input, 
+.form-localizacao input,
 .form-localizacao select {
     padding: 10px;
     border-radius: 5px;
@@ -342,7 +342,7 @@ th {
     vertical-align: middle;
 }
 
-    input#inputSigla,
-    input#inputNome {
-        text-transform: uppercase;
-    }
+input#inputSigla,
+input#inputNome {
+    text-transform: uppercase;
+}

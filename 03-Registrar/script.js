@@ -278,13 +278,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-  document.getElementById('servidorInput').addEventListener('change', function () {
-    const selectedOption = this.options[this.selectedIndex];
-    const status = selectedOption.getAttribute('data-status') || '--';
-    document.getElementById('servidorStatus').textContent = status;
-  });
+document.getElementById('servidorInput').addEventListener('change', function () {
+  const selectedOption = this.options[this.selectedIndex];
+  const status = selectedOption.getAttribute('data-status') || '--';
+  document.getElementById('servidorStatus').textContent = status;
+});
 
-  // Ativar/desativar botão Salvar com base no status do servidor selecionado
+// Ativar/desativar botão Salvar com base no status do servidor selecionado
 const selectServidor = document.getElementById('servidorInput');
 const statusSpan = document.getElementById('servidorStatus');
 const btnSalvar = document.getElementById('btnSalvar');

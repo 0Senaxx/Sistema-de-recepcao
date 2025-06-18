@@ -2,7 +2,8 @@
 session_start();
 include '../conexao.php';
 
-function salvarFoto($arquivo) {
+function salvarFoto($arquivo)
+{
     if ($arquivo['error'] == 0) {
         $pasta = "../04-Visitantes/Fotos/";
         if (!is_dir($pasta)) mkdir($pasta);
@@ -15,7 +16,8 @@ function salvarFoto($arquivo) {
     return null;
 }
 
-function salvarFotoBase64($base64) {
+function salvarFotoBase64($base64)
+{
     if (!empty($base64)) {
         $base64 = str_replace('data:image/jpeg;base64,', '', $base64);
         $base64 = base64_decode($base64);

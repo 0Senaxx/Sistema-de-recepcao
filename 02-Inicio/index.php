@@ -42,7 +42,7 @@ $result = $stmt->get_result();
 
 <head>
     <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Visitas - SEAD</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -86,11 +86,11 @@ $result = $stmt->get_result();
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td class="text-center"><?= $row['hora'] ?></td>
-                        <td><?= !empty($row['social']) ? $row['social'] : $row['nome']; ?></td>
-                        <td class="text-center">
-                            <?php
+                        <tr>
+                            <td class="text-center"><?= $row['hora'] ?></td>
+                            <td><?= !empty($row['social']) ? $row['social'] : $row['nome']; ?></td>
+                            <td class="text-center">
+                                <?php
                                 $cpf = $row['cpf']; // Ex: "123.456.789-00"
 
                                 // Quebra o CPF pela máscara
@@ -105,21 +105,21 @@ $result = $stmt->get_result();
 
                                 echo $cpf_masked;
                                 ?>
-                        </td>
-                        <td><?= $row['nome_setor'] ?? '---' ?></td>
-                        <td><?= $row['nome_servidor'] ?? '---' ?></td>
-                        <td class="text-center"><?= $row['saida'] ? $row['saida'] : '---' ?></td>
-                        <td class="text-center">
-                            <?php if (!$row['saida']): ?>
-                            <form action="registrar_saida.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="visita_id" value="<?= $row['id'] ?>">
-                                <button type="submit" class="btn btn-sm btn-danger">Registrar Saída</button>
-                            </form>
-                            <?php else: ?>
-                            <span class="text-success">Encerrada</span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
+                            </td>
+                            <td><?= $row['nome_setor'] ?? '---' ?></td>
+                            <td><?= $row['nome_servidor'] ?? '---' ?></td>
+                            <td class="text-center"><?= $row['saida'] ? $row['saida'] : '---' ?></td>
+                            <td class="text-center">
+                                <?php if (!$row['saida']): ?>
+                                    <form action="registrar_saida.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="visita_id" value="<?= $row['id'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-danger">Registrar Saída</button>
+                                    </form>
+                                <?php else: ?>
+                                    <span class="text-success">Encerrada</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
@@ -132,5 +132,3 @@ $result = $stmt->get_result();
 </body>
 
 </html>
-
-

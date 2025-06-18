@@ -15,4 +15,3 @@ if (isset($_POST['visita_id'])) {
 
 header("Location: index.php");
 exit();
-

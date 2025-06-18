@@ -248,7 +248,7 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
                 datasets: [{
                         label: 'Visitas por Dia (Mês Atual)',
                         data: diasData,
-                        borderColor: 'blue',
+                        borderColor: '#293264',
                         backgroundColor: 'lightblue',
                         fill: true,
                         tension: 0.4,
@@ -257,7 +257,7 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
                     {
                         label: 'Visitas por Mês',
                         data: mesesData,
-                        borderColor: 'green',
+                        borderColor: '#0A853D',
                         backgroundColor: 'lightgreen',
                         fill: true,
                         tension: 0.4,
@@ -315,7 +315,7 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
                             label: 'Visitas por Setor',
                             data: dados.data,
                             backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: '#293264',
                             borderWidth: 1
                         }]
                     },
@@ -335,64 +335,64 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
         }
 
         // Chama ao carregar a página (mês atual)
-async function carregarGraficoSetores(mes, botaoClicado = null) {
-    // Atualiza o nome do mês no título
-    const nomeMes = nomesMeses[mes - 1];
-    document.getElementById('mesAtualTexto').textContent = nomeMes;
+        async function carregarGraficoSetores(mes, botaoClicado = null) {
+            // Atualiza o nome do mês no título
+            const nomeMes = nomesMeses[mes - 1];
+            document.getElementById('mesAtualTexto').textContent = nomeMes;
 
-    // Remove destaque de todos os botões
-    document.querySelectorAll('#mes-botoes button').forEach(btn => btn.classList.remove('ativo'));
+            // Remove destaque de todos os botões
+            document.querySelectorAll('#mes-botoes button').forEach(btn => btn.classList.remove('ativo'));
 
-    // Adiciona destaque ao botão clicado ou ao botão do mês atual
-    if (botaoClicado) {
-        botaoClicado.classList.add('ativo');
-    } else {
-        const btnAtual = document.getElementById('btn-mes-' + mes);
-        if (btnAtual) btnAtual.classList.add('ativo');
-    }
+            // Adiciona destaque ao botão clicado ou ao botão do mês atual
+            if (botaoClicado) {
+                botaoClicado.classList.add('ativo');
+            } else {
+                const btnAtual = document.getElementById('btn-mes-' + mes);
+                if (btnAtual) btnAtual.classList.add('ativo');
+            }
 
-    // Busca os dados do gráfico
-    const response = await fetch(`get_top_setores.php?mes=${mes}`);
-    const dados = await response.json();
+            // Busca os dados do gráfico
+            const response = await fetch(`get_top_setores.php?mes=${mes}`);
+            const dados = await response.json();
 
-    // Atualiza ou cria o gráfico
-    if (graficoSetores) {
-        graficoSetores.data.labels = dados.labels;
-        graficoSetores.data.datasets[0].data = dados.data;
-        graficoSetores.update();
-    } else {
-        const ctxSetores = document.getElementById('graficoSetores').getContext('2d');
-        graficoSetores = new Chart(ctxSetores, {
-            type: 'bar',
-            data: {
-                labels: dados.labels,
-                datasets: [{
-                    label: 'Visitas por Setor',
-                    data: dados.data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
+            // Atualiza ou cria o gráfico
+            if (graficoSetores) {
+                graficoSetores.data.labels = dados.labels;
+                graficoSetores.data.datasets[0].data = dados.data;
+                graficoSetores.update();
+            } else {
+                const ctxSetores = document.getElementById('graficoSetores').getContext('2d');
+                graficoSetores = new Chart(ctxSetores, {
+                    type: 'bar',
+                    data: {
+                        labels: dados.labels,
+                        datasets: [{
+                            label: 'Visitas por Setor',
+                            data: dados.data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                            borderColor: '#293264',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
                         }
                     }
-                }
+                });
             }
-        });
-    }
-}
+        }
 
 
         // Chamar ao abrir a página
-const mesAtual = new Date().getMonth() + 1;
-carregarGraficoSetores(mesAtual);
+        const mesAtual = new Date().getMonth() + 1;
+        carregarGraficoSetores(mesAtual);
 
 
 
@@ -410,8 +410,8 @@ carregarGraficoSetores(mesAtual);
                 datasets: [{
                     label: 'Tempo médio',
                     data: temposMinutos,
-                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
-                    borderColor: 'rgba(255, 159, 64, 1)',
+                    backgroundColor: '#FFFF00',
+                    borderColor: 'rgb(255, 252, 64)',
                     borderWidth: 1
                 }]
             },
