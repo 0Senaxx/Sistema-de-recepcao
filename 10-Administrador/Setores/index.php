@@ -36,7 +36,7 @@ $res = $conn->query($sql);
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
-            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../../01-Login/Auth/logout.php">Sair</a>
         </nav>
     </header>
 

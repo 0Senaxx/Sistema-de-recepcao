@@ -410,9 +410,9 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
                 datasets: [{
                     label: 'Tempo médio',
                     data: temposMinutos,
-                    backgroundColor: '#FFFF00',
-                    borderColor: 'rgb(255, 252, 64)',
-                    borderWidth: 1
+                    backgroundColor: 'rgb(252, 249, 101)',
+                    borderColor: '#FFFF00',
+                    borderWidth: 3
                 }]
             },
             options: {
