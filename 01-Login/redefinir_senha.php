@@ -83,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <button type="submit">Alterar Senha</button>
         </form>
+
         <p>Dica: use uma senha forte com letras, números e símbolos.</p>
+        
     </section>
 </body>
 

@@ -127,6 +127,11 @@ input {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.btn-login:hover {
+    background-color: rgb(7, 170, 75);
+    transition: all 0.3s ease;
+}
+
 .esqueci-senha {
     display: block;
     margin-top: 10px;
@@ -138,12 +143,6 @@ input {
     text-decoration: none;
     color: #646464;
 }
-
-.btn-login:hover {
-    background-color: rgb(7, 170, 75);
-    transition: all 0.3s ease;
-}
-
 
 @media (max-width: 480px) {
     .card {

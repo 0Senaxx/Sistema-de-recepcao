@@ -171,12 +171,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .btn-link {
             width: 100%;
             padding: 16px 0px;
-            margin-top: 25px;
+            margin-top: 40px;
             border: none;
             border-radius: 6px;
             outline: none;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 800;
             color: rgba(41, 50, 100, 1);
             background-color: rgb(21, 206, 98);
             cursor: pointer;
@@ -210,14 +210,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .btn-voltar {
-            margin-top: 20px;
+            margin-top: 10px;
             text-align: center;
             font-size: 15px;
-            color: #293264;
         }
 
         .btn-voltar a {
             text-decoration: none;
+            color: #646464;
         }
     </style>
 </head>
