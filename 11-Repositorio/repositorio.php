@@ -1,7 +1,18 @@
 <?php
-require_once '../01-Login/Auth/autenticacao.php';
+
+// ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
+session_start(); 
+
+if (!isset($_SESSION['usuario_id'])) {
+  header("Location: ../01-Login/login.php");
+  exit; 
+}
+
+include '../01-Login/Auth/autenticacao.php';
 include '../01-Login/Auth/controle_sessao.php';
-require_once '../conexao.php';
+include '../conexao.php';
+
+// ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
 
 // Busca os documentos
 $sql = "SELECT id, nome_arquivo, descricao, caminho, data_envio FROM documentos ORDER BY data_envio DESC";

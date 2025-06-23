@@ -1,12 +1,18 @@
 <?php
-session_start();
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['perfil'] != 'ADM') {
-    header("Location: ../../01-Login/login.php");
-    exit;
+// ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
+session_start(); 
+
+if (!isset($_SESSION['usuario_id'])) {
+  header("Location: ../../01-Login/login.php");
+  exit; 
 }
 
+include '../../01-Login/Auth/autenticacao.php';
+include '../../01-Login/Auth/controle_sessao.php';
 include '../../conexao.php';
+
+// ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
 
 // Buscar usuários
 $sql = "SELECT id, nome, cpf, matricula, perfil, ativo, ultimo_login FROM usuarios";

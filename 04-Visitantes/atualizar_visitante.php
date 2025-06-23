@@ -34,10 +34,11 @@ function salvarFotoBase64($base64)
 $id = $_POST['id'];
 $cpf = $_POST['cpf'];
 $nome = $_POST['nome'];
+$social = $_POST['social'] ?? null;  // <-- Captura nome social
 $orgao = $_POST['orgao'];
 $usuario_id = $_SESSION['usuario_id']; // ID do usuário logado
 
-$fotoBase64 = isset($_POST['foto_base64']) ? $_POST['foto_base64'] : '';
+$fotoBase64 = $_POST['foto_base64'] ?? '';
 $fotoNova = null;
 
 if (!empty($fotoBase64)) {
@@ -47,13 +48,13 @@ if (!empty($fotoBase64)) {
 }
 
 if ($fotoNova) {
-    $sql = "UPDATE visitantes SET cpf=?, nome=?, orgao=?, foto=?, atualizado_por=? WHERE id=?";
+    $sql = "UPDATE visitantes SET cpf=?, nome=?, social=?, orgao=?, foto=?, atualizado_por=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $cpf, $nome, $orgao, $fotoNova, $usuario_id, $id);
+    $stmt->bind_param("sssssii", $cpf, $nome, $social, $orgao, $fotoNova, $usuario_id, $id);
 } else {
-    $sql = "UPDATE visitantes SET cpf=?, nome=?, orgao=?, atualizado_por=? WHERE id=?";
+    $sql = "UPDATE visitantes SET cpf=?, nome=?, social=?, orgao=?, atualizado_por=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssii", $cpf, $nome, $orgao, $usuario_id, $id);
+    $stmt->bind_param("ssssis", $cpf, $nome, $social, $orgao, $usuario_id, $id);
 }
 
 $stmt->execute();

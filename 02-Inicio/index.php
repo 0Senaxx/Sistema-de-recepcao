@@ -1,10 +1,9 @@
 <?php
 
+// ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
 session_start();
 
-// Verifica se o usuário está logado, ou seja, se a sessão 'usuario_id' existe
 if (!isset($_SESSION['usuario_id'])) {
-    // Se não estiver logado, redireciona para a página de login
     header("Location: ../01-Login/login.php");
     exit;
 }
@@ -12,6 +11,8 @@ if (!isset($_SESSION['usuario_id'])) {
 include '../01-Login/Auth/autenticacao.php';
 include '../01-Login/Auth/controle_sessao.php';
 include '../conexao.php';
+
+// ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
 
 // Pegar visitas de hoje
 
@@ -29,12 +30,10 @@ $sql = "
     ORDER BY v.hora DESC
 ";
 
-
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $dataHoje);
 $stmt->execute();
 $result = $stmt->get_result();
-
 ?>
 
 <!DOCTYPE html>

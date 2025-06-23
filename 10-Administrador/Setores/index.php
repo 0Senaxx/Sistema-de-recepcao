@@ -1,17 +1,18 @@
 <?php
 
-session_start();
+// ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
+session_start(); 
 
-// Verifica se o usuário está logado, ou seja, se a sessão 'usuario_id' existe
 if (!isset($_SESSION['usuario_id'])) {
-    // Se não estiver logado, redireciona para a página de login
-    header("Location: ../01-Login/login.php");
-    exit;
+  header("Location: ../../01-Login/login.php");
+  exit; 
 }
 
 include '../../01-Login/Auth/autenticacao.php';
 include '../../01-Login/Auth/controle_sessao.php';
-require_once '../../conexao.php';
+include '../../conexao.php';
+
+// ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
 
 $sql = "SELECT * FROM setores ORDER BY nome";
 $res = $conn->query($sql);

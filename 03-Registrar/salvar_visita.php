@@ -4,7 +4,6 @@ include '../conexao.php';
 
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 
-// Função para salvar foto (base64 ou arquivo)
 function salvarFoto()
 {
     if (!empty($_POST['foto_base64'])) {
@@ -53,12 +52,11 @@ if ($result->num_rows > 0) {
     } else {
         $sqlUpdate = "UPDATE visitantes SET nome = ?, social = ?, orgao = ? WHERE id = ?";
         $stmtUpdate = $conn->prepare($sqlUpdate);
-        $stmtUpdate->bind_param("ssssi", $nome, $social, $orgao, $visitante_id);
+        $stmtUpdate->bind_param("sssi", $nome, $social, $orgao, $visitante_id);
     }
-
     $stmtUpdate->execute();
 } else {
-    $sqlInsert = "INSERT INTO visitantes (cpf, nome, social, orgao, foto) VALUES (?, ?, ?, ?, ?, ?)";
+    $sqlInsert = "INSERT INTO visitantes (cpf, nome, social, orgao, foto) VALUES (?, ?, ?, ?, ?)";
     $stmtInsert = $conn->prepare($sqlInsert);
     $stmtInsert->bind_param("sssss", $cpf, $nome, $social, $orgao, $foto);
     $stmtInsert->execute();

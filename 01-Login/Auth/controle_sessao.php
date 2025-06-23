@@ -3,25 +3,28 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Define tempo limite de inatividade (2 minutos para teste)
-$tempo_limite = 600; //10 MINUTOS 
+require_once 'C:/xampp/htdocs/controle-visitas/config.php';
 
-// Verifica se o usuário está logado
+
+// Limite de inatividade
+$tempo_limite = 600; // 10 minutos
+
+// Verifica se não está logado
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../01-Login/login.php");
+    header("Location: " . URL_LOGIN);
     exit();
 }
 
-// Verifica tempo de inatividade
+// Verifica o tempo de inatividade
 if (isset($_SESSION['ultimo_acesso'])) {
     $tempo_inativo = time() - $_SESSION['ultimo_acesso'];
     if ($tempo_inativo > $tempo_limite) {
         session_unset();
         session_destroy();
-        header("Location: ../01-Login/login.php?mensagem=Sessão expirada por inatividade.");
+        header("Location: " . URL_LOGIN . "?mensagem=Sessão expirada por inatividade.");
         exit();
     }
 }
 
-// Atualiza o tempo de último acesso
+// Atualiza o último acesso
 $_SESSION['ultimo_acesso'] = time();

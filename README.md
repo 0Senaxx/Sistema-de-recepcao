@@ -9,18 +9,22 @@ Abaixo está a organização das pastas e arquivos principais do sistema:
 ```
 /
 ├── 01-Login/
-│   ├── autenticação.php
+│   ├── Auth/
+│   │   ├── autenticação.php
+│   │   ├── controle_sessao.php 
+│   │   ├── logout.php 
+│   │   └── verificar_login.php
+│   │
+│   ├── esqueci_senha.php
+│   ├── expirar_senha.php
 │   ├── index.php
 │   ├── login.php
-│   ├── logout.php
-│   ├── verificar_login.php
-│   ├── script.js
-│   └── estilo.css
+│   ├── primeiro_acesso.php
+│   └── redefinir_senha.php
 │
 ├── 02-Inicio/
 │   ├── index.php
 │   ├── registrar_saida.php
-│   ├── script.js
 │   └── estilo.css
 │
 ├── 03-Registrar/
@@ -36,22 +40,13 @@ Abaixo está a organização das pastas e arquivos principais do sistema:
 │   ├── aditar_visitante.php
 │   ├── aditar_visitante.css
 │   ├── aditar_visitante.js
-│   ├── visitante.php
-│   └── visitante.css
-│
-├── 05-Visitas/
-│   ├── visitas.php
-│   ├── script.js
-│   └── estilo.css
+│   ├── visitantes.php
+│   └── visitantes.css
 │
 ├── 06-Ramais/
 │   ├── ramais.php
 │   ├── estilo.css
 │   └── script.js
-│
-├── 07-Relatorio/
-│   ├── exportar_excel.php
-│   └── gerar_relatório.php
 │
 ├── 08-Servidores/
 │   ├── buscar_servidor.php
@@ -67,12 +62,51 @@ Abaixo está a organização das pastas e arquivos principais do sistema:
 │   ├── index.php
 │   └── salvar.php
 │
+├── 10-Administrador/
+│   ├── Documentos/
+│   │   ├── documento.css
+│   │   └── documento.php
+|   |
+│   ├── Setores/
+│   │   ├── excluir.php
+│   │   ├── index.css
+│   │   ├── index.php
+│   │   └── salvar.php
+|   |
+│   ├── Usuarios/
+│   │   ├── alterar_status.php
+│   │   ├── buscar_usuario.php
+│   │   ├── excluir_usuario.php
+│   │   ├── salvar_usuario.php
+│   │   ├── usuario.css
+│   │   └── usuario.php
+|   |
+│   ├── Visitas/
+│   │   ├── Relatorios/
+│   |   │   ├── exporter_excel.php
+|   │   │   └── gerar_relatorio.php
+|   |   |
+│   │   ├── estilo.css
+│   │   ├── script.js
+│   │   └── visitas.php
+|   |
+│   ├── estilo.css
+│   ├── get_top_setores.php
+│   └── index.php
+|   
 ├── libs/
 │   └── fpdf/ (biblioteca para geração de PDFs)
 │
 ├── uploads/ (pasta para armazenar uploads de imagens ou arquivos)
 │
-└── conexao.php (arquivo de conexão com o banco de dados)
+├── .htaccess
+│
+├── 404.php
+│
+├── conexao.php (arquivo de conexão com o banco de dados)
+|
+└── config.php
+
 ```
 
 ## Funcionalidades
@@ -88,10 +122,22 @@ Abaixo está a organização das pastas e arquivos principais do sistema:
 
 ## Tecnologias Utilizadas
 
-* PHP
-* MySQL
-* HTML, CSS, JavaScript
-* Biblioteca FPDF para geração de relatórios
+### Frontend:
+* HTML: Linguagem de marcação para estruturação do conteúdo e elementos visuais.
+* CSS: Linguagem de estilização para controle do layout.
+* JavaScript: Linguagem de programação para integração de lógica e interatividade nas páginas.
+
+### Backend:
+* PHP: Linguagem de programação para processamento do lado do servidor e integração com o banco de dados.
+* MySQL: Sistema de gerenciamento de banco de dados utilizado para armazenar e organizar as informações do sistema.
+
+## Bibliotecas Utilizadas
+* FPDF: Biblioteca para geração de arquivos PDF diretamente no navegador, destinada à emissão de relatórios e impressões.
+* Choices.js: Biblioteca para aprimoramento dos elementos de seleção (<select>), proporcionando uma experiência de navegação mais intuitiva e agradável para o usuário.
+* jQuery (v3.6.0): Framework para simplificação da manipulação do DOM, tratamento de eventos e comunicação assíncrona (AJAX).
+* jQuery Mask: Plugin para adição de máscaras de formatação em campos de entrada, como CPF, CNPJ e números de telefone, facilitando a inserção e validando dados.
+* Chart.js: Biblioteca para criação de gráficos interativos e responsivos, suportando diferentes tipos de representação gráfica, como linha, barras, pizza e radar.
+
 
 ## Observações
 

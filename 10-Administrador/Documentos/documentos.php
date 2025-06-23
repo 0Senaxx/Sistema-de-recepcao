@@ -1,6 +1,19 @@
 <?php
-require_once '../../01-Login/Auth/autenticacao.php';
-require_once '../../conexao.php'; // ajuste para seu arquivo de conexão
+
+// ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
+session_start(); 
+
+if (!isset($_SESSION['usuario_id'])) {
+  header("Location: ../../01-Login/login.php");
+  exit; 
+}
+
+include '../../01-Login/Auth/autenticacao.php';
+include '../../01-Login/Auth/controle_sessao.php';
+include '../../conexao.php';
+
+// ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
+
 
 // Upload de novo documento
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['documento'])) {
