@@ -2,7 +2,37 @@
 
 Este repositório contém o código-fonte do sistema de recepção da SEAD (Secretaria de Administração e Gestão). O sistema é desenvolvido em PHP, com suporte a HTML, CSS e JavaScript, e tem como objetivo gerenciar o fluxo de visitantes, registro de visitas, gerenciamento de ramais e setores, além da autenticação de usuários.
 
-## Estrutura de Pastas
+## 🚀 Funcionalidades
+
+✅ Autenticação de usuários
+✅ Controle de login e logout
+✅ Cadastro e atualização de visitantes
+✅ Registro de visitas com hora de entrada e saída
+✅ Relatórios em Excel e PDF
+✅ Gestão de ramais e setores por departamento
+✅ Gestão de servidores vinculados a setores
+✅ Upload e armazenamento de fotos de visitantes
+
+## 🛠️ Tecnologias Utilizadas
+
+### 🖥️ Frontend
+* **HTML**: Linguagem de marcação para estruturação do conteúdo e elementos visuais.
+* **CSS**: Linguagem de estilização para controle do layout.
+* **JavaScript**: Linguagem de programação para integração de lógica e interatividade nas páginas.
+
+### ⚡Backend
+* **PHP**: Linguagem de programação para processamento do lado do servidor e integração com o banco de dados.
+* **MySQL**: Sistema de gerenciamento de banco de dados utilizado para armazenar e organizar as informações do sistema.
+
+## 📚 Bibliotecas Utilizadas
+
+* **FPDF**: Gera relatórios e impressões em PDF direto no navegador.
+* **Choices.js**: Melhora a navegação e usabilidade de campos de seleção (`<select>`).
+* **jQuery**: Simplifica manipulação do DOM, eventos e requisições AJAX.
+* **jQuery Mask**: Adiciona máscaras a campos de texto (ex.: CPF, CNPJ, telefone).
+* **Chart.js**: Cria gráficos interativos e responsivos (linhas, barras, pizza, radar).
+
+## 📁 Estrutura de Pastas
 
 Abaixo está a organização das pastas e arquivos principais do sistema:
 
@@ -108,36 +138,6 @@ Abaixo está a organização das pastas e arquivos principais do sistema:
 └── config.php
 
 ```
-
-## Funcionalidades
-
-✅ Autenticação de usuários
-✅ Controle de login e logout
-✅ Cadastro e atualização de visitantes
-✅ Registro de visitas com hora de entrada e saída
-✅ Relatórios em Excel e PDF
-✅ Gestão de ramais e setores por departamento
-✅ Gestão de servidores vinculados a setores
-✅ Upload e armazenamento de fotos de visitantes
-
-## Tecnologias Utilizadas
-
-### Frontend:
-* HTML: Linguagem de marcação para estruturação do conteúdo e elementos visuais.
-* CSS: Linguagem de estilização para controle do layout.
-* JavaScript: Linguagem de programação para integração de lógica e interatividade nas páginas.
-
-### Backend:
-* PHP: Linguagem de programação para processamento do lado do servidor e integração com o banco de dados.
-* MySQL: Sistema de gerenciamento de banco de dados utilizado para armazenar e organizar as informações do sistema.
-
-## Bibliotecas Utilizadas
-* FPDF: Biblioteca para geração de arquivos PDF diretamente no navegador, destinada à emissão de relatórios e impressões.
-* Choices.js: Biblioteca para aprimoramento dos elementos de seleção (<select>), proporcionando uma experiência de navegação mais intuitiva e agradável para o usuário.
-* jQuery (v3.6.0): Framework para simplificação da manipulação do DOM, tratamento de eventos e comunicação assíncrona (AJAX).
-* jQuery Mask: Plugin para adição de máscaras de formatação em campos de entrada, como CPF, CNPJ e números de telefone, facilitando a inserção e validando dados.
-* Chart.js: Biblioteca para criação de gráficos interativos e responsivos, suportando diferentes tipos de representação gráfica, como linha, barras, pizza e radar.
-
 
 ## Observações
 
