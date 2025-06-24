@@ -67,26 +67,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    <section class="card">
-        <h2>Redefinir Senha</h2>
 
-        <?php if (isset($erro)): ?>
-            <div class="alert alert-danger"><?= $erro ?></div>
-        <?php endif; ?>
+    <header class="cabecalho">
+        <h1>Recepção SEAD</h1>
+    </header>
+    <main>
 
-        <form method="POST">
-            <label for="nova_senha">Nova Senha:</label>
-            <input type="password" name="nova_senha" id="nova_senha" required>
 
-            <label for="confirmar_senha">Confirmar Senha:</label>
-            <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+        <section class="card">
+            <h2>Redefinir Senha</h2>
 
-            <button type="submit">Alterar Senha</button>
-        </form>
+            <?php if (isset($erro)): ?>
+                <div class="alert alert-danger"><?= $erro ?></div>
+            <?php endif; ?>
 
-        <p>Dica: use uma senha forte com letras, números e símbolos.</p>
-        
-    </section>
+            <form method="POST">
+                <label for="nova_senha">Nova Senha:</label>
+                <input type="password" name="nova_senha" id="nova_senha" required>
+
+                <label for="confirmar_senha">Confirmar Senha:</label>
+                <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+
+                <button class="btn-login" type="submit">Alterar Senha</button>
+            </form>
+
+            <br><p>Dica: use uma senha forte com letras, números e símbolos.</p>
+
+        </section>
+    </main>
+    <footer class="rodape">
+        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
+    </footer>
 </body>
 
 </html>
