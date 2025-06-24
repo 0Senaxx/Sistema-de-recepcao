@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p style="color:red"><?= htmlspecialchars($erro) ?></p>
             <?php endif; ?>
 
-            <form action="Auth/verificar_login.php" method="POST">
+            <form action="" method="POST">
 
                 <div class="campo-senha">
                     <label>Nova Senha:</label>
@@ -120,10 +120,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="campo-senha">
                     <label>CPF:</label>
-                    <input type="text" name="cpf" autocomplete="off" maxlength="14" oninput="mascaraCPF(this)" required placeholder="000.000.000-00">
+                    <input type="text" id="cpf" name="cpf" autocomplete="off" maxlength="14" oninput="mascaraCPF(this)" onblur="validarCPFInput(this.value)" required placeholder="000.000.000-00">
+                    <span id="mensagem-cpf" style="color: red; font-size: 14px;"></span>
                 </div>
 
-                <button type="submit" class="btn-login">Salvar e Acessar</button>
+                <button type="submit" id="btn-submit" class="btn-login" disabled>Salvar e Acessar</button>
 
             </form>
         </section>
@@ -135,15 +136,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 
 </body>
+
 <script>
-    // Máscara simples para CPF no campo de input
+    // Máscara simples para CPF
     function mascaraCPF(i) {
-        var v = i.value.replace(/\D/g, ''); // Remove não números
+        var v = i.value.replace(/\D/g, '');
         v = v.replace(/(\d{3})(\d)/, "$1.$2");
         v = v.replace(/(\d{3})(\d)/, "$1.$2");
         v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
         i.value = v;
     }
+
+    // Valida o CPF quando o campo perde o foco
+    function validarCPFInput(value) {
+        const cpf = value.replace(/\D/g, '');
+        const mensagem = document.getElementById('mensagem-cpf');
+        const botao = document.getElementById('btn-submit');
+
+        if (cpf.length === 11) {
+            if (!validaCPF(cpf)) {
+                mensagem.textContent = "CPF inválido.";
+                botao.disabled = true;
+            } else {
+                mensagem.textContent = ""; // Limpa mensagem
+                botao.disabled = false;
+            }
+        } else {
+            mensagem.textContent = ""; // Limpa mensagem
+            botao.disabled = true;
+        }
+    }
+
+    // Mesma lógica de validação de CPF no JS
+    function validaCPF(cpf) {
+        if (cpf.length != 11) return false;
+
+        // Verifica se todos são iguais (ex: 111.111.111-11)
+        if (/(\d)\1{10}/.test(cpf)) return false;
+
+        for (let t = 9; t < 11; t++) {
+            let soma = 0;
+            for (let i = 0; i < t; i++) {
+                soma += parseInt(cpf[i]) * ((t + 1) - i);
+            }
+            let digito = (10 * soma) % 11;
+            if (digito == 10) digito = 0;
+
+            if (parseInt(cpf[t]) !== digito) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 </script>
+
 
 </html>

@@ -55,7 +55,7 @@ $resultServidores = $conn->query($sqlServidores);
 
   <main>
     <section class="card">
-      <h2>Registro de visita</h2>
+      <h2>Registrar visita</h2>
       <form class="formulario" action="salvar_visita.php" method="POST" enctype="multipart/form-data">
 
         <!-- Campos principais -->
