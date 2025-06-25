@@ -19,20 +19,24 @@ function salvarFoto()
 
         return $nome_arquivo;
     }
-
     return null;
 }
 
 // === DADOS DO FORMULÁRIO === //
-$cpf      = $_POST['cpf'];
-$nome     = $_POST['nome'];
-$social   = $_POST['social'] ?? null;
-$orgao    = $_POST['orgao'];
-$data     = $_POST['data'];
-$hora     = $_POST['hora'];
-$servidor = $_POST['servidor'];
-$setor    = intval($_POST['setor_id']);
-$foto     = salvarFoto();
+$cpf        = $_POST['cpf'];
+$nome       = $_POST['nome'];
+$social     = $_POST['social'] ?? null;
+$orgao      = $_POST['orgao'];
+$data       = $_POST['data'];
+$hora       = $_POST['hora'];
+$servidor   = $_POST['servidor'];
+$setor      = intval($_POST['setor_id']);
+$foto       = salvarFoto();
+$cracha_id  = $_POST['cracha_id'] ?? null;
+
+if (!$cracha_id) {
+    die("Crachá não selecionado.");
+}
 
 // === VERIFICA SE O VISITANTE JÁ EXISTE PELO CPF === //
 $sql = "SELECT id FROM visitantes WHERE cpf = ?";
@@ -64,12 +68,18 @@ if ($result->num_rows > 0) {
     $visitante_id = $stmtInsert->insert_id;
 }
 
-// === REGISTRA A VISITA COM USUÁRIO === //
-$sqlVisita = "INSERT INTO visitas (visitante_id, data, hora, servidor, setor, usuario_id) VALUES (?, ?, ?, ?, ?, ?)";
+// === REGISTRA A VISITA COM CÓDIGO DO CRACHÁ === //
+$sqlVisita = "INSERT INTO visitas (visitante_id, data, hora, servidor, setor, usuario_id, cracha_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmtVisita = $conn->prepare($sqlVisita);
-$stmtVisita->bind_param("isssii", $visitante_id, $data, $hora, $servidor, $setor, $usuario_id);
+$stmtVisita->bind_param("isssiii", $visitante_id, $data, $hora, $servidor, $setor, $usuario_id, $cracha_id);
 $stmtVisita->execute();
 
-// === REDIRECIONA === //
+// === ATUALIZA STATUS DO CRACHÁ PARA OCUPADO === //
+$sqlUpdateCracha = "UPDATE crachas SET status = 'ocupado' WHERE id = ?";
+$stmtUpdateCracha = $conn->prepare($sqlUpdateCracha);
+$stmtUpdateCracha->bind_param("i", $cracha_id);
+$stmtUpdateCracha->execute();
+
+// === REDIRECIONA PARA A PÁGINA DE INÍCIO === //
 header("Location: ../02-Inicio/index.php");
 exit();

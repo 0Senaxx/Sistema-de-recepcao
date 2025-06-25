@@ -1,11 +1,11 @@
 <?php
 
 // ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
   header("Location: ../01-Login/login.php");
-  exit; 
+  exit;
 }
 
 include '../01-Login/Auth/autenticacao.php';
@@ -22,6 +22,9 @@ $result = $conn->query($sql);
 $sqlServidores = "SELECT id, nome, status FROM servidores ORDER BY nome ASC";
 $resultServidores = $conn->query($sqlServidores);
 
+// Consulta para obter crachás disponíveis
+$sqlCrachas = "SELECT id, codigo FROM crachas WHERE status = 'disponivel' ORDER BY codigo ASC";
+$resultCrachas = $conn->query($sqlCrachas);
 ?>
 
 <!DOCTYPE html>
@@ -122,7 +125,7 @@ $resultServidores = $conn->query($sqlServidores);
 
           <!-- 4ª linha: Servidor e Status -->
           <div class="quarta-linha">
-            <div class="form-control">
+            <div class="campo-servidor">
               <label for="servidorInput">Servidor a ser visitado<span class="required">*</span></label>
               <select id="servidorInput" name="servidor" class="choices-select" required>
                 <option value="">Selecione um servidor...</option>
@@ -132,16 +135,29 @@ $resultServidores = $conn->query($sqlServidores);
                   </option>
                 <?php endwhile; ?>
               </select>
-
             </div>
 
-            <div class="form-control">
+            <div class="campo-status">
               <label>Status do Servidor</label>
               <div class="servidorStatus">
                 <span id="servidorStatus">--</span>
               </div>
             </div>
+
+            <!-- Crachá para visita -->
+            <div class="campo-cracha">
+              <label for="cracha_id">Crachá para visita <span class="required">*</span></label>
+              <select id="cracha_id" name="cracha_id" class="choices-select" required>
+                <option value="">Selecione o crachá</option>
+                <?php while ($cracha = $resultCrachas->fetch_assoc()): ?>
+                  <option value="<?= $cracha['id'] ?>">
+                    Crachá <?= htmlentities($cracha['codigo']) ?>
+                  </option>
+                <?php endwhile; ?>
+              </select>
+            </div>
           </div>
+
 
           <!-- Botões de ação -->
           <div class="form-actions">

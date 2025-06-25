@@ -305,45 +305,57 @@ main {
     background-color: #5f5656;
 }
 
-/* QUARTA LINHA DO FORMULÁRIO*/
+
+
+/* ===========================
+   QUARTA LINHA DO FORMULÁRIO
+   =========================== */
 .quarta-linha {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-/* Labels comuns */
-.quarta-linha .form-control label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+.quarta-linha .campo-servidor,
+.quarta-linha .campo-status,
+.quarta-linha .campo-cracha {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Inputs comuns */
-.quarta-linha .form-control input {
-    width: 100%;
+.quarta-linha label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.quarta-linha input,
+.quarta-linha select {
+    font-family: inherit;
+    font-size: 14px;
+    color: #333;
     padding: 10px;
-    height: 40px;
-    border: 1px solid #ccc;
+    height: 45px;
     border-radius: 5px;
+    border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
+/* Status do Servidor */
 .servidorStatus {
     display: flex;
     align-items: center;
-    /* Centraliza verticalmente */
     justify-content: center;
-    /* Centraliza horizontalmente */
-    gap: 10px;
     border-radius: 5px;
     background-color: #f0f0f0;
     border: #dcdcdc 1px solid;
     padding: 10px;
-    height: 43px;
-    width: 200px;
+    height: 45px;
     font-weight: bold;
+}
+
+.campo-status {
+    margin-left: 10px;
 }
 
 /* =================== BOTÕES =================== */

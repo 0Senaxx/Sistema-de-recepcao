@@ -70,6 +70,23 @@ $result = $stmt->get_result();
                 <h2 class="titulo-centro">Visitas do Dia <br> <?= date('d/m/Y') ?>
                 </h2>
                 <a href="../03-Registrar/nova_visita.php" class="bnt-nova">Nova visita</a>
+                <!-- Exemplo de botão para ir à tela de Leitura de QRCode para registrar saída -->
+<div style="text-align: center; margin: 20px;">
+  <a href="leitura_qrcode_saida.php" 
+     style="
+       display: inline-block;
+       padding: 12px 24px;
+       font-size: 1.1rem;
+       font-weight: bold;
+       color: #fff;
+       background: #007bff;
+       border-radius: 8px;
+       text-decoration: none;
+       transition: background 0.3s;">
+    📷 Registrar Saída (Leitura QRCode)
+  </a>
+</div>
+
             </div><br>
             <table class="table table-bordered table-striped">
                 <thead>
