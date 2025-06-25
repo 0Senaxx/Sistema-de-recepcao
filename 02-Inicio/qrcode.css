@@ -1,0 +1,221 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografia e fundo */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background: rgb(248, 248, 248);
+    color: #333;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(93deg, #293264 19%, rgba(10, 133, 61, 1) 100%);
+}
+
+.cabecalho {
+    /* Posicionamento fixo no topo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    /* Layout flexível */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Estilo visual */
+    color: #fff;
+    padding: 10px 30px;
+}
+
+.rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 10px 30px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    /* Faz o main ocupar o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 55px;
+    /* espaço para o cabeçalho */
+    padding-bottom: 55px;
+    /* espaço para o rodapé */
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    width: 100%;
+    max-width: 500px;
+    margin: 60px auto; /* Centraliza horizontalmente na página */
+    font-size: 20px;
+    color: rgba(41, 50, 100, 1);
+
+    /* Flex para centralizar conteúdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* centraliza verticalmente */
+    align-items: center;      /* centraliza horizontalmente */
+    text-align: center;       /* texto alinhado ao centro */
+}
+
+#video-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#video-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 4px solid  rgba(10, 133, 61, 1);/* Adiciona a borda */
+}
+
+
+#video-container::before {
+    border-right: none;
+    border-bottom: none;
+}
+
+#video-container::after {
+
+    border-left: none;
+    border-top: none;
+}
+
+#resultado {
+    margin-top: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    min-height: 2em;
+    color: rgba(41, 50, 100, 1);
+}
+
+#animacao-leitura {
+    margin-top: 20px;
+    color: rgba(10, 133, 61, 1);
+    font-weight: 700;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#animacao-leitura.show {
+    opacity: 1;
+}
+
+#btn-reset {
+    width: 100%;
+    padding: 16px 0px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: rgba(41, 50, 100, 1);
+    background-color: rgb(21, 206, 98);
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#btn-reset:hover {
+    background-color: #00e676;
+    color: #000;
+}
+
+
+.btn-login:hover {
+    background-color: rgb(7, 170, 75);
+    transition: all 0.3s ease;
+}
+
+.checkmark {
+  width: 150px;    /* Aumentou de 120px para 150px */
+  height: 150px;
+  stroke-width: 6; /* Pode aumentar o traço também para ficar proporcional */
+  stroke: #0a853d;
+  stroke-miterlimit: 10;
+  animation: scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+  stroke: #0a853d;
+  fill: #0a853d;
+  fill-opacity: 0;
+  animation: 
+    stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards,
+    fill 0.4s ease-in-out 0.6s forwards;
+  box-shadow: none;
+  shape-rendering: geometricPrecision;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+  stroke: #fff;
+  stroke-width: 5; /* Aumentou um pouco para ficar proporcional */
+  fill: none;
+}
+
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  to {
+    fill-opacity: 1;
+  }
+}

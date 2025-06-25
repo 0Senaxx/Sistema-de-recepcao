@@ -7,7 +7,7 @@ $saida = date('H:i:s');
 if (!empty($_POST['cracha_id'])) {
     $cracha_id = $_POST['cracha_id'];
 
-    // 1️⃣ Obter o id da visita atual para esse crachá
+    // 1️⃣ Verifica se existe visita aberta para o crachá
     $sql = "SELECT id FROM visitas WHERE cracha_id = ? AND saida IS NULL";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $cracha_id);
@@ -30,13 +30,10 @@ if (!empty($_POST['cracha_id'])) {
         $stmtCracha->bind_param("i", $cracha_id);
         $stmtCracha->execute();
 
-        echo "Saída registrada com sucesso.";
+        echo "OK"; // ✅ Resposta para o JS
     } else {
-        echo "Nenhuma visita aberta para esse crachá.";
+        echo "JA_REGISTRADO"; // ⚡️ Já registrado ou não encontrado
     }
+} else {
+    echo "ERRO"; // ⚠️ Nenhum crachá enviado
 }
-
-
-// Redireciona para a tela inicial
-header("Location: index.php");
-exit();

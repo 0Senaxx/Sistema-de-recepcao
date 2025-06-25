@@ -1,185 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Registrar Saída</title>
-<style>
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #121214;
-  color: #e1e1e6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-}
-h1 {
-  margin-bottom: 15px;
-  font-weight: 600;
-  font-size: 1.8rem;
-  color: #00bfa5;
-  text-shadow: 0 0 8px #00bfa5;
-}
-#video-container {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 25px #00bfa5aa;
-  background: #000;
-}
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#video-container::before,
-#video-container::after {
-  content: ""; position: absolute; border: 4px solid #00bfa5;
-  width: 50px; height: 50px; border-radius: 8px;
-}
-#video-container::before {
-  top: 0; left: 0;
-  border-right: none; border-bottom: none;
-}
-#video-container::after {
-  bottom: 0; right: 0;
-  border-left: none; border-top: none;
-}
-#resultado {
-  margin-top: 25px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  min-height: 2em;
-  color: #00e676;
-  text-shadow: 0 0 6px #00e676aa;
-}
-#animacao-leitura {
-  margin-top: 20px;
-  color: #00e676;
-  font-weight: 700;
-  font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-#animacao-leitura.show {
-  opacity: 1;
-}
-#btn-reset {
-  margin-top: 15px;
-  background-color: #00bfa5;
-  color: #121214;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-#btn-reset:hover {
-  background-color: #00e676;
-  color: #000;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar Saída</title>
+
+  <link rel="stylesheet" href="qrcode.css">
 </head>
+
 <body>
+  <header class="cabecalho">
+    <h1>Recepção SEAD</h1>
+  </header>
 
-<h1>Registrar Saída</h1>
+  <main>
+    <section class="card">
 
-<div id="video-container">
+      <h1>Registrar Saída</h1><br>
+
+      <p>Aponte o QR Code no verso do crachá do visitante para registra a saída.</p><br>
+
+      <div id="video-container">
   <video id="video" autoplay playsinline></video>
+
+  <div id="checkmark" style="display:none; position:absolute; top:50%; left:50%; 
+       transform: translate(-50%, -50%);">
+
+<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" aria-hidden="true">
+  <circle class="checkmark__circle" cx="26" cy="26" r="20" />
+  <path class="checkmark__check" fill="none" d="M14 27l7 7 16-16" />
+</svg>
+
+
+  </div>
 </div>
 
-<div id="resultado">Aguardando leitura...</div>
-<div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
-<button id="btn-reset" style="display: none">Reiniciar Leitura</button>
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-<script>
-const video = document.getElementById('video');
-const resultado = document.getElementById('resultado');
-const animacao = document.getElementById('animacao-leitura');
-const btnReset = document.getElementById('btn-reset');
+      <div id="resultado">Aguardando leitura...</div>
 
-let stream = null;
-let scanning = false;
+      <div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
 
-function iniciarCamera() {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-    .then(s => {
-      stream = s;
-      video.srcObject = stream;
-      video.setAttribute("playsinline", true);
-      video.play();
-      scanning = true;
-      animacao.classList.remove('show');
-      btnReset.style.display = 'none';
-      resultado.textContent = "Aguardando leitura...";
-      requestAnimationFrame(scanQRCode);
-    })
-    .catch(err => {
-      resultado.textContent = "Erro ao acessar a câmera: " + err.message;
-    });
-}
 
-function pararCamera() {
-  if (stream) {
-    stream.getTracks().forEach(track => track.stop());
-    stream = null;
-  }
-  scanning = false;
-}
 
-function scanQRCode() {
-  if (!scanning) return;
+      <button id="btn-reset" style="display: none">Reiniciar Leitura</button>
 
-  if (video.readyState === video.HAVE_ENOUGH_DATA) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    </section>
+  </main>
 
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(imageData.data, imageData.width, imageData.height, {
-      inversionAttempts: "dontInvert",
-    });
 
-    if (code) {
-      const crachaId = code.data.trim();
-      resultado.textContent = "QR Code lido: " + crachaId;
+  <footer class="rodape">
+    Copyright © 2025 SEAD | EPP. Todos os direitos reservados
+  </footer>
 
-      pararCamera();
-      animacao.classList.add('show');
-      enviarSaida(crachaId);
-      return;
+
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  <script>
+    const video = document.getElementById('video');
+    const resultado = document.getElementById('resultado');
+    const animacao = document.getElementById('animacao-leitura');
+    const btnReset = document.getElementById('btn-reset');
+
+    let stream = null;
+    let scanning = false;
+
+    function iniciarCamera() {
+      navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "environment"
+          }
+        })
+        .then(s => {
+          stream = s;
+          video.srcObject = stream;
+          video.setAttribute("playsinline", true);
+          video.play();
+          scanning = true;
+          animacao.classList.remove('show');
+          btnReset.style.display = 'none';
+          resultado.textContent = "Aguardando leitura...";
+          requestAnimationFrame(scanQRCode);
+        })
+        .catch(err => {
+          resultado.textContent = "Erro ao acessar a câmera: " + err.message;
+        });
     }
-  }
-  requestAnimationFrame(scanQRCode);
-}
 
-function enviarSaida(crachaId) {
+    function pararCamera() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+      }
+      scanning = false;
+    }
+
+    function scanQRCode() {
+      if (!scanning) return;
+
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: "dontInvert",
+        });
+
+        if (code) {
+          const crachaId = code.data.trim();
+          resultado.textContent = "QR Code lido: " + crachaId;
+
+          pararCamera();
+          animacao.classList.add('show');
+          enviarSaida(crachaId);
+          return;
+        }
+      }
+      requestAnimationFrame(scanQRCode);
+    }
+
+    function enviarSaida(crachaId) {
   fetch('registrar_saida.php', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `cracha_id=${encodeURIComponent(crachaId)}`
-  })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `cracha_id=${encodeURIComponent(crachaId)}`
+    })
     .then(response => response.text())
     .then(data => {
-      if (data.trim() === "OK") {
-        resultado.textContent = "Saída registrada com sucesso.";
+      if (data.trim() === "OK" || data.trim() === "JA_REGISTRADO") {
+        resultado.textContent = data.trim() === "OK" ? "Saída registrada com sucesso." : "Saída já registrada.";
+
+        // Esconde o vídeo e animação anterior
+        video.style.display = 'none';
+        animacao.classList.remove('show');
+        btnReset.style.display = 'none';
+        
+        // Mostra o check animado
+        const checkmark = document.getElementById('checkmark');
+        checkmark.style.display = 'block';
+
+        // Espera 10 segundos e redireciona
         setTimeout(() => {
           window.location.href = 'index.php';
-        }, 2000);
-      } else if (data.trim() === "JA_REGISTRADO") {
-        resultado.textContent = "Saída já registrada.";
-        setTimeout(() => {
-          window.location.href = 'index.php';
-        }, 2000);
+        }, 80000);
+
       } else {
         resultado.textContent = "Erro ao registrar saída.";
         btnReset.style.display = 'inline-block';
@@ -191,11 +158,13 @@ function enviarSaida(crachaId) {
     });
 }
 
-btnReset.addEventListener('click', iniciarCamera);
 
-// Inicia assim que abrir
-iniciarCamera();
-</script>
+    btnReset.addEventListener('click', iniciarCamera);
+
+    // Inicia assim que abrir
+    iniciarCamera();
+  </script>
 
 </body>
+
 </html>
