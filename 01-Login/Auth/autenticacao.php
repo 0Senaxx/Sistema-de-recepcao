@@ -31,7 +31,7 @@ if (!in_array($pastaAtual, $permissoes[$perfil] ?? [])) {
     <!DOCTYPE html>
     <html lang="pt-br">
 
-    <head>
+z    <head>
         <meta charset="UTF-8">
         <title>403 - Acesso Negado</title>
         <style>
