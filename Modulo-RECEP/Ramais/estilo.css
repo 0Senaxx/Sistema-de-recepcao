@@ -1,0 +1,243 @@
+/* =================== RESET E VARIÁVEIS =================== */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CABEÇALHO E RODAPÉ*/
+
+:root {
+    --cor-primaria: #293264;
+    --cor-secundaria: #0A853D;
+    --cor-branco: #fff;
+    --cor-hover: rgba(255, 255, 255, 0.2);
+    --font-size: 11pt;
+    /* Tamanho de fonte padrão */
+    --spacing: 0.5rem;
+    /* Espaçamento padrão */
+}
+
+/* =================== LAYOUT GERAL =================== */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
+    /* Deixa espaço para a topbar */
+
+    /*FUNDO PONTILHADO*/
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+}
+
+/* =================== CABECALHO =================== */
+.cabecalho {
+    /* Posicionamento fixo no topo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    /* Layout flexível */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Estilo visual */
+    background: linear-gradient(93deg, var(--cor-primaria) 19%, var(--cor-secundaria) 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Ajuste de padding com rem */
+}
+
+.cabecalho nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.cabecalho nav a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-size: var(--font-size);
+    /* Usando unidade relativa */
+    padding: 0.3125rem 0.625rem;
+    /* Ajustando padding */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cabecalho nav a:hover {
+    text-decoration: none;
+    background-color: var(--cor-hover);
+    border-color: var(--cor-branco);
+}
+
+/* =================== RODAPÉ =================== */
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    /* Ajustado para centralizar o conteúdo */
+    align-items: center;
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Usando variáveis e unidades relativas */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* =================== FORMULÁRIO =================== */
+
+/* Container principal */
+main {
+    padding: 25px;
+    max-width: 2000px;
+}
+
+.card {
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.txt-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.campo-buscar {
+    Width: 300px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    /* largura fixa */
+    height: 23px;
+    /* altura fixa */
+    background-color: #20b038;
+    color: rgb(255, 255, 255);
+
+    outline-offset: -3px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.button svg path {
+    transition: 400ms;
+}
+
+.button:hover {
+    background-color: transparent;
+}
+
+.button:hover .text {
+    color: #20b038;
+}
+
+.button:hover svg path {
+    fill: #20b038;
+}
+
+.aviso {
+    display: none;
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336;
+    /* vermelho */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+thead th {
+    background-color: #e3e2e2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+}
+
+tbody td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+tbody tr {
+    background-color: #f6f6f6;
+    border: 1px solid #dee2e6;
+}
+
+tbody tr:hover {
+    background-color: #f5f8fb;
+}
+
+.linha-servidor {
+    background-color: #ffffff;
+}
+
+.sem-servidor {
+    padding-left: 30px;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
