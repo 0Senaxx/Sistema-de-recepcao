@@ -254,7 +254,7 @@ document.getElementById('btnBuscarCPF').addEventListener('click', function () {
         modo = 'ligar';
       } else {
         mostrarPopup('CPF não cadastrado.', 'warning');
-        limparCampos();
+        
       }
     })
     .catch(error => {
