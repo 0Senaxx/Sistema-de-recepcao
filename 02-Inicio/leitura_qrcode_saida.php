@@ -17,7 +17,7 @@
     <section class="card">
 
       <h1>Registrar Saída</h1><br>
-      <p>Aponte o QR Code no verso do crachá do visitante para registra a saída.</p><br>
+      <p>Escaneie o QR Code no verso do crachá para registrar a saída do visitante.</p><br>
 
       <div id="video-container">
         <video id="video" autoplay playsinline></video>
@@ -37,6 +37,8 @@
 
       <div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
 
+      <a class="voltar" href="index.php">Voltar</a>
+      
       <button id="btn-reset" style="display: none">Reiniciar Leitura</button>
 
     </section>
