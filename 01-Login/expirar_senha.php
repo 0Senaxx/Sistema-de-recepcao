@@ -50,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST">
         <label>Nova Senha:</label>
-        <input type="password" name="nova_senha" required><br><br>
+        <input type="password" name="nova_senha" maxlength="10" required><br><br>
 
         <label>Confirmar Senha:</label>
-        <input type="password" name="confirmar" required><br><br>
+        <input type="password" name="confirmar" maxlength="10" required><br><br>
 
         <button type="submit">Salvar Nova Senha</button>
     </form>

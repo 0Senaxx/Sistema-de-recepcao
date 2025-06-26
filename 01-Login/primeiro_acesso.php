@@ -110,12 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="campo-senha">
                     <label>Nova Senha:</label>
-                    <input type="password" name="nova_senha" required>
+                    <input type="password" name="nova_senha" maxlength="10" required>
                 </div>
 
                 <div class="campo-senha">
                     <label>Confirmar Senha:</label>
-                    <input type="password" name="confirmar" required>
+                    <input type="password" name="confirmar" maxlength="10" required>
                 </div>
 
                 <div class="campo-senha">

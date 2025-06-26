@@ -83,10 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <form method="POST">
                 <label for="nova_senha">Nova Senha:</label>
-                <input type="password" name="nova_senha" id="nova_senha" required>
+                <input type="password" name="nova_senha" id="nova_senha" maxlength="10" required>
 
                 <label for="confirmar_senha">Confirmar Senha:</label>
-                <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+                <input type="password" name="confirmar_senha" id="confirmar_senha" maxlength="10" required>
 
                 <button class="btn-login" type="submit">Alterar Senha</button>
             </form>

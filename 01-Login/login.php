@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,7 +41,7 @@
 
                 <div class="campo-senha">
                     <label for="senha">Senha:</label>
-                    <input type="password" name="senha" placeholder="Digite sua senha" required>
+                    <input type="password" name="senha" placeholder="Digite sua senha" maxlength="10" required>
                 </div>
 
                 <button type="submit" class="btn-login">Entrar</button>

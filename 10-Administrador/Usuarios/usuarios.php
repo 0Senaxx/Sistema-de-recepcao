@@ -112,7 +112,7 @@ $result = $conn->query($sql);
 
                 <div class="form-campo">
                     <label>Senha:</label><br>
-                    <input type="password" name="senha" id="senha">
+                    <input type="password" name="senha" id="senha" maxlength="10">
                 </div>
 
                 <div class="form-perfil">
