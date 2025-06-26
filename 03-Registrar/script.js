@@ -42,7 +42,6 @@ async function ligarCamera() {
   }
 }
 
-
 function capturarFoto() {
   const context = canvas.getContext('2d');
   canvas.width = video.videoWidth;
@@ -80,17 +79,21 @@ function atualizarDataHora() {
 setInterval(atualizarDataHora, 1000);
 atualizarDataHora();
 
+// ======================================================
+// VALIDAÇÃO DE CPF 
+// ======================================================
+
 function validarCPF() {
   const cpfInput = document.getElementById('cpf');
-  const erro = document.getElementById('cpfErro');
-  let cpf = cpfInput.value.replace(/[^\d]+/g, ''); // Remove tudo que não é número
+  const cpf = cpfInput.value.replace(/\D/g, '');
 
-  if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
-    erro.style.display = 'block';
-    cpfInput.classList.add('input-erro');
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+    mostrarPopup('CPF inválido.', 'error');
+    cpfInput.classList.add('input-erro', 'cpf-invalido');
     return false;
   }
 
+  // Cálculo dos dígitos verificadores
   let soma = 0;
   for (let i = 0; i < 9; i++) {
     soma += parseInt(cpf.charAt(i)) * (10 - i);
@@ -106,12 +109,11 @@ function validarCPF() {
   let dig2 = resto >= 10 ? 0 : resto;
 
   if (parseInt(cpf.charAt(9)) === dig1 && parseInt(cpf.charAt(10)) === dig2) {
-    erro.style.display = 'none';
-    cpfInput.classList.remove('input-erro');
+    cpfInput.classList.remove('input-erro', 'cpf-invalido');
     return true;
   } else {
-    erro.style.display = 'block';
-    cpfInput.classList.add('input-erro');
+    mostrarPopup('CPF inválido.', 'error');
+    cpfInput.classList.add('input-erro', 'cpf-invalido');
     return false;
   }
 }
@@ -133,20 +135,89 @@ document.getElementById('cpf').addEventListener('input', function (e) {
 // ======================================================
 // POP-UP CUSTOMIZADO
 // ======================================================
-function mostrarPopup(mensagem, duracao = 3000) {
+function mostrarPopup(mensagem, tipo = 'success', duracao = 3000) {
   const popup = document.getElementById('popupToast');
   popup.textContent = mensagem;
-  popup.style.display = 'block';
 
-  // Se já tiver timer rodando, limpa para reiniciar
+  popup.classList.remove('success', 'error', 'warning');
+  popup.classList.add(tipo);
+  popup.classList.add('show');
+
   if (popup._timeout) clearTimeout(popup._timeout);
 
-  // Esconde o popup depois de "duracao" ms
   popup._timeout = setTimeout(() => {
-    popup.style.display = 'none';
+    popup.classList.remove('show');
   }, duracao);
 }
 
+// ======================================================
+// VALIDAÇÃO DE CPF
+// ======================================================
+function validarCPF() {
+  const cpfInput = document.getElementById('cpf');
+  const cpf = cpfInput.value.replace(/\D/g, '');
+
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+    mostrarPopup('CPF inválido.', 'error');
+    cpfInput.classList.add('input-erro', 'cpf-invalido');
+    return false;
+  }
+
+  // Cálculo dos dígitos verificadores
+  let soma = 0;
+  for (let i = 0; i < 9; i++) {
+    soma += parseInt(cpf.charAt(i)) * (10 - i);
+  }
+  let resto = 11 - (soma % 11);
+  let dig1 = resto >= 10 ? 0 : resto;
+
+  soma = 0;
+  for (let i = 0; i < 10; i++) {
+    soma += parseInt(cpf.charAt(i)) * (11 - i);
+  }
+  resto = 11 - (soma % 11);
+  let dig2 = resto >= 10 ? 0 : resto;
+
+  if (parseInt(cpf.charAt(9)) === dig1 && parseInt(cpf.charAt(10)) === dig2) {
+    cpfInput.classList.remove('input-erro', 'cpf-invalido');
+    return true;
+  } else {
+    mostrarPopup('CPF inválido.', 'error');
+    cpfInput.classList.add('input-erro', 'cpf-invalido');
+    return false;
+  }
+}
+
+// ======================================================
+// VERIFICAR CAMPOS OBRIGATÓRIOS
+// ======================================================
+function verificarCamposObrigatorios() {
+  // Aqui você pode validar outros campos obrigatórios, estou apenas verificando CPF como exemplo
+  const cpfInput = document.getElementById('cpf');
+  if (!cpfInput.value.trim()) {
+    mostrarPopup('Por favor, preencha todos os campos obrigatórios.', 'warning');
+    cpfInput.classList.add('input-erro');
+    return false;
+  }
+  cpfInput.classList.remove('input-erro');
+  return true;
+}
+
+// ======================================================
+// FUNÇÃO PARA LIMPAR CAMPOS
+// ======================================================
+function limparCampos() {
+  document.getElementById('nome').value = '';
+  document.getElementById('social').value = '';
+  document.getElementById('orgao').value = '';
+  document.getElementById('cpf').value = '';
+  fotoBox.style.background = '';
+  video.style.display = 'none';
+  canvas.style.display = 'none';
+  fotoTexto.style.display = 'block';
+  btnFoto.textContent = 'Fotografar';
+  modo = 'ligar';
+}
 
 // ======================================================
 // BUSCA CPF
@@ -154,10 +225,13 @@ function mostrarPopup(mensagem, duracao = 3000) {
 document.getElementById('btnBuscarCPF').addEventListener('click', function () {
   const cpf = document.getElementById('cpf').value.trim();
 
-  if (cpf === '') return; // não faz nada se o campo estiver vazio
+  if (cpf === '') {
+    mostrarPopup('Por favor, preencha o CPF para buscar.', 'warning');
+    return;
+  }
 
   if (cpf.length !== 14) {
-    mostrarPopup('CPF inválido.');
+    mostrarPopup('CPF inválido.', 'error');
     return;
   }
 
@@ -179,58 +253,38 @@ document.getElementById('btnBuscarCPF').addEventListener('click', function () {
         btnFoto.textContent = 'Alterar';
         modo = 'ligar';
       } else {
-        mostrarPopup('Pessoa não cadastrada.');
+        mostrarPopup('CPF não cadastrado.', 'warning');
         limparCampos();
       }
     })
     .catch(error => {
       console.error('Erro ao buscar visitante:', error);
-      mostrarPopup('CPF não cadastrado');
+      mostrarPopup('Erro ao buscar CPF.', 'error');
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Instanciar Choices.js nos campos select com acesso global
-  window.setorChoices = new Choices(document.getElementById('setor_id'), {
-    searchEnabled: true,
-    itemSelectText: '',
-    placeholderValue: 'Selecione o setor...',
-  });
-
-  window.servidorChoices = new Choices(document.getElementById('servidorInput'), {
-    searchEnabled: true,
-    itemSelectText: '',
-    placeholderValue: 'Selecione um servidor...',
-  });
-
-  window.secretariaChoices = new Choices(document.getElementById('secretariaInput'), {
-    choices: [
-      { value: 'SEAD', label: 'Secretaria de Estado de Administração e Gestão - SEAD' },
-      { value: 'OAB', label: 'Ordem dos Advogados do Brasil - OAB' },
-      { value: 'SEFAZ', label: 'Secretaria de Estado da Fazenda - SEFAZ' },
-      { value: 'SEDUC', label: 'Secretaria de Estado de Educação e Desporto Escolar - SEDUC' },
-      { value: 'SECOM', label: 'Secretaria de Estado de Comunicação Social - SECOM' },
-      { value: 'PC', label: 'Polícia Civil do Estado - PC' },
-      { value: 'PMAM', label: 'Polícia Militar do Amazonas - PMAM' }
-    ],
-    searchEnabled: true,
-    itemSelectText: '',
-    placeholderValue: 'Selecione uma secretaria...',
-  });
-});
-
-// Função para limpar todos os campos do formulário
-document.getElementById('btnLimpar').addEventListener('click', () => {
-  location.reload();
-});
-
-
 // ======================================================
-// DISPARAR BUSCA AO SAIR DO CAMPO CPF
+// FORMULÁRIO - ENVIO
 // ======================================================
-document.getElementById('cpf').addEventListener('blur', () => {
-  document.getElementById('btnBuscarCPF').click();
+const form = document.querySelector('.formulario');
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  // Verificar campos obrigatórios
+  if (!verificarCamposObrigatorios()) return;
+
+  // Validar CPF
+  if (!validarCPF()) return;
+
+  mostrarPopup('Salvando visita, aguarde...', 'success', 2500);
+
+  // Simular delay para salvar e enviar
+  setTimeout(() => {
+    form.submit();
+  }, 2500);
 });
+
 
 // ======================================================
 // AUTOCOMPLETE MANUAL PARA O SETOR
@@ -303,3 +357,4 @@ selectServidor.addEventListener('change', function () {
     btnSalvar.disabled = true;
   }
 });
+

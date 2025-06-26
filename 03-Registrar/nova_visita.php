@@ -73,7 +73,6 @@ $resultCrachas = $conn->query($sqlCrachas);
                 <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" autocomplete="off" required onblur="validarCPF()">
                 <button type="button" id="btnBuscarCPF" title="Pesquisar">🔍</button>
               </div>
-              <small id="cpfErro" style="color: red; display: none;">CPF inválido</small>
             </div>
 
             <div class="campo-data">
@@ -192,7 +191,7 @@ $resultCrachas = $conn->query($sqlCrachas);
       </form>
     </section>
   </main>
-  <div id="popupToast" class="Aviso"></div>
+<div id="popupToast"></div>
 
 
   <footer class="rodape">

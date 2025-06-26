@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registrar Saída</title>
-
   <link rel="stylesheet" href="qrcode.css">
 </head>
 
@@ -18,41 +17,34 @@
     <section class="card">
 
       <h1>Registrar Saída</h1><br>
-
       <p>Aponte o QR Code no verso do crachá do visitante para registra a saída.</p><br>
 
       <div id="video-container">
-  <video id="video" autoplay playsinline></video>
+        <video id="video" autoplay playsinline></video>
 
-  <div id="checkmark" style="display:none; position:absolute; top:50%; left:50%; 
+        <div id="checkmark" style="display:none; position:absolute; top:50%; left:50%; 
        transform: translate(-50%, -50%);">
 
-<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" aria-hidden="true">
-  <circle class="checkmark__circle" cx="26" cy="26" r="20" />
-  <path class="checkmark__check" fill="none" d="M14 27l7 7 16-16" />
-</svg>
+          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="checkmark__circle" cx="26" cy="26" r="20" />
+            <path class="checkmark__check" fill="none" d="M14 27l7 7 16-16" />
+          </svg>
 
-
-  </div>
-</div>
-
+        </div>
+      </div>
 
       <div id="resultado">Aguardando leitura...</div>
 
       <div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
-
-
 
       <button id="btn-reset" style="display: none">Reiniciar Leitura</button>
 
     </section>
   </main>
 
-
   <footer class="rodape">
     Copyright © 2025 SEAD | EPP. Todos os direitos reservados
   </footer>
-
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
   <script>
@@ -123,40 +115,42 @@
     }
 
     function enviarSaida(crachaId) {
-  fetch('registrar_saida.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `cracha_id=${encodeURIComponent(crachaId)}`
-    })
-    .then(response => response.text())
-    .then(data => {
-      if (data.trim() === "OK" || data.trim() === "JA_REGISTRADO") {
-        resultado.textContent = data.trim() === "OK" ? "Saída registrada com sucesso." : "Saída já registrada.";
+      fetch('registrar_saida.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `cracha_id=${encodeURIComponent(crachaId)}`
+        })
+        .then(response => response.text())
+        .then(data => {
+          if (data.trim() === "OK" || data.trim() === "JA_REGISTRADO") {
+            resultado.textContent = data.trim() === "OK" ? "Saída registrada com sucesso!" : "Saída já registrada!";
 
-        // Esconde o vídeo e animação anterior
-        video.style.display = 'none';
-        animacao.classList.remove('show');
-        btnReset.style.display = 'none';
-        
-        // Mostra o check animado
-        const checkmark = document.getElementById('checkmark');
-        checkmark.style.display = 'block';
+            // Esconde o vídeo e animação anterior
+            video.style.display = 'none';
+            animacao.classList.remove('show');
+            btnReset.style.display = 'none';
 
-        // Espera 10 segundos e redireciona
-        setTimeout(() => {
-          window.location.href = 'index.php';
-        }, 80000);
+            // Mostra o check animado
+            const checkmark = document.getElementById('checkmark');
+            checkmark.style.display = 'block';
 
-      } else {
-        resultado.textContent = "Erro ao registrar saída.";
-        btnReset.style.display = 'inline-block';
-      }
-    })
-    .catch(error => {
-      resultado.textContent = "Erro ao registrar saída.";
-      btnReset.style.display = 'inline-block';
-    });
-}
+            // Espera 10 segundos e redireciona
+            setTimeout(() => {
+              window.location.href = 'index.php';
+            }, 5000);
+
+          } else {
+            resultado.textContent = "Erro ao registrar saída.";
+            btnReset.style.display = 'inline-block';
+          }
+        })
+        .catch(error => {
+          resultado.textContent = "Erro ao registrar saída.";
+          btnReset.style.display = 'inline-block';
+        });
+    }
 
 
     btnReset.addEventListener('click', iniciarCamera);
@@ -164,7 +158,5 @@
     // Inicia assim que abrir
     iniciarCamera();
   </script>
-
 </body>
-
 </html>

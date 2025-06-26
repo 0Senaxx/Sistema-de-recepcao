@@ -81,5 +81,5 @@ $stmtUpdateCracha->bind_param("i", $cracha_id);
 $stmtUpdateCracha->execute();
 
 // === REDIRECIONA PARA A PÁGINA DE INÍCIO === //
-header("Location: ../02-Inicio/index.php");
+header("Location: ../02-Inicio/index.php?sucesso=1");
 exit();

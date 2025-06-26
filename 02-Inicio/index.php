@@ -76,7 +76,7 @@ $result = $stmt->get_result();
                         <th>Setor Visitado</th>
                         <th>Servidor Visitado</th>
                         <th class="text-center">Saída</th>
-                        <th>Status</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
