@@ -55,14 +55,14 @@ if ($result->num_rows === 1) {
                 header("Location: ../../10-Administrador/index.php");
                 break;
             case 'GEPES':
-                header("Location: ../../08-Servidores/index.php");
+                header("Location: ../../Modulo-GEPES/index.php");
                 break;
             case 'GCP':
-                header("Location: ../../09-Setores/index.php");
+                header("Location: ../../Modulo-GCP/index.php");
                 break;
             case 'Recepcionista':
             default:
-                header("Location: ../../02-Inicio/index.php");
+                header("Location: ../../Modulo-RECEP/Inicio/index.php");
                 break;
         }
         exit;

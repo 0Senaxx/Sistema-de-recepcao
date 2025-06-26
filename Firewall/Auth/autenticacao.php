@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../01-Login/login.php");
+    header("Location: ../Firewall/login.php");
     exit;
 }
 
@@ -17,10 +17,10 @@ $pastaAtual = $pastas[1] ?? ''; // Pega a segunda pasta da URL
 //PERMISSÕES PARA CADA PERFIL
 
 $permissoes = [
-    'ADM' => ['01-Login', '02-Inicio', '03-Registrar', '04-Visitantes', '05-Visitas', '06-Ramais', '07-Relatorios', '08-Servidores', '09-Setores', '10-Administrador'],
-    'GCP' => ['09-Setores', '06-Ramais'],
-    'GEPES' => ['08-Servidores'],
-    'Recepcionista' => ['02-Inicio', '03-Registrar', '05-Visitas', '06-Ramais', '07-Relatorios', '11-Repositorio', '12-Ocorrencias']
+    'ADM' => ['Firewall', '02-Inicio', '03-Registrar', '04-Visitantes', '05-Visitas', '06-Ramais', '07-Relatorios', '08-Servidores', '09-Setores', '10-Administrador'],
+    'GCP' => ['Modulo-GCP'],
+    'GEPES' => ['Modulo-GEPES'],
+    'Recepcionista' => ['Modulo-RECEP', '02-Inicio', '03-Registrar', '05-Visitas', '06-Ramais', '07-Relatorios', '11-Repositorio', '12-Ocorrencias']
 ];
 
 //CASO O USUÁRIO NÃO TENHA PERMIÇÃO SERÁ EXIBIDA ESSA TELA:
@@ -31,7 +31,7 @@ if (!in_array($pastaAtual, $permissoes[$perfil] ?? [])) {
     <!DOCTYPE html>
     <html lang="pt-br">
 
-z    <head>
+    <head>
         <meta charset="UTF-8">
         <title>403 - Acesso Negado</title>
         <style>
@@ -137,7 +137,7 @@ z    <head>
             }
 
             a {
-                color:rgb(255, 255, 255);
+                color: rgb(255, 255, 255);
                 font-size: 1.1rem;
                 text-decoration: none;
                 padding: 10px 20px;
@@ -150,12 +150,10 @@ z    <head>
                 background: rgb(255, 255, 255);
                 color: #293264;
             }
-
         </style>
     </head>
 
     <body>
-        
 
         <header class="cabecalho">
             <h1>Recepção SEAD</h1>
@@ -168,11 +166,11 @@ z    <head>
 
                 <p>Você não tem permissão para acessar esta área do sistema.</p><br>
 
-                <a href="../01-Login/login.php">Voltar para o Início</a>
+                <a href="../Firewall/login.php">Voltar para o Início</a>
             </section>
 
         </main>
-    
+
 
     </html>
 <?php
