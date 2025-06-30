@@ -1,15 +1,15 @@
 <?php
 
 // ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-  header("Location: ../../01-Login/login.php");
-  exit; 
+    header("Location: ../../Firewall/login.php");
+    exit;
 }
 
-include '../../01-Login/Auth/autenticacao.php';
-include '../../01-Login/Auth/controle_sessao.php';
+include '../../Firewall/Auth/autenticacao.php';
+include '../../Firewall/Auth/controle_sessao.php';
 include '../../conexao.php';
 
 // ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
@@ -40,7 +40,7 @@ $result = $conn->query($sql);
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
-            <a class="nav" href="../../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
@@ -48,43 +48,58 @@ $result = $conn->query($sql);
         <section class="Modulo">
             <div class="topo-modulo">
                 <h1>Gestão de usuários</h1>
-                <button class="bntSalvar" id="btnAdicionarUsuario">Adicionar Novo Usuário</button>
+
+                <button class="btnAdicionar" id="btnAdicionarUsuario">
+                    <span class="btn-conteudo">
+                        <span>Novo Usuário</span>
+                        <img src="../../Imagens/adicionar-usuario.png" alt="Novo usuário">
+                    </span>
+                </button>
             </div>
+
         </section>
 
         <section class="card">
-            <table border="1" cellpadding="5">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th th class="text-center">Matrícula</th>
-                        <th class="text-center">Perfil</th>
-                        <th th class="text-center">Status</th>
-                        <th th class="text-center">Último Login</th>
-                        <th th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($user = $result->fetch_assoc()): ?>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?= htmlspecialchars($user['nome']) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($user['matricula']) ?></td>
+                            <th class="col-nome">Nome</th>
+                            <th class="text-center">Matrícula</th>
+                            <th class="text-center">Perfil</th>
+                            <th th class="text-center">Status</th>
+                            <th th class="text-center">Último Login</th>
+                            <th th class="text-center col-acoes"">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($user = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['nome']) ?></td>
+                                <td class=" text-center"><?= htmlspecialchars($user['matricula']) ?></td>
                             <td class="text-center"><?= htmlspecialchars($user['perfil']) ?></td>
                             <td class="text-center"><?= $user['ativo'] ? 'Ativo' : 'Inativo' ?></td>
                             <td class="text-center"><?= $user['ultimo_login'] ? date('d/m/Y H:i', strtotime($user['ultimo_login'])) : '-' ?></td>
                             <td class="text-center">
-                                <?php if ($user['ativo']): ?>
-                                    <a class="bnt-inativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=desativar" onclick="return confirm('Deseja desativar este usuário?');">Desativar</a>
-                                <?php else: ?>
-                                    <a class="bnt-ativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=ativar" onclick="return confirm('Deseja ativar este usuário?');">Ativar</a>
-                                <?php endif; ?>
-                                <button class="btnEditar" data-id="<?= $user['id'] ?>">Editar</button>
-                                <a href="excluir_usuario.php?id=<?= $user['id'] ?>" class="bntExcluir" onclick="return confirm('Deseja excluir este usuário?')">Excluir</a>
+
+                                <button class="btn-acao btnEditar" data-id="<?= $user['id'] ?>">
+                                    <div class="btn-conteudo">
+                                        Editar
+                                        <img src="../../Imagens/editar.png" alt="Editar">
+                                    </div>
+                                </button>
+
+                                <a href="excluir_usuario.php?id=<?= $user['id'] ?>" class="btn-acao btn-excluir" onclick="return confirm('Deseja excluir este usuário?')">
+                                    Excluir
+                                    <img src="../../Imagens/excluir.png" alt="Excluir">
+                                </a>
+                        
                             </td>
                         </tr>
                     <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -131,10 +146,14 @@ $result = $conn->query($sql);
                     <input type="checkbox" name="ativo" checked> Ativo
                 </label><br><br>
 
-                <div class="modal-botoes">
-                    <button class="bntSalvar" type="submit">Salvar</button>
+                <div class="botao-modal">
+                    <button class="btnSalvar" type="submit">
+                        <span class="btn-conteudo">
+                            <span>Salvar</span>
+                            <img src="../../Imagens/salve.png" alt="Atualizar">
+                        </span>
+                    </button>
                 </div>
-
             </form>
         </div>
     </div>

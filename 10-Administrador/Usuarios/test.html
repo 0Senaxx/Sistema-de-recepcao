@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .table-container {
+  background: #fff; /* Cor de fundo, se quiser */
+  border-radius: 12px; /* Bordas arredondadas */
+  overflow: hidden; /* Isso faz os cantos dos conteúdos ficarem dentro do raio */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Opcional, sombra suave */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Para evitar espaços duplos de borda */
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f8f8; /* Linhas alternadas */
+}
+
+
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color: #f5f5f5;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ddd;
+        }
+
+        tr:hover {
+            background-color: #ccc;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="table-container">
+        <table>
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+                <th>Header 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Data 1</td>
+                <td>Data 2</td>
+                <td>Data 3</td>
+            </tr>
+            <tr>
+                <td>Data 4</td>
+                <td>Data 5</td>
+                <td>Data 6</td>
+            </tr>
+            <tr>
+                <td>Data 7</td>
+                <td>Data 8</td>
+                <td>Data 9</td>
+            </tr>
+        </tbody>
+        </table>
+    </div> 
+    
+
+</body>
+
+</html>
