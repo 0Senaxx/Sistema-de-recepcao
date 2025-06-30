@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../conexao.php';
+include '../../conexao.php';
 
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 
@@ -11,7 +11,7 @@ function salvarFoto()
         $foto_base64 = str_replace(' ', '+', $foto_base64);
         $foto_data = base64_decode($foto_base64);
 
-        $pasta = "../04-Visitantes/Fotos/";
+        $pasta = "../../04-Visitantes/Fotos/";
         if (!is_dir($pasta)) mkdir($pasta, 0777, true);
 
         $nome_arquivo = $pasta . uniqid() . '.jpg';
@@ -81,5 +81,5 @@ $stmtUpdateCracha->bind_param("i", $cracha_id);
 $stmtUpdateCracha->execute();
 
 // === REDIRECIONA PARA A PÁGINA DE INÍCIO === //
-header("Location: ../02-Inicio/index.php?sucesso=1");
+header("Location: ../Registrar/Inicio/index.php?sucesso=1");
 exit();

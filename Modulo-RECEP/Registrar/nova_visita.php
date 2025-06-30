@@ -167,7 +167,7 @@ $resultCrachas = $conn->query($sqlCrachas);
               <span>Limpar</span>
             </button>
 
-            <a class="btn cancelar" href="../02-Inicio/index.php">Cancelar</a>
+            <a class="btn cancelar" href="../Inicio/index.php">Cancelar</a>
           </div>
         </div>
 

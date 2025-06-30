@@ -254,7 +254,7 @@ document.getElementById('btnBuscarCPF').addEventListener('click', function () {
         modo = 'ligar';
       } else {
         mostrarPopup('CPF não cadastrado.', 'warning');
-        
+
       }
     })
     .catch(error => {
@@ -332,6 +332,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+window.servidorChoices = new Choices(document.getElementById('servidorInput'), {
+  searchEnabled: true,
+  itemSelectText: '',
+  placeholderValue: 'Selecione um servidor...',
+});
+
 document.getElementById('servidorInput').addEventListener('change', function () {
   const selectedOption = this.options[this.selectedIndex];
   const status = selectedOption.getAttribute('data-status') || '--';
@@ -358,3 +364,11 @@ selectServidor.addEventListener('change', function () {
   }
 });
 
+
+
+
+
+// Função para limpar todos os campos do formulário
+document.getElementById('btnLimpar').addEventListener('click', () => {
+  location.reload();
+});

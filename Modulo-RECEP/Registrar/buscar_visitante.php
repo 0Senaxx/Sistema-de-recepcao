@@ -1,5 +1,5 @@
 <?php
-include '../conexao.php';
+include '../../conexao.php';
 
 if (isset($_GET['cpf'])) {
     $cpf = $_GET['cpf'];
@@ -17,7 +17,7 @@ if (isset($_GET['cpf'])) {
             'nome' => $visitante['nome'],
             'social' => $visitante['social'],
             'orgao' => $visitante['orgao'],
-            'foto' => $visitante['foto'] ? '../04-Visitantes/Fotos/' . basename($visitante['foto']) : ''
+            'foto' => $visitante['foto'] ? '../../04-Visitantes/Fotos/' . basename($visitante['foto']) : ''
         ]);
     } else {
         echo json_encode(['encontrado' => false]);
