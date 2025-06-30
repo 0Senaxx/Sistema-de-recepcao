@@ -24,22 +24,22 @@
 /* =================== LAYOUT GERAL =================== */
 
 body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  padding-top: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
 
-  /* Fundo pontilhado */
-  --dot-bg: #f8f8f8;
-  --dot-color: #293264;
-  --dot-size: 1px;
-  --dot-space: 26px;
-  background:
-    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    var(--dot-color);
+    /* Fundo pontilhado */
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
 
-  background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -103,7 +103,7 @@ body {
     text-align: center;
 }
 
-/* =================== FORMULÁRIO =================== */
+/* =================== SECTION DO TOPO =================== */
 
 .Modulo {
     position: relative;
@@ -126,37 +126,73 @@ body {
     padding-right: 25px;
 }
 
-.btn-conteudo {
+
+.cabecalho-visitas {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 6px;
+    height: 60px;
 }
 
-.btn-conteudo img {
-    height: 20px;
+.bem-vindo {
+    margin: 0;
+    white-space: nowrap;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    margin-right: auto;
 }
 
-.btnAdicionar {
+.titulo-centro {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* =================== BOTÕES DA SECTION =================== */
+
+.bnt-nova {
     background-color: #28a745;
-    color: white;
+}
+
+.bnt-nova:hover {
+    background-color: #218838;
+}
+
+.bnt-qr {
+    background-color: #ee0030;
+}
+
+.bnt-qr:hover {
+    background-color: #c50028;
+}
+
+/* Classe base para todos os botões de ação */
+.btn-acao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     padding: 8px 15px;
-    margin-left: 10px;
+    height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
     text-decoration: none;
     border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    display: inline-flex;
-    /* garante alinhamento flexível */
-    align-items: center;
+    font-weight: 500;
 }
 
-.btnAdicionar:hover {
-    background-color: #218838;
-    /* toque extra para hover! */
+.btn-acao img {
+    height: 14px;
 }
 
+/* =================== TABELA =================== */
 
-/* Container principal */
 main {
     padding: 25px;
     max-width: 2000px;
@@ -171,127 +207,6 @@ main {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 20px;
-}
-
-
-.text-center {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.text-success {
-    color: #28a745;
-    font-weight: bold;
-}
-
-button {
-    background-color: #ff0033;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-
-button:hover {
-    background-color: #c82333;
-}
-
-form {
-    display: inline;
-}
-
-.cabecalho-visitas {
-    position: relative;
-    /* para o título ficar absoluto */
-    display: flex;
-    align-items: center;
-    height: 60px;
-}
-
-/* Bem-vindo na esquerda */
-.bem-vindo {
-    margin: 0;
-
-    white-space: nowrap;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    /* empurra o resto para a direita */
-    margin-right: auto;
-}
-
-/* Título no centro, posição absoluta para centralizar */
-.titulo-centro {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    text-align: center;
-}
-
-/* Botões alinhados na direita */
-.controle-botoes {
-    display: flex;
-    gap: 10px;
-    margin-left: auto;
-}
-
-.bnt-nova,
-.bnt-qr {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    white-space: nowrap;
-    display: inline-block;
-}
-
-.bnt-qr {
-    background-color: #ff0033;
-}
-
-.bnt-nova:hover {
-    background-color: #218838;
-}
-
-.bnt-qr:hover {
-    background-color: #c50028;
-}
-
-
-/* Classe base para todos os botões de ação */
-.btn-acao {
-  display: inline-flex;    /* Igual pra <a> e <button> */
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 15px;
-  height: 40px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  border: none;
-}
-
-.btn-acao img {
-  height: 14px;
 }
 
 .table-container {

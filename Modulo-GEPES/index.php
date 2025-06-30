@@ -1,11 +1,11 @@
 <?php
 
 // ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
   header("Location: ../Firewall/login.php");
-  exit; 
+  exit;
 }
 
 include '../Firewall/Auth/autenticacao.php';
@@ -70,23 +70,29 @@ $result = $conn->query($sql);
         <form method="GET" class="filtro-form">
 
           <!-- CAMPO DE BUSCA POR matricula OU NOME -->
-          <input class="campo-buscar" type="text" name="busca" placeholder="Buscar por nome ou matricula"
+          <input class="campo-buscar" type="text" autocomplete="off" name="busca" placeholder="Buscar por nome ou matricula"
             value="<?php echo htmlspecialchars($busca); ?>" />
 
           <!-- FILTRO POR SETOR -->
-          <!-- filtro -->
-          <select name="setor" id="setor_filtro" class="choices-select" placeholder="tets">
+          <select
+            name="setor"
+            id="setor_filtro"
+            aria-label="Filtrar por setor"
+            class="form-select">
+            <option value="" disabled <?php echo (empty($setor_filter)) ? "selected" : ""; ?>>
+              Selecione um setor
+            </option>
             <option value="">Todos os setores</option>
+
             <?php
             $sqlSetores = "SELECT id, nome FROM setores ORDER BY nome";
             $resSetores = $conn->query($sqlSetores);
             while ($setor = $resSetores->fetch_assoc()) {
               $selected = ($setor_filter == $setor['id']) ? "selected" : "";
-              echo "<option value='{$setor['id']}' $selected>" . htmlspecialchars($setor['nome']) . "</option>";
+              echo "<option value='" . htmlspecialchars($setor['id']) . "' $selected>" . htmlspecialchars($setor['nome']) . "</option>";
             }
             ?>
           </select>
-
           <button class="bnt-Filtro" type="submit">Filtrar</button>
           <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?'); ?>" class="bnt-NoFiltro">Limpar filtro</a>
         </form>
@@ -94,56 +100,58 @@ $result = $conn->query($sql);
         <button id="btnAbrirModal" class="bnt-nova">Adicionar Servidor</button>
       </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th class="text-center">Matrícula</th>
-            <th class="text-center">Status</th>
-            <th>Setor</th>
-            <th class="text-center">Última Atualização</th>
-            <th class="text-center">Ações</th>
-          </tr>
-        </thead>
-        <tbody id="tabela-corpo">
-          <?php if ($result && $result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-              <tr>
-                <td>
-                  <?php echo htmlspecialchars($row['nome']); ?>
-                </td>
-                <td class="text-center">
-                  <?php echo htmlspecialchars($row['matricula']); ?>
-                </td>
-                <td class="text-center">
-                  <?php echo htmlspecialchars($row['status']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['setor_nome'] ?? ''); ?>
-                </td>
-                <td class="text-center">
-                  <?php
-                  if (!empty($row['updated_at']) && !empty($row['updated_by'])) {
-                    echo date('d/m/Y', strtotime($row['updated_at']));
-                  } else {
-                    echo '---';
-                  }
-                  ?>
-                </td>
-
-                <td class="text-center">
-                  <a href="#" class="btnEditar" onclick="editarServidor(<?php echo $row['id']; ?>); return false;">Editar</a> |
-                  <a href="excluir.php?id=<?php echo $row['id']; ?>" class="btnExcluir" onclick="return confirm('Confirma exclusão do servidor?');">Excluir</a>
-                </td>
-              </tr>
-            <?php endwhile; ?>
-          <?php else: ?>
+      <div class="table-container">
+        <table>
+          <thead>
             <tr>
-              <td colspan="6">Nenhum servidor encontrado.</td>
+              <th>Nome</th>
+              <th class="text-center">Matrícula</th>
+              <th class="text-center">Status</th>
+              <th>Setor</th>
+              <th class="text-center">Última Atualização</th>
+              <th class="text-center">Ações</th>
             </tr>
-          <?php endif; ?>
-        </tbody>
-      </table>
+          </thead>
+          <tbody id="tabela-corpo">
+            <?php if ($result && $result->num_rows > 0): ?>
+              <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                  <td>
+                    <?php echo htmlspecialchars($row['nome']); ?>
+                  </td>
+                  <td class="text-center">
+                    <?php echo htmlspecialchars($row['matricula']); ?>
+                  </td>
+                  <td class="text-center">
+                    <?php echo htmlspecialchars($row['status']); ?>
+                  </td>
+                  <td>
+                    <?php echo htmlspecialchars($row['setor_nome'] ?? ''); ?>
+                  </td>
+                  <td class="text-center">
+                    <?php
+                    if (!empty($row['updated_at']) && !empty($row['updated_by'])) {
+                      echo date('d/m/Y', strtotime($row['updated_at']));
+                    } else {
+                      echo '---';
+                    }
+                    ?>
+                  </td>
+
+                  <td class="text-center">
+                    <a href="#" class="btnEditar" onclick="editarServidor(<?php echo $row['id']; ?>); return false;">Editar</a> |
+                    <a href="excluir.php?id=<?php echo $row['id']; ?>" class="btnExcluir" onclick="return confirm('Confirma exclusão do servidor?');">Excluir</a>
+                  </td>
+                </tr>
+              <?php endwhile; ?>
+            <?php else: ?>
+              <tr>
+                <td colspan="6">Nenhum servidor encontrado.</td>
+              </tr>
+            <?php endif; ?>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 

@@ -38,7 +38,7 @@
       <div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
 
       <a class="voltar" href="index.php">Voltar</a>
-      
+
       <button id="btn-reset" style="display: none">Reiniciar Leitura</button>
 
     </section>
@@ -161,4 +161,5 @@
     iniciarCamera();
   </script>
 </body>
+
 </html>

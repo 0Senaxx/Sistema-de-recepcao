@@ -118,3 +118,4 @@ $('#matricula').mask('000.000-0 A', {
     'A': { pattern: /[A-Za-z]/ }
   }
 });
+
