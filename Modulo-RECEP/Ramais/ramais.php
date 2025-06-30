@@ -53,64 +53,65 @@ $resultSetores = $conn->query($sqlSetores);
                 </div>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th></th> <!-- Coluna para o ícone de abrir/fechar -->
-                        <th class="text-center">SIGLA</th>
-                        <th class="text-center">LOCALIZAÇÃO</th>
-                        <th>NOME DO SETOR</th>
-                        <th class="text-center">RAMAL</th>
-                    </tr>
-                </thead>
-
-                <tbody id="tabelaRamais" style="border-collapse: collapse; width: 100%;">
-                    <?php while ($setor = $resultSetores->fetch_assoc()) : ?>
-                        <?php
-                        $setorId = $setor['id'];
-                        $sigla = $setor['sigla'];
-                        $localizacao = $setor['localizacao'];
-                        $nomeSetor = $setor['nome'];
-                        $ramal = $setor['ramal'];
-
-                        // Buscar servidores
-                        $sqlServidores = "SELECT nome FROM servidores WHERE setor_id = ? ORDER BY nome ASC";
-                        $stmtServ = $conn->prepare($sqlServidores);
-                        $stmtServ->bind_param("i", $setorId);
-                        $stmtServ->execute();
-                        $resultServidores = $stmtServ->get_result();
-
-                        $classeServidores = "servidores-setor-" . $setorId;
-                        ?>
-                        <tr class="linha-setor setor" data-setor-id="<?= $classeServidores ?>" style="cursor:pointer" onclick="toggleServidores('<?= $classeServidores ?>')">
-                            <td id="icone-<?= $classeServidores ?>" class="text-center">▶️</td>
-                            <td class="text-center"><?= htmlspecialchars($sigla) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($localizacao) ?></td>
-                            <td><?= htmlspecialchars($nomeSetor) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($ramal) ?></td>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th> <!-- Coluna para o ícone de abrir/fechar -->
+                            <th class="text-center">SIGLA</th>
+                            <th class="text-center">LOCALIZAÇÃO</th>
+                            <th>NOME DO SETOR</th>
+                            <th class="text-center">RAMAL</th>
                         </tr>
+                    </thead>
 
-                        <?php if ($resultServidores->num_rows > 0) : ?>
-                            <?php while ($servidor = $resultServidores->fetch_assoc()) : ?>
-                                <tr class="linha-servidor <?= $classeServidores ?>" style="display:none;">
-                                    <td colspan="3"></td>
-                                    <td><?= htmlspecialchars($servidor['nome']) ?></td>
-                                    <td class="text-center">
-                                        —
-                                    </td>
-                                </tr>
-                            <?php endwhile; ?>
-                        <?php else : ?>
-                            <tr class="linha-servidor <?= $classeServidores ?>" style="display:none;">
-                                <td colspan="5" class="sem-servidor">Nenhum servidor cadastrado neste setor!</td>
+                    <tbody id="tabelaRamais" style="border-collapse: collapse; width: 100%;">
+                        <?php while ($setor = $resultSetores->fetch_assoc()) : ?>
+                            <?php
+                            $setorId = $setor['id'];
+                            $sigla = $setor['sigla'];
+                            $localizacao = $setor['localizacao'];
+                            $nomeSetor = $setor['nome'];
+                            $ramal = $setor['ramal'];
+
+                            // Buscar servidores
+                            $sqlServidores = "SELECT nome FROM servidores WHERE setor_id = ? ORDER BY nome ASC";
+                            $stmtServ = $conn->prepare($sqlServidores);
+                            $stmtServ->bind_param("i", $setorId);
+                            $stmtServ->execute();
+                            $resultServidores = $stmtServ->get_result();
+
+                            $classeServidores = "servidores-setor-" . $setorId;
+                            ?>
+                            <tr class="linha-setor setor" data-setor-id="<?= $classeServidores ?>" style="cursor:pointer" onclick="toggleServidores('<?= $classeServidores ?>')">
+                                <td id="icone-<?= $classeServidores ?>" class="text-center">
+                                    <img src="../../Imagens/Icons/SetaDir.png" alt="Nova Visita" style="height: 20px;">
+                                </td>
+                                <td class="text-center"><?= htmlspecialchars($sigla) ?></td>
+                                <td class="text-center"><?= htmlspecialchars($localizacao) ?></td>
+                                <td><?= htmlspecialchars($nomeSetor) ?></td>
+                                <td class="text-center"><?= htmlspecialchars($ramal) ?></td>
                             </tr>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
 
-
-
+                            <?php if ($resultServidores->num_rows > 0) : ?>
+                                <?php while ($servidor = $resultServidores->fetch_assoc()) : ?>
+                                    <tr class="linha-servidor <?= $classeServidores ?>" style="display:none;">
+                                        <td colspan="3"></td>
+                                        <td><?= htmlspecialchars($servidor['nome']) ?></td>
+                                        <td class="text-center">
+                                            —
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else : ?>
+                                <tr class="linha-servidor <?= $classeServidores ?>" style="display:none;">
+                                    <td colspan="5" class="sem-servidor">Nenhum servidor cadastrado neste setor!</td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -166,7 +167,7 @@ $resultSetores = $conn->query($sqlSetores);
 
                             // troca o ícone para 🔽
                             let icone = document.getElementById("icone-" + classeSetor);
-                            if (icone) icone.textContent = "🔽";
+                            if (icone) icone.textContent = "../../Imagens/Icons/SetaDir.png";
                         }
                     }
 
@@ -190,26 +191,38 @@ $resultSetores = $conn->query($sqlSetores);
             }, 5000);
         }
 
-        function toggleServidores(classe) {
-            const linhas = document.querySelectorAll("." + classe);
-            const icone = document.getElementById("icone-" + classe);
-            let algumVisivel = false;
+function toggleServidores(classe) {
+  const linhas = document.querySelectorAll("." + classe);
+  const icone = document.getElementById("icone-" + classe);
+  let algumVisivel = false;
 
-            linhas.forEach(linha => {
-                if (linha.style.display !== "none") {
-                    algumVisivel = true;
-                }
-            });
+  linhas.forEach(linha => {
+    if (linha.style.display !== "none") {
+      algumVisivel = true;
+    }
+  });
 
-            linhas.forEach(linha => {
-                linha.style.display = algumVisivel ? "none" : "table-row";
-            });
+  linhas.forEach(linha => {
+    linha.style.display = algumVisivel ? "none" : "table-row";
+  });
 
-            // Atualiza o ícone
-            if (icone) {
-                icone.textContent = algumVisivel ? "▶️" : "🔽";
-            }
-        }
+  // Atualiza o ícone de seta
+  if (icone) {
+    const iconeImg = icone.querySelector("img");
+    if (iconeImg) {
+      if (algumVisivel) {
+        // Fechou -> mostra seta direita
+        iconeImg.src = "../../Imagens/Icons/SetaDir.png";
+        iconeImg.alt = "Seta Direita";
+      } else {
+        // Abriu -> mostra seta para baixo
+        iconeImg.src = "../../Imagens/Icons/SetaBai.png";
+        iconeImg.alt = "Seta Baixo";
+      }
+    }
+  }
+}
+
     </script>
 
 </body>

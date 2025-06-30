@@ -22,22 +22,24 @@
 }
 
 /* =================== LAYOUT GERAL =================== */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    padding-top: 55px;
-    /* Deixa espaço para a topbar */
 
-    /*FUNDO PONTILHADO*/
-    --dot-bg: #f8f8f8;
-    --dot-color: #293264;
-    --dot-size: 1px;
-    --dot-space: 26px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 55px;
+
+  /* Fundo pontilhado */
+  --dot-bg: #f8f8f8;
+  --dot-color: #293264;
+  --dot-size: 1px;
+  --dot-space: 26px;
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+
+  background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -103,6 +105,57 @@ body {
 
 /* =================== FORMULÁRIO =================== */
 
+.Modulo {
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.topo-modulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 25px;
+}
+
+.btn-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-conteudo img {
+    height: 20px;
+}
+
+.btnAdicionar {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    margin-left: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-flex;
+    /* garante alinhamento flexível */
+    align-items: center;
+}
+
+.btnAdicionar:hover {
+    background-color: #218838;
+    /* toque extra para hover! */
+}
+
+
 /* Container principal */
 main {
     padding: 25px;
@@ -114,8 +167,7 @@ main {
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    /* Centraliza horizontalmente */
-    padding: 25px;
+    padding: 20px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -127,33 +179,6 @@ main {
     font-size: 20px;
 }
 
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-thead th {
-    background-color: #e3e2e2;
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-}
-
-tbody td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-    background-color: #f5f5f5;
-}
 
 .text-center {
     text-align: center;
@@ -195,7 +220,7 @@ form {
 /* Bem-vindo na esquerda */
 .bem-vindo {
     margin: 0;
-    margin-top: 25px;
+
     white-space: nowrap;
     color: rgb(0, 0, 0);
     font-weight: 600;
@@ -208,7 +233,6 @@ form {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 25px;
     white-space: nowrap;
     color: rgb(0, 0, 0);
     font-weight: 600;
@@ -247,4 +271,65 @@ form {
 
 .bnt-qr:hover {
     background-color: #c50028;
+}
+
+
+/* Classe base para todos os botões de ação */
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 15px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
+}
+
+.table-container {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+thead {
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+}
+
+th {
+    color: #eee;
+    background: transparent;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+tbody tr:hover {
+    background-color: #e6e6e6;
 }

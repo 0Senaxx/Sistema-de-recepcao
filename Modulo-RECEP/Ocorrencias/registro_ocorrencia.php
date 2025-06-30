@@ -67,7 +67,7 @@ $resultOcorrencias = $conn->query($sqlOcorrencias);
     </header>
 
     <main>
-        <section class="card">
+        <section class="Modulo">
             <h1>Registro de Ocorrência</h1><br>
 
             <?php if ($mensagem): ?>
@@ -78,32 +78,38 @@ $resultOcorrencias = $conn->query($sqlOcorrencias);
                 <form method="POST">
                     <label for="descricao">Descreva a Ocorrência:</label><br>
                     <textarea class="descricao" name="descricao" id="descricao" required></textarea><br>
-                    <button type="submit" class="bnt-registrar">Registrar</button>
+                    <button type="submit" class="btn-acao bnt-registrar">
+                        <img src="../../Imagens/Icons/salve.png" alt="Registrar Ocorrência">
+                        Registrar
+                    </button>
                 </form>
             </div>
+        </section>
 
-            <h2>Lista de Ocorrências</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th class="text-center">Nº</th>
-                        <th class="text-center">Data</th>
-                        <th>Descrição</th>
-                        <th>Responsável</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $numero = 1; ?>
-                    <?php while ($row = $resultOcorrencias->fetch_assoc()): ?>
+        <section class="card">
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td class="text-center"><?= str_pad($numero++, 2, '0', STR_PAD_LEFT) ?></td>
-                            <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['data_hora'])) ?></td>
-                            <td><?= nl2br(htmlspecialchars($row['descricao'])) ?></td>
-                            <td><?= htmlspecialchars($row['responsavel']) ?></td>
+                            <th class="text-center">Nº</th>
+                            <th class="text-center">Data</th>
+                            <th>Descrição</th>
+                            <th>Responsável</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $numero = 1; ?>
+                        <?php while ($row = $resultOcorrencias->fetch_assoc()): ?>
+                            <tr>
+                                <td class="text-center"><?= str_pad($numero++, 2, '0', STR_PAD_LEFT) ?></td>
+                                <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['data_hora'])) ?></td>
+                                <td><?= nl2br(htmlspecialchars($row['descricao'])) ?></td>
+                                <td><?= htmlspecialchars($row['responsavel']) ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 

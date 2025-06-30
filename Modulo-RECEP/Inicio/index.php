@@ -56,57 +56,69 @@ $result = $stmt->get_result();
     </header>
 
     <main>
-        <section class="card">
-            <div class="cabecalho-visitas">
+        <section class="Modulo">
+            <div class="topo-modulo">
                 <h2 class="bem-vindo">Bem-vindo(a), <?= $_SESSION['nome']; ?>!</h2>
+
                 <h2 class="titulo-centro">Visitas do Dia: <?= date('d/m/Y') ?></h2>
+                
                 <div class="controle-botoes">
-                    <a href="../03-Registrar/nova_visita.php" class="bnt-nova">Nova Visita</a>
-                    <a href="leitor.php" class="bnt-qr">Registrar Saída</a>
+                    <a href="../Registrar/nova_visita.php" class="btn-acao  bnt-nova">
+                        <img src="../../Imagens/Icons/adicionar.png" alt="Nova Visita">
+                        Nova Visita
+                    </a>
+
+                    <a href="leitor.php" class="btn-acao  bnt-qr">
+                        <img src="../../Imagens/Icons/sair.png" alt="Registrar Saída">
+                        Registrar Saída
+                    </a>
                 </div>
             </div>
-            <br>
+        </section>
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-center">Entrada</th>
-                        <th>Nome do Visitante</th>
-                        <th class="text-center">CPF</th>
-                        <th>Setor Visitado</th>
-                        <th>Servidor Visitado</th>
-                        <th class="text-center">Saída</th>
-                        <th class="text-center">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+        <section class="card">
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td class="text-center"><?= $row['hora'] ?></td>
-                            <td><?= !empty($row['social']) ? $row['social'] : $row['nome']; ?></td>
-                            <td class="text-center">
-                                <?php
-                                $cpf = $row['cpf'];
-                                $partes = explode('.', $cpf);
-                                if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
-                                    $subpartes = explode('-', $partes[2]);
-                                    $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
-                                } else {
-                                    $cpf_masked = 'CPF inválido';
-                                }
-                                echo $cpf_masked;
-                                ?>
-                            </td>
-                            <td><?= $row['nome_setor'] ?? '---' ?></td>
-                            <td><?= $row['nome_servidor'] ?? '---' ?></td>
-                            <td class="text-center"><?= $row['saida'] ? $row['saida'] : '---' ?></td>
-                            <td class="text-center">
-                                <?= $row['saida'] ? '<span class="text-success">Encerrada</span>' : '<span class="text-warning">Em Andamento</span>'; ?>
-                            </td>
+                            <th class="text-center">Entrada</th>
+                            <th>Nome do Visitante</th>
+                            <th class="text-center">CPF</th>
+                            <th>Setor Visitado</th>
+                            <th>Servidor Visitado</th>
+                            <th class="text-center">Saída</th>
+                            <th class="text-center">Status</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td class="text-center"><?= $row['hora'] ?></td>
+                                <td><?= !empty($row['social']) ? $row['social'] : $row['nome']; ?></td>
+                                <td class="text-center">
+                                    <?php
+                                    $cpf = $row['cpf'];
+                                    $partes = explode('.', $cpf);
+                                    if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
+                                        $subpartes = explode('-', $partes[2]);
+                                        $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
+                                    } else {
+                                        $cpf_masked = 'CPF inválido';
+                                    }
+                                    echo $cpf_masked;
+                                    ?>
+                                </td>
+                                <td><?= $row['nome_setor'] ?? '---' ?></td>
+                                <td><?= $row['nome_servidor'] ?? '---' ?></td>
+                                <td class="text-center"><?= $row['saida'] ? $row['saida'] : '---' ?></td>
+                                <td class="text-center">
+                                    <?= $row['saida'] ? '<span class="text-success">Encerrada</span>' : '<span class="text-warning">Em Andamento</span>'; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 

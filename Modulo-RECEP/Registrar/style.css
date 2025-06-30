@@ -22,22 +22,24 @@
 }
 
 /* =================== LAYOUT GERAL =================== */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    padding-top: 55px;
-    /* Deixa espaço para a topbar */
 
-    /*FUNDO PONTILHADO*/
-    --dot-bg: #f8f8f8;
-    --dot-color: #293264;
-    --dot-size: 1px;
-    --dot-space: 26px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 55px;
+
+  /* Fundo pontilhado */
+  --dot-bg: #f8f8f8;
+  --dot-color: #293264;
+  --dot-size: 1px;
+  --dot-space: 26px;
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+
+  background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -408,14 +410,35 @@ main {
 }
 
 .btn.Limpar {
-    background: var(--cor-amarelo);
-    color: #2b2929;
+background-color: rgb(108, 117, 125); /* #6c757d */
+color: #fff;
+
 }
 
 .btn.Limpar:hover {
     background-color: #fbfb47;
 }
 
+
+/* Classe base para todos os botões de ação */
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 15px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
+}
 
 .btn.foto {
     width: 200px;

@@ -56,7 +56,6 @@ $result = $conn->query($sql);
                     </span>
                 </button>
             </div>
-
         </section>
 
         <section class="card">

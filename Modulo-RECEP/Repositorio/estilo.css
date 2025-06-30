@@ -208,12 +208,6 @@ main {
 }
 
 .buttons a {
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 5px;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 0.9em;
   color: white;
 }
 
@@ -223,4 +217,23 @@ main {
 
 .download-btn:hover {
   background-color: #218838;
+}
+
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 15px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
 }

@@ -21,23 +21,27 @@
 }
 
 /* =================== LAYOUT GERAL =================== */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    padding-top: 55px;
-    /* Deixa espaço para a topbar */
 
-    /*FUNDO PONTILHADO*/
-    --dot-bg: #f8f8f8;
-    --dot-color: #293264;
-    --dot-size: 1px;
-    --dot-space: 26px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 55px;
+
+  /* Fundo pontilhado */
+  --dot-bg: #f8f8f8;
+  --dot-color: #293264;
+  --dot-size: 1px;
+  --dot-space: 26px;
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+
+  background-attachment: fixed;
 }
+
+
 
 /* =================== CABECALHO =================== */
 .cabecalho {
@@ -203,15 +207,6 @@ table {
     font-size: 14px;
 }
 
-thead th {
-    background-color: #e3e2e2;
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    position: sticky;
-    top: 0;
-}
-
 tbody td {
     border: 1px solid #dee2e6;
     padding: 10px;
@@ -240,4 +235,41 @@ tbody tr:hover {
 .text-center {
     text-align: center;
     vertical-align: middle;
+}
+
+.table-container {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+thead {
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+}
+
+th {
+    color: #eee;
+    background: transparent;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+tbody tr:hover {
+    background-color: #e6e6e6;
 }

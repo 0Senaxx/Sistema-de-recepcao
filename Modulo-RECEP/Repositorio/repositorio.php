@@ -73,10 +73,12 @@ $result = $conn->query($sql);
                 <p><strong> Descrição:</strong> <?= $descricao ?></p>
               </div>
               <div class="right-section">
-                <p class="data-envio"><strong>📅 Data de envio:</strong> <?= $dataEnvio ?></p>
+                <p class="data-envio"><strong>Data de envio:</strong> <?= $dataEnvio ?></p>
                 <div class="buttons">
-                  <a href="download.php?id=<?= $row['id'] ?>" class="download-btn">⬇️ Baixar arquivo</a>
-
+                  <a href="download.php?id=<?= $row['id'] ?>" class="btn-acao download-btn">
+                    <img src="../../Imagens/Icons/download.png" alt="Baixar arquivo">
+                    Baixar arquivo
+                  </a>
                 </div>
               </div>
             </div>

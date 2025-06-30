@@ -4,8 +4,8 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../../Firewall/login.php");
-    exit;
+  header("Location: ../../Firewall/login.php");
+  exit;
 }
 
 include '../../Firewall/Auth/autenticacao.php';
@@ -45,14 +45,14 @@ $resultCrachas = $conn->query($sqlCrachas);
 
   <header class="cabecalho">
     <h1>Recepção SEAD</h1>
-        <nav>
-            <a class="nav" href="../Inicio/index.php">Início</a>
-            <a class="nav" href="../Registrar/nova_visita.php">Nova Visita</a>
-            <a class="nav" href="../Ramais/ramais.php">Ramais SEAD</a>
-            <a class="nav" href="../Repositorio/repositorio.php">Repositório</a>
-            <a class="nav" href="../Ocorrencias/registro_ocorrencia.php">Ocorrências</a>
-            <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
-        </nav>
+    <nav>
+      <a class="nav" href="../Inicio/index.php">Início</a>
+      <a class="nav" href="../Registrar/nova_visita.php">Nova Visita</a>
+      <a class="nav" href="../Ramais/ramais.php">Ramais SEAD</a>
+      <a class="nav" href="../Repositorio/repositorio.php">Repositório</a>
+      <a class="nav" href="../Ocorrencias/registro_ocorrencia.php">Ocorrências</a>
+      <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
+    </nav>
   </header>
 
 
@@ -160,14 +160,20 @@ $resultCrachas = $conn->query($sqlCrachas);
 
           <!-- Botões de ação -->
           <div class="form-actions">
-            <button type="submit" class="btn salvar" id="btnSalvar" disabled>
+            <button type="submit" class="btn-acao  btn salvar" id="btnSalvar" disabled>
+              <img src="../../Imagens/Icons/salve.png" alt="Editar">
               <span>Salvar</span>
             </button>
-            <button type="button" id="btnLimpar" class="btn Limpar">
+
+            <button type="button" id="btnLimpar" class="btn-acao btn Limpar">
+              <img src="../../Imagens/Icons/apagador.png" alt="Editar">
               <span>Limpar</span>
             </button>
 
-            <a class="btn cancelar" href="../Inicio/index.php">Cancelar</a>
+            <a class="btn-acao  btn cancelar" href="../Inicio/index.php">
+              <img src="../../Imagens/Icons/cancelar.png" alt="Editar">
+              Cancelar
+            </a>
           </div>
         </div>
 
@@ -183,7 +189,10 @@ $resultCrachas = $conn->query($sqlCrachas);
           </div>
 
           <div class="form-actions">
-            <button type="button" class="btn foto" id="btn-foto" onclick="alternarCameraOuCaptura()">Registrar</button>
+            <button type="button" class="btn-acao   btn foto" id="btn-foto" onclick="alternarCameraOuCaptura()">
+              <img src="../../Imagens/Icons/camera.png" alt="Editar">
+              Registrar
+            </button>
           </div>
         </div>
         <input type="hidden" name="foto_base64" id="foto_base64">
@@ -191,7 +200,7 @@ $resultCrachas = $conn->query($sqlCrachas);
       </form>
     </section>
   </main>
-<div id="popupToast"></div>
+  <div id="popupToast"></div>
 
 
   <footer class="rodape">
