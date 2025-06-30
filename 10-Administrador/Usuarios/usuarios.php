@@ -93,7 +93,16 @@ $result = $conn->query($sql);
                                     Excluir
                                     <img src="../../Imagens/excluir.png" alt="Excluir">
                                 </a>
-                        
+
+                                <?php if ($user['ativo']): ?>
+                                    <a class="btn-acao btn-inativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=desativar" onclick="return confirm('Deseja desativar este usuário?');">
+                                        Desativar
+                                    </a>
+                                <?php else: ?>
+                                    <a class="btn-acao btn-ativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=ativar" onclick="return confirm('Deseja ativar este usuário?');">
+                                        Ativar
+                                    </a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>
