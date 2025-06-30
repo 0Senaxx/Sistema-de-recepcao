@@ -4,12 +4,12 @@
 session_start(); 
 
 if (!isset($_SESSION['usuario_id'])) {
-  header("Location: ../01-Login/login.php");
+  header("Location: ../Firewall/login.php");
   exit; 
 }
 
-include '../01-Login/Auth/autenticacao.php';
-include '../01-Login/Auth/controle_sessao.php';
+include '../Firewall/Auth/autenticacao.php';
+include '../Firewall/Auth/controle_sessao.php';
 include '../conexao.php';
 
 // ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
@@ -55,7 +55,7 @@ $result = $conn->query($sql);
   <header class="cabecalho">
     <h1>Recepção SEAD</h1>
     <nav>
-      <a href="../01-Login/Auth/logout.php">Sair</a>
+      <a href="../Firewall/Auth/logout.php">Sair</a>
     </nav>
   </header>
 

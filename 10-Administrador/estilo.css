@@ -22,23 +22,26 @@
 }
 
 /* =================== LAYOUT GERAL =================== */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    padding-top: 55px;
-    /* Deixa espaço para a topbar */
 
-    /*FUNDO PONTILHADO*/
-    --dot-bg: #f8f8f8;
-    --dot-color: #293264;
-    --dot-size: 1px;
-    --dot-space: 26px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 55px;
+
+  /* Fundo pontilhado */
+  --dot-bg: #f8f8f8;
+  --dot-color: #293264;
+  --dot-size: 1px;
+  --dot-space: 26px;
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+
+  background-attachment: fixed;
 }
+
 
 /* =================== CABECALHO =================== */
 .cabecalho {
