@@ -23,7 +23,7 @@ $servidores = $conn->query("SELECT id, nome FROM servidores ORDER BY nome");
 $sql = "
 SELECT v.id, v.data, v.hora, v.saida, v.servidor, v.usuario_id,
        vis.nome AS nome_visitante, vis.cpf,
-       s.nome AS nome_setor,
+       s.sigla AS sigla_setor,
        srv.nome AS nome_servidor,
        u.nome AS nome_usuario
 FROM visitas v
@@ -73,68 +73,71 @@ $result = $conn->query($sql);
                     <button id="abrirModal" class="botao-relatorio">📊 Gerar Relatório</button>
                 </div>
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Entrada</th>
-                        <th>Nome do Visitante</th>
-                        <th>CPF</th>
-                        <th>Setor Visitado</th>
-                        <th>Servidor Visitado</th>
-                        <th>Saída</th>
-                        <th>Duração</th>
-                        <th>Registrado por</th>
-                    </tr>
-                </thead>
-
-                <tbody id="tabela-corpo">
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <?php
-                        // Cálculo da duração
-                        $duracao = '---';
-                        if (!empty($row['hora']) && !empty($row['saida'])) {
-                            $entrada = new DateTime($row['hora']);
-                            $saida = new DateTime($row['saida']);
-                            $intervalo = $entrada->diff($saida);
-                            $duracao = $intervalo->format('%H:%I:%S');
-                        }
-                        ?>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?= date('d/m/Y', strtotime($row['data'])) ?></td>
-                            <td><?= $row['hora'] ?></td>
-                            <td><?= $row['nome_visitante'] ?></td>
-                            <td class="text-center">
-                                <?php
-                                $cpf = $row['cpf']; // Ex: "123.456.789-00"
-
-                                // Quebra o CPF pela máscara
-                                $partes = explode('.', $cpf); // $partes[0] = "123", $partes[1] = "456", etc.
-
-                                if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
-                                    $subpartes = explode('-', $partes[2]); // $subpartes[0] = "789", $subpartes[1] = "00"
-                                    $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
-                                } else {
-                                    $cpf_masked = 'CPF inválido';
-                                }
-
-                                echo $cpf_masked;
-                                ?>
-                            </td>
-                            <td><?= $row['nome_setor'] ?? '---' ?></td>
-                            <td><?= $row['nome_servidor'] ?? '---' ?></td>
-                            <td><?= $row['saida'] ?? '---' ?></td>
-                            <td><?= $duracao ?></td>
-                            <td><?= $row['nome_usuario'] ?? '---' ?></td>
+                            <th class="text-center">Data</th>
+                            <th>Nome do Visitante</th>
+                            <th class="text-center">CPF</th>
+                            <th>Setor Visitado</th>
+                            <th>Servidor Visitado</th>
+                            <th class="text-center">Entrada</th>
+                            <th class="text-center">Saída</th>
+                            <th class="text-center">Duração</th>
+                            <th class="text-center">Registrado</th>
                         </tr>
-                    <?php endwhile; ?>
+                    </thead>
 
-                    <tr id="sem-resultados" style="display:none;">
-                        <td colspan="7" style="text-align:center; font-style: italic;">Nenhum resultado encontrado.</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody id="tabela-corpo">
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <?php
+                            // Cálculo da duração
+                            $duracao = '---';
+                            if (!empty($row['hora']) && !empty($row['saida'])) {
+                                $entrada = new DateTime($row['hora']);
+                                $saida = new DateTime($row['saida']);
+                                $intervalo = $entrada->diff($saida);
+                                $duracao = $intervalo->format('%H:%I:%S');
+                            }
+                            ?>
+                            <tr>
+                                <td><?= date('d/m/Y', strtotime($row['data'])) ?></td>
+                                
+                                <td><?= $row['nome_visitante'] ?></td>
+                                <td class="text-center">
+                                    <?php
+                                    $cpf = $row['cpf']; // Ex: "123.456.789-00"
+
+                                    // Quebra o CPF pela máscara
+                                    $partes = explode('.', $cpf); // $partes[0] = "123", $partes[1] = "456", etc.
+
+                                    if (count($partes) === 3 && strpos($partes[2], '-') !== false) {
+                                        $subpartes = explode('-', $partes[2]); // $subpartes[0] = "789", $subpartes[1] = "00"
+                                        $cpf_masked = '***.' . $partes[1] . '.' . $subpartes[0] . '-**';
+                                    } else {
+                                        $cpf_masked = 'CPF inválido';
+                                    }
+
+                                    echo $cpf_masked;
+                                    ?>
+                                </td>
+                                <td><?= $row['sigla_setor'] ?? '---' ?></td>
+                                <td><?= $row['nome_servidor'] ?? '---' ?></td>
+                                <td><?= $row['hora'] ?></td>
+                                <td><?= $row['saida'] ?? '---' ?></td>
+                                <td><?= $duracao ?></td>
+                                <td><?= $row['nome_usuario'] ?? '---' ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+
+                        <tr id="sem-resultados" style="display:none;">
+                            <td colspan="7" style="text-align:center; font-style: italic;">Nenhum resultado encontrado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </section>
     </main>
 
