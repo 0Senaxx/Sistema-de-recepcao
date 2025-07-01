@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../01-Login/login.php");
+    header("Location: ../Firewall/login.php");
     exit;
 }
 
-include '../01-Login/Auth/autenticacao.php';
+include '../Firewall/Auth/autenticacao.php';
 require_once '../conexao.php';
 
 $id = $_POST['id'] ?? '';
@@ -40,4 +40,3 @@ if ($conn->query($sql)) {
 } else {
     echo "Erro ao salvar setor: " . $conn->error;
 }
-?>

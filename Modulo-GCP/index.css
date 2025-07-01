@@ -112,6 +112,8 @@ main {
     max-width: 2000px;
 }
 
+/* =================== TITULO DO MÓDULO =================== */
+
 .Modulo {
     position: relative;
     max-width: 1600px;
@@ -145,6 +147,8 @@ main {
     margin-bottom: 25px;
     font-size: 20px;
 }
+
+/* =================== BARRA DE PESQUISA E BOTÃO =================== */
 
 .cabecalho-visitas {
     position: relative;
@@ -195,6 +199,15 @@ main {
     box-sizing: border-box;
 }
 
+/* =================== TABELA DE SETORES =================== */
+
+.table-container {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -202,14 +215,109 @@ table {
 
 th,
 td {
-    border: 1px solid #aaa;
-    padding: 8px;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+thead {
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
 }
 
 th {
-    background-color: #eee;
+    color: #eee;
+    background: transparent;
 }
 
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+tbody tr:hover {
+    background-color: #e6e6e6;
+}
+
+.col-sigla{
+    width: 8%;
+}
+
+.col-setor{
+    width: 35%;
+}
+
+.col-local {
+    width: 15%;
+}
+
+.col-ramal {
+    width: 15%;
+}
+
+.col-atualizacao {
+    width: 10%;
+}
+
+.col-acao {
+    width: 20%;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+/* Classe base para todos os botões de ação */
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
+}
+
+.btnEditar {
+    background-color: #0A853D;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btnEditar:hover {
+    background-color: #14b658;
+}
+
+
+.bntExcluir {
+    background-color: #dc3545;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.bntExcluir:hover {
+    background-color: #c82333;
+}
+
+
+/* =================== MODEL DE ADIÇÃO E EDIÇÃO =================== */
 
 /* Estilos básicos para o modal */
 .modal {
@@ -308,44 +416,8 @@ th {
     font-weight: bold;
 }
 
-
-.btnEditar {
-    background-color: #0A853D;
-    padding: 8px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.btnEditar:hover {
-    background-color: #14b658;
-}
-
-
-.bntExcluir {
-    background-color: #dc3545;
-    padding: 8px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.bntExcluir:hover {
-    background-color: #c82333;
-}
-
-.text-center {
-    text-align: center;
-    vertical-align: middle;
-}
-
 input#inputSigla,
 input#inputNome {
     text-transform: uppercase;
 }
+
