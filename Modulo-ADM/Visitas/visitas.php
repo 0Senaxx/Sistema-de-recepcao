@@ -80,8 +80,8 @@ $result = $conn->query($sql);
                             <th class="text-center">Data</th>
                             <th>Nome do Visitante</th>
                             <th class="text-center">CPF</th>
-                            <th>Setor Visitado</th>
-                            <th>Servidor Visitado</th>
+                            <th>Setor</th>
+                            <th>Servidor</th>
                             <th class="text-center">Entrada</th>
                             <th class="text-center">Saída</th>
                             <th class="text-center">Duração</th>
