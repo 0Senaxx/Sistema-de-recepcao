@@ -120,7 +120,6 @@ $resultSetores = $conn->query($sqlSetores);
     </footer>
 
     <div class="aviso" id="popup-aviso" style="display:none;">Nenhum resultado encontrado.</div>
-
     <script>
         function filtrarTabela() {
             var input = document.getElementById("filtro");
@@ -133,6 +132,17 @@ $resultSetores = $conn->query($sqlSetores);
                     let linha = linhas[i];
                     if (linha.classList.contains('linha-setor')) {
                         linha.style.display = 'table-row';
+
+                        // Sempre seta seta para direita quando sem filtro
+                        let classeSetor = linha.getAttribute('data-setor-id');
+                        let icone = document.getElementById("icone-" + classeSetor);
+                        if (icone) {
+                            const iconeImg = icone.querySelector("img");
+                            if (iconeImg) {
+                                iconeImg.src = "../../Imagens/Icons/SetaDir.png";
+                                iconeImg.alt = "Seta Direita";
+                            }
+                        }
                     } else if (linha.classList.contains('linha-servidor')) {
                         linha.style.display = 'none';
                     }
@@ -143,15 +153,13 @@ $resultSetores = $conn->query($sqlSetores);
             let encontrou = false;
             for (let i = 0; i < linhas.length; i++) {
                 let linha = linhas[i];
-                // Considera o texto da linha toda (concatena todas as colunas)
                 let textoLinha = linha.textContent.toLowerCase();
                 if (textoLinha.indexOf(filtro) > -1) {
                     linha.style.display = 'table-row';
                     encontrou = true;
 
-                    // Se for linha de servidor, mostra também o setor correspondente
+                    // Se for linha de servidor, mostra setor mas NÃO abre a seta
                     if (linha.classList.contains('linha-servidor')) {
-                        // Procura a linha do setor correspondente subindo na árvore
                         let setorLinha = linha;
                         while (setorLinha && !setorLinha.classList.contains('linha-setor')) {
                             setorLinha = setorLinha.previousElementSibling;
@@ -159,18 +167,22 @@ $resultSetores = $conn->query($sqlSetores);
                         if (setorLinha) {
                             setorLinha.style.display = 'table-row';
 
-                            // também mostra todos os outros servidores do setor, para manter coerência
                             let classeSetor = setorLinha.getAttribute('data-setor-id');
                             document.querySelectorAll('.' + classeSetor).forEach(linhaServidor => {
                                 linhaServidor.style.display = 'table-row';
                             });
 
-                            // troca o ícone para 🔽
+                            // Seta sempre mostra DIREITA aqui!
                             let icone = document.getElementById("icone-" + classeSetor);
-                            if (icone) icone.textContent = "../../Imagens/Icons/SetaDir.png";
+                            if (icone) {
+                                const iconeImg = icone.querySelector("img");
+                                if (iconeImg) {
+                                    iconeImg.src = "../../Imagens/Icons/SetaDir.png";
+                                    iconeImg.alt = "Seta Direita";
+                                }
+                            }
                         }
                     }
-
                 } else {
                     linha.style.display = 'none';
                 }
@@ -191,38 +203,35 @@ $resultSetores = $conn->query($sqlSetores);
             }, 5000);
         }
 
-function toggleServidores(classe) {
-  const linhas = document.querySelectorAll("." + classe);
-  const icone = document.getElementById("icone-" + classe);
-  let algumVisivel = false;
+        function toggleServidores(classe) {
+            const linhas = document.querySelectorAll("." + classe);
+            const icone = document.getElementById("icone-" + classe);
+            let algumVisivel = false;
 
-  linhas.forEach(linha => {
-    if (linha.style.display !== "none") {
-      algumVisivel = true;
-    }
-  });
+            linhas.forEach(linha => {
+                if (linha.style.display !== "none") {
+                    algumVisivel = true;
+                }
+            });
 
-  linhas.forEach(linha => {
-    linha.style.display = algumVisivel ? "none" : "table-row";
-  });
+            linhas.forEach(linha => {
+                linha.style.display = algumVisivel ? "none" : "table-row";
+            });
 
-  // Atualiza o ícone de seta
-  if (icone) {
-    const iconeImg = icone.querySelector("img");
-    if (iconeImg) {
-      if (algumVisivel) {
-        // Fechou -> mostra seta direita
-        iconeImg.src = "../../Imagens/Icons/SetaDir.png";
-        iconeImg.alt = "Seta Direita";
-      } else {
-        // Abriu -> mostra seta para baixo
-        iconeImg.src = "../../Imagens/Icons/SetaBai.png";
-        iconeImg.alt = "Seta Baixo";
-      }
-    }
-  }
-}
-
+            // Só aqui muda para seta para baixo ou direita
+            if (icone) {
+                const iconeImg = icone.querySelector("img");
+                if (iconeImg) {
+                    if (algumVisivel) {
+                        iconeImg.src = "../../Imagens/Icons/SetaDir.png";
+                        iconeImg.alt = "Seta Direita";
+                    } else {
+                        iconeImg.src = "../../Imagens/Icons/SetaBai.png";
+                        iconeImg.alt = "Seta Baixo";
+                    }
+                }
+            }
+        }
     </script>
 
 </body>

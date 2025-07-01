@@ -392,7 +392,7 @@ main {
 }
 
 .btn.cancelar {
-    background: var(--cor-primaria);
+    background: #ffc003;
     font-size: var(--font-size);
     padding: var(--padding-vertical) var(--padding-horizontal);
     font-weight: 700;
@@ -406,17 +406,17 @@ main {
 }
 
 .btn.cancelar:hover {
-    background-color: #445095;
+    background-color: #e0a800;
 }
 
 .btn.Limpar {
-background-color: rgb(108, 117, 125); /* #6c757d */
+background-color: rgb(82, 109, 133); 
 color: #fff;
 
 }
 
 .btn.Limpar:hover {
-    background-color: #fbfb47;
+    background-color: rgb(73, 96, 116); 
 }
 
 
