@@ -248,3 +248,13 @@ tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e6e6e6;
 }
+
+.text-success {
+  color: #28a745; /* Verde */
+  font-weight: bold;
+}
+
+.text-warning {
+  color: #dc3545; /* Vermelho */
+  font-weight: bold;
+}

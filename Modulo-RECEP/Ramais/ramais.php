@@ -58,8 +58,8 @@ $resultSetores = $conn->query($sqlSetores);
                     <thead>
                         <tr>
                             <th></th> <!-- Coluna para o ícone de abrir/fechar -->
-                            <th class="text-center">SIGLA</th>
                             <th class="text-center">LOCALIZAÇÃO</th>
+                            <th class="text-center">SIGLA</th>
                             <th>NOME DO SETOR</th>
                             <th class="text-center">RAMAL</th>
                         </tr>
@@ -87,8 +87,8 @@ $resultSetores = $conn->query($sqlSetores);
                                 <td id="icone-<?= $classeServidores ?>" class="text-center">
                                     <img src="../../Imagens/Icons/SetaDir.png" alt="Nova Visita" style="height: 20px;">
                                 </td>
-                                <td class="text-center"><?= htmlspecialchars($sigla) ?></td>
                                 <td class="text-center"><?= htmlspecialchars($localizacao) ?></td>
+                                <td class="text-center"><?= htmlspecialchars($sigla) ?></td>
                                 <td><?= htmlspecialchars($nomeSetor) ?></td>
                                 <td class="text-center"><?= htmlspecialchars($ramal) ?></td>
                             </tr>
