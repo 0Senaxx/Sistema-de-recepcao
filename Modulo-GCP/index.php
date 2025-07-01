@@ -32,6 +32,8 @@ $res = $conn->query($sql);
     <header class="cabecalho">
         <h1>Recepção SEAD</h1>
         <nav>
+            <a href="#">Início</a>
+            <a href="Ramais/ramais.php">Ramais</a>
             <a href="../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>

@@ -61,7 +61,7 @@ $result = $conn->query($sql);
 
   <main>
     <section class="Modulo">
-      <h1>Módulo de Gestão de Pessoal - SEAD</h1>
+      <h1>Módulo de Gestão de Servidores</h1>
     </section>
 
     <section class="card">

@@ -52,7 +52,7 @@ $result = $conn->query($sql);
                 <button class="btnAdicionar" id="btnAdicionarUsuario">
                     <span class="btn-conteudo">
                         <span>Novo Usuário</span>
-                        <img src="../../Imagens/adicionar-usuario.png" alt="Novo usuário">
+                        <img src="../../Imagens/Icons/adicionar-usuario.png" alt="Novo usuário">
                     </span>
                 </button>
             </div>
@@ -64,9 +64,9 @@ $result = $conn->query($sql);
                     <thead>
                         <tr>
                             <th class="col-nome">Nome</th>
-                            <th class="text-center">Matrícula</th>
+                            <th class="col-matricula text-center">Matrícula</th>
                             <th class="text-center">Perfil</th>
-                            <th th class="text-center">Status</th>
+                            <th th class=" text-center">Status</th>
                             <th th class="text-center">Último Login</th>
                             <th th class="text-center col-acoes"">Ações</th>
                         </tr>
@@ -77,20 +77,20 @@ $result = $conn->query($sql);
                                 <td><?= htmlspecialchars($user['nome']) ?></td>
                                 <td class=" text-center"><?= htmlspecialchars($user['matricula']) ?></td>
                             <td class="text-center"><?= htmlspecialchars($user['perfil']) ?></td>
-                            <td class="text-center"><?= $user['ativo'] ? 'Ativo' : 'Inativo' ?></td>
+                            <td class="col-status text-center"><?= $user['ativo'] ? 'Ativo' : 'Inativo' ?></td>
                             <td class="text-center"><?= $user['ultimo_login'] ? date('d/m/Y H:i', strtotime($user['ultimo_login'])) : '-' ?></td>
                             <td class="text-center">
 
                                 <button class="btn-acao btnEditar" data-id="<?= $user['id'] ?>">
                                     <div class="btn-conteudo">
                                         Editar
-                                        <img src="../../Imagens/editar.png" alt="Editar">
+                                        <img src="../../Imagens/Icons/editar.png" alt="Editar">
                                     </div>
                                 </button>
 
                                 <a href="excluir_usuario.php?id=<?= $user['id'] ?>" class="btn-acao btn-excluir" onclick="return confirm('Deseja excluir este usuário?')">
                                     Excluir
-                                    <img src="../../Imagens/excluir.png" alt="Excluir">
+                                    <img src="../../Imagens/Icons/excluir.png" alt="Excluir">
                                 </a>
 
                                 <?php if ($user['ativo']): ?>
@@ -158,7 +158,7 @@ $result = $conn->query($sql);
                     <button class="btnSalvar" type="submit">
                         <span class="btn-conteudo">
                             <span>Salvar</span>
-                            <img src="../../Imagens/salve.png" alt="Atualizar">
+                            <img src="../../Imagens/Icons/salve.png" alt="Atualizar">
                         </span>
                     </button>
                 </div>

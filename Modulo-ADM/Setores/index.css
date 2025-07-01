@@ -12,7 +12,6 @@
 :root {
     --cor-primaria: #293264;
     --cor-secundaria: #0A853D;
-    --cor-amarelo: #FFFF00;
     --cor-branco: #fff;
     --cor-hover: rgba(255, 255, 255, 0.2);
     --font-size: 11pt;
@@ -22,22 +21,25 @@
 }
 
 /* =================== LAYOUT GERAL =================== */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-    padding-top: 55px;
-    /* Deixa espaço para a topbar */
 
-    /*FUNDO PONTILHADO*/
-    --dot-bg: #f8f8f8;
-    --dot-color: #293264;
-    --dot-size: 1px;
-    --dot-space: 26px;
-    background:
-        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-        var(--dot-color);
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-top: 55px;
+
+  /* Fundo pontilhado */
+  --dot-bg: #f8f8f8;
+  --dot-color: #293264;
+  --dot-size: 1px;
+  --dot-space: 26px;
+  
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+
+  background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -68,17 +70,19 @@ body {
     gap: var(--spacing);
 }
 
-.nav {
+.cabecalho nav a {
     color: var(--cor-branco);
     text-decoration: none;
     font-size: var(--font-size);
+    /* Usando unidade relativa */
     padding: 0.3125rem 0.625rem;
+    /* Ajustando padding */
     border: 1px solid transparent;
     border-radius: 4px;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.nav:hover {
+.cabecalho nav a:hover {
     text-decoration: none;
     background-color: var(--cor-hover);
     border-color: var(--cor-branco);
@@ -102,13 +106,20 @@ body {
 }
 
 
-/* =================== GESTÃO DE USUÁRIOS =================== */
+/* Container principal */
+main {
+    padding: 20px;
+    max-width: 2000px;
+}
+
+/* =================== TITULO DO MÓDULO =================== */
 
 .Modulo {
     position: relative;
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
+    /* Centraliza horizontalmente */
     padding-left: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -118,55 +129,14 @@ body {
     margin-bottom: 10px;
 }
 
-.topo-modulo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 25px;
-}
-
-.btn-conteudo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.btn-conteudo img {
-    height: 20px;
-}
-
-.btnAdicionar {
-    background-color: #28a745;
-    color: white;
-    padding: 8px 15px;
-    margin-left: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    display: inline-flex;
-    /* garante alinhamento flexível */
-    align-items: center;
-}
-
-.btnAdicionar:hover {
-    background-color: #218838;
-    /* toque extra para hover! */
-}
-
-/* =================== CONTEUDO =================== */
-
-main {
-    padding: 25px;
-    max-width: 2000px;
-}
-
 .card {
     position: relative;
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    padding: 15px;
+    /* Centraliza horizontalmente */
+    padding: 5px 25px 25px 25px;
+
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -178,7 +148,57 @@ main {
     font-size: 20px;
 }
 
-/* =================== ÁREA DA TABELA =================== */
+/* =================== BARRA DE PESQUISA E BOTÃO =================== */
+
+.cabecalho-visitas {
+    position: relative;
+    height: 60px;
+    /* ou a altura que quiser */
+    display: flex;
+    align-items: center;
+    /* centraliza verticalmente */
+
+    margin-bottom: 10px;
+}
+
+.bnt-nova {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #293264;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    /* tira o sublinhado do link */
+}
+
+.bnt-nova:hover {
+    background-color: #343f83;
+    /* cor diferente ao passar o mouse */
+}
+
+
+.txt-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.campo-buscar {
+    Width: 300px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* =================== TABELA DE SETORES =================== */
 
 .table-container {
     background: #fff;
@@ -200,16 +220,12 @@ td {
 
 thead {
     background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+    font-size: 16px;
 }
 
 th {
     color: #eee;
     background: transparent;
-}
-
-.text-center {
-    text-align: center;
-    vertical-align: middle;
 }
 
 tr:nth-child(even) {
@@ -220,19 +236,38 @@ tbody tr:hover {
     background-color: #e6e6e6;
 }
 
-.col-nome {
+.col-sigla{
+    width: 8%;
+}
+
+.col-setor{
+    width: 35%;
+}
+
+.col-local {
+    width: 15%;
+}
+
+.col-ramal {
+    width: 15%;
+}
+
+.col-atualizacao {
+    width: 10%;
+}
+
+.col-acao {
     width: 20%;
 }
 
-.col-acoes {
-    width: 20%;
+.text-center {
+    text-align: center;
+    vertical-align: middle;
 }
-
-/* =================== BOTÕES DA TABELA =================== */
 
 /* Classe base para todos os botões de ação */
 .btn-acao {
-  display: inline-flex;    /* Igual pra <a> e <button> */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -249,48 +284,42 @@ tbody tr:hover {
   height: 14px;
 }
 
-/* Botão editar */
 .btnEditar {
-  background-color: #293264;
+    background-color: #0A853D;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .btnEditar:hover {
-  background-color: #444f8a;
+    background-color: #14b658;
 }
 
-/* Botão excluir */
-.btn-excluir {
-  background-color: #dc3545;
+.bntExcluir {
+    background-color: #dc3545;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.btn-excluir:hover {
-  background-color: #c82333;
+.bntExcluir:hover {
+    background-color: #c82333;
 }
 
-/* Botão ativar */
-.btn-ativo {
-  background-color: #28a745;
-}
+/* =================== MODEL DE ADIÇÃO E EDIÇÃO =================== */
 
-.btn-ativo:hover {
-  background-color: #218838;
-}
-
-/* Botão desativar */
-.btn-inativo {
-  background-color: #FFFF00;
-  color: #000;  /* Texto preto no amarelo */
-}
-
-.btn-inativo:hover {
-  background-color: #e6e600;
-}
-
-
-/* =================== MODEL =================== */
-
+/* Estilos básicos para o modal */
 .modal {
     display: none;
+    /* escondido por padrão */
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -299,23 +328,7 @@ tbody tr:hover {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    margin: 10% auto;
-    width: 400px;
-    border-radius: 8px;
-    position: relative;
-}
-
-.fechar {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
+    /* fundo escuro */
 }
 
 .modal-conteudo {
@@ -340,14 +353,39 @@ tbody tr:hover {
     box-sizing: border-box;
 }
 
-.botao-modal {
+.modal-botoes {
     text-align: right;
 }
 
-/* =================== FORMULÁRIO DO MODEL =================== */
+.modal-botoes button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
-.form-perfil input,
-.form-perfil select {
+.bntSalvar {
+    background-color: #28a745;
+    color: white;
+}
+
+.bntSalvar:hover {
+    background-color: #218838;
+}
+
+.bntCancelar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bntCancelar:hover {
+    background-color: #c82333;
+}
+
+.form-localizacao input,
+.form-localizacao select {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -357,6 +395,7 @@ tbody tr:hover {
     font-size: 14px;
     margin-bottom: 10px;
 }
+
 
 .form-campo input {
     padding: 10px;
@@ -364,30 +403,18 @@ tbody tr:hover {
     border: 1px solid #ccc;
     box-sizing: border-box;
     height: 40px;
-    width: 100%;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
 .form-campo label,
-.form-perfil label {
+.form-localizacao label {
     margin-bottom: 2px;
     font-weight: bold;
 }
 
-.btnSalvar {
-    background-color: #28a745;
-    color: white;
-    padding: 8px 15px;
-    margin-left: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
-    vertical-align: middle;
+input#inputSigla,
+input#inputNome {
+    text-transform: uppercase;
 }
 
-.btnSalvar:hover {
-    background-color: #218838;
-}

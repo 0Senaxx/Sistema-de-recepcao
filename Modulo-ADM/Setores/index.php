@@ -1,15 +1,15 @@
 <?php
 
 // ------[ ÁREA DE PARAMETROS DE SEGURANÇA ]------
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-  header("Location: ../../01-Login/login.php");
-  exit; 
+    header("Location: ../../Firewall/login.php");
+    exit;
 }
 
-include '../../01-Login/Auth/autenticacao.php';
-include '../../01-Login/Auth/controle_sessao.php';
+include '../../Firewall/Auth/autenticacao.php';
+include '../../Firewall/Auth/controle_sessao.php';
 include '../../conexao.php';
 
 // ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
@@ -37,13 +37,13 @@ $res = $conn->query($sql);
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
-            <a class="nav" href="../../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
     <main>
         <section class="Modulo">
-            <h1>Módulo de Gestão Telefônica</h1>
+            <h1>Lista de Setores e Ramais</h1>
         </section>
 
         <section class="card">
@@ -54,46 +54,57 @@ $res = $conn->query($sql);
                         onkeyup="filtrarTabela()">
                 </div>
 
-                <button id="btnAbrirModal" class="bnt-nova">Adicionar Setor</button><br><br>
+                <button id="btnAbrirModal" class="btn-acao bnt-nova">
+                    <img src="../../Imagens/Icons/adicionar-usuario.png" alt="adicionar setor">
+                    Adicionar Setor
+                </button><br><br>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="6" style="text-align:center; font-size: 1.2em;">Lista de Setores Cadastrados da SEAD</th>
-                    </tr>
-                    <tr>
-                        <th>Sigla</th>
-                        <th>Nome</th>
-                        <th>Localização</th>
-                        <th>Ramal</th>
-                        <th>Última Atualização</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-corpo">
-                    <?php while ($setor = $res->fetch_assoc()): ?>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td class="text-center"><?= htmlspecialchars($setor['sigla']) ?></td>
-                            <td><?= htmlspecialchars($setor['nome']) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($setor['localizacao']) ?></td>
-                            <td class="text-center"><?= htmlspecialchars($setor['ramal']) ?></td>
-                            <td class="text-center"><?= date('d/m/Y H:i', strtotime($setor['updated_at'])) ?></td>
-                            <td class="text-center">
-                                <a href="#" class="btnEditar" data-id="<?= $setor['id'] ?>"
-                                    data-sigla="<?= htmlspecialchars($setor['sigla']) ?>"
-                                    data-nome="<?= htmlspecialchars($setor['nome']) ?>"
-                                    data-localizacao="<?= htmlspecialchars($setor['localizacao']) ?>"
-                                    data-ramal="<?= htmlspecialchars($setor['ramal']) ?>">Editar</a>
-                                <a href="excluir.php?id=<?= $setor['id'] ?>" class="bntExcluir" onclick="return confirm('Deseja excluir este setor?')">Excluir</a>
-                            </td>
+                            <th class="text-center">Sigla</th>
+                            <th>Nome</th>
+                            <th class="text-center">Localização</th>
+                            <th class="text-center">Ramal</th>
+                            <th class="text-center">Atualizado</th>
+                            <th class="text-center">Ações</th>
                         </tr>
-                    <?php endwhile; ?>
-                    <tr id="sem-resultados" style="display:none;">
-                        <td colspan="7" style="text-align:center; font-style: italic;">Nenhum resultado encontrado.</td>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="tabela-corpo">
+                        <?php while ($setor = $res->fetch_assoc()): ?>
+                            <tr>
+                                <td class="col-sigla text-center"><?= htmlspecialchars($setor['sigla']) ?></td>
+                                <td class="col-setor"><?= htmlspecialchars($setor['nome']) ?></td>
+                                <td class="col-local  text-center"><?= htmlspecialchars($setor['localizacao']) ?></td>
+                                <td class="col-ramal text-center"><?= htmlspecialchars($setor['ramal']) ?></td>
+                                <td class="col-atualizacao  text-center"><?= date('d/m/Y', strtotime($setor['updated_at'])) ?></td>
+                                <td class="col-acao text-center">
+                                    <a href="#" class="btn-acao btnEditar" data-id="<?= $setor['id'] ?>"
+                                        data-sigla="<?= htmlspecialchars($setor['sigla']) ?>"
+                                        data-nome="<?= htmlspecialchars($setor['nome']) ?>"
+                                        data-localizacao="<?= htmlspecialchars($setor['localizacao']) ?>"
+                                        data-ramal="<?= htmlspecialchars($setor['ramal']) ?>">
+                                        <img src="../../Imagens/Icons/editar.png" alt="Editar setor">
+                                
+                                        Editar
+                                    </a>
+                                    <a href="excluir.php?id=<?= $setor['id'] ?>" class="btn-acao bntExcluir" onclick="return confirm('Deseja excluir este setor?')">
+                                        <img src="../../Imagens/Icons/excluir.png" alt="excluir setor">
+                                        Excluir
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                        <tr id="sem-resultados" style="display:none;">
+                            <td colspan="7" style="text-align:center; font-style: italic;">Nenhum resultado encontrado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
         </section>
     </main>
     <!-- Modal -->
@@ -129,11 +140,18 @@ $res = $conn->query($sql);
                     <label>Ramal:</label>
                     <input type="text" name="ramal" id="inputRamal" maxlength="100" placeholder="3182 - 0000 / 0000" />
                     <small>* Separe os ramais com " / "</small>
-                </div>
+                </div><br><br>
 
                 <div class="modal-botoes">
-                    <button class="bntSalvar" type="submit" id="btnSalvar">Salvar</button>
-                    <button class="bntCancelar" type="button" id="btnFecharModal">Cancelar</button>
+                    <button class="btn-acao bntSalvar" type="submit" id="btnSalvar">
+                        <img src="../../Imagens/Icons/salve.png" alt="Salvar">
+                        Salvar
+                    </button>
+
+                    <button class="btn-acao bntCancelar" type="button" id="btnFecharModal">
+                        <img src="../../Imagens/Icons/cancelar.png" alt="cancelar operação">
+                        Cancelar
+                    </button>
                 </div>
             </form>
         </div>

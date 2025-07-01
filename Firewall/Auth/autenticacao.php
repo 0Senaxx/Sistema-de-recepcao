@@ -17,10 +17,10 @@ $pastaAtual = $pastas[1] ?? ''; // Pega a segunda pasta da URL
 //PERMISSÕES PARA CADA PERFIL
 
 $permissoes = [
-    'ADM' => ['Firewall', '02-Inicio', '03-Registrar', '04-Visitantes', '05-Visitas', '06-Ramais', '07-Relatorios', '08-Servidores', '09-Setores', '10-Administrador'],
+    'ADM' => ['Firewall', '02-Inicio', '03-Registrar', '04-Visitantes', '05-Visitas', '06-Ramais', '07-Relatorios', '08-Servidores', '09-Setores', '10-Administrador', 'Modulo-ADM'],
     'GCP' => ['Modulo-GCP'],
     'GEPES' => ['Modulo-GEPES'],
-    'Recepcionista' => ['Modulo-RECEP', '02-Inicio', '03-Registrar', '05-Visitas', '06-Ramais', '07-Relatorios', '11-Repositorio', '12-Ocorrencias']
+    'Recepcionista' => ['Modulo-RECEP']
 ];
 
 //CASO O USUÁRIO NÃO TENHA PERMIÇÃO SERÁ EXIBIDA ESSA TELA:

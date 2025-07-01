@@ -157,7 +157,6 @@ main {
     display: flex;
     align-items: center;
     /* centraliza verticalmente */
-    justify-content: space-between;
 
     margin-bottom: 10px;
 }

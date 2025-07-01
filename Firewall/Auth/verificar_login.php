@@ -52,7 +52,7 @@ if ($result->num_rows === 1) {
         // Redirecionamento por perfil
         switch ($usuario['perfil']) {
             case 'ADM':
-                header("Location: ../../10-Administrador/index.php");
+                header("Location: ../../Modulo-ADM/index.php");
                 break;
             case 'GEPES':
                 header("Location: ../../Modulo-GEPES/index.php");

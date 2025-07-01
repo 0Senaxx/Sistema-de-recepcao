@@ -4,12 +4,12 @@
 session_start(); 
 
 if (!isset($_SESSION['usuario_id'])) {
-  header("Location: ../01-Login/login.php");
+  header("Location: ../Firewall/login.php");
   exit; 
 }
 
-include '../01-Login/Auth/autenticacao.php';
-include '../01-Login/Auth/controle_sessao.php';
+include '../Firewall/Auth/autenticacao.php';
+include '../Firewall/Auth/controle_sessao.php';
 include '../conexao.php';
 
 // ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
@@ -169,7 +169,7 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
             <a class="nav" href="Setores/index.php">Setores</a>
             <a class="nav" href="Visitas/visitas.php">Visitas</a>
             <a class="nav" href="Documentos/documentos.php">Repositório</a>
-            <a class="nav" href="../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
