@@ -135,11 +135,18 @@ $res = $conn->query($sql);
                     <label>Ramal:</label>
                     <input type="text" name="ramal" id="inputRamal" maxlength="100" placeholder="3182 - 0000 / 0000" />
                     <small>* Separe os ramais com " / "</small>
-                </div>
+                </div><br><br>
 
                 <div class="modal-botoes">
-                    <button class="bntSalvar" type="submit" id="btnSalvar">Salvar</button>
-                    <button class="bntCancelar" type="button" id="btnFecharModal">Cancelar</button>
+                    <button class="btn-acao bntSalvar" type="submit" id="btnSalvar">
+                        <img src="../Imagens/Icons/salve.png" alt="Salvar">
+                        Salvar
+                    </button>
+
+                    <button class="btn-acao bntCancelar" type="button" id="btnFecharModal">
+                        <img src="../Imagens/Icons/cancelar.png" alt="cancelar operação">
+                        Cancelar
+                    </button>
                 </div>
             </form>
         </div>
