@@ -29,6 +29,6 @@ a:hover {
 <body>
   <h1>404 - Página não encontrada!</h1>
   <p>Desculpe, a página que você procurava não existe ou foi movida.</p>
-  <a href="01-Login/login.php">Voltar para a Página Inicial</a>
+  <a href="Firewall/login.php">Voltar para a Página Inicial</a>
 </body>
 </html>
