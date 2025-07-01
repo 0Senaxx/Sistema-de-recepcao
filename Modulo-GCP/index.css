@@ -266,10 +266,9 @@ tbody tr:hover {
     vertical-align: middle;
 }
 
-
 /* Classe base para todos os botões de ação */
 .btn-acao {
-  display: inline-flex;    /* Igual pra <a> e <button> */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -301,7 +300,6 @@ tbody tr:hover {
     background-color: #14b658;
 }
 
-
 .bntExcluir {
     background-color: #dc3545;
     padding: 8px 10px;
@@ -316,7 +314,6 @@ tbody tr:hover {
 .bntExcluir:hover {
     background-color: #c82333;
 }
-
 
 /* =================== MODEL DE ADIÇÃO E EDIÇÃO =================== */
 

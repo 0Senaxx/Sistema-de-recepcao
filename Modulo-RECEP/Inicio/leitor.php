@@ -35,7 +35,7 @@
 
       <div id="resultado">Aguardando leitura...</div>
 
-      <div id="animacao-leitura">Leitura realizada, atualizando registro de saída...</div>
+      <div id="animacao-leitura">Saída registra com sucesso, atualizando registro de saída...</div>
 
       <a class="voltar" href="index.php">Voltar</a>
 
