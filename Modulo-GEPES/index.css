@@ -213,7 +213,7 @@ main {
     font-size: 1rem;
     border-radius: 6px;
     border: 1px solid #ccc;
-    min-width: 220px;
+    width: 500px;
     transition: border-color 0.3s ease;
   }
   .form-select:focus {
@@ -222,7 +222,7 @@ main {
 
 .bnt-NoFiltro {
     height: 40px;
-    background-color: #FFFF00;
+    background-color: #ffc003;
     color: rgb(8, 0, 0);
     border: none;
     padding: 8px 16px;
@@ -258,7 +258,7 @@ main {
     margin: 5% auto;
     padding: 20px;
     border-radius: 5px;
-    max-width: 400px;
+    width: 600px;
     height: 420px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -275,6 +275,7 @@ main {
     margin-bottom: 15px;
     box-sizing: border-box;
 }
+
 
 .bntSalvar {
     background-color: #28a745;
@@ -378,6 +379,17 @@ tbody tr:hover {
     background-color: #e6e6e6;
 }
 
+.col-servidor {
+    width: 27%;
+}
+
+.col-setor {
+    width: 25%;
+}
+
+.col-atualizacao {
+    width: 10%;
+}
 
 a.button {
     padding: 5px 10px;
@@ -439,12 +451,12 @@ a.button:hover {
 }
 
 .btnCancelar {
-    background-color: #FFFF00;
+    background-color: #ffc003;
     color: rgb(0, 0, 0);
 }
 
 .btnCancelar:hover {
-    background-color: #ffff25;
+    background-color: #c09000;
 }
 
 .modal-botoes {
@@ -489,31 +501,22 @@ a.button:hover {
     margin-bottom: 10px;
 }
 
-@media (max-width: 1280px) {
-  .Modulo,
-  .card {
-    padding: 15px;
-  }
 
-  .filtro-form {
-    flex-direction: column;
-    align-items: stretch;
-  }
+/* Classe base para todos os botões de ação */
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
 
-  .campo-buscar,
-  .choices__inner {
-    width: 100% !important;
-  }
-
-  .cabecalho-visitas {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .bnt-nova {
-    position: static;
-    transform: none;
-    margin-top: 10px;
-    align-self: flex-end;
-  }
+.btn-acao img {
+  height: 14px;
 }

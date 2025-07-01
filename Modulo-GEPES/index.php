@@ -74,14 +74,8 @@ $result = $conn->query($sql);
             value="<?php echo htmlspecialchars($busca); ?>" />
 
           <!-- FILTRO POR SETOR -->
-          <select
-            name="setor"
-            id="setor_filtro"
-            aria-label="Filtrar por setor"
-            class="form-select">
-            <option value="" disabled <?php echo (empty($setor_filter)) ? "selected" : ""; ?>>
-              Selecione um setor
-            </option>
+          <select name="setor" id="setor_filtro" aria-label="Filtrar por setor" class="form-select">
+            <option value="" disabled <?php echo (empty($setor_filter)) ? "selected" : ""; ?>> Buscar por setor </option>
             <option value="">Todos os setores</option>
 
             <?php
@@ -93,22 +87,33 @@ $result = $conn->query($sql);
             }
             ?>
           </select>
-          <button class="bnt-Filtro" type="submit">Filtrar</button>
-          <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?'); ?>" class="bnt-NoFiltro">Limpar filtro</a>
+
+          <button class="btn-acao bnt-Filtro" type="submit">
+            <img src="../Imagens/Icons/filtro.png" alt="Filtrar">
+            Filtrar
+          </button>
+          <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?'); ?>" class="btn-acao bnt-NoFiltro">
+            <img src="../Imagens/Icons/apagador.png" alt="Limpar">
+            Limpar filtro
+          </a>
         </form>
 
-        <button id="btnAbrirModal" class="bnt-nova">Adicionar Servidor</button>
+        <button id="btnAbrirModal" class="btn-acao bnt-nova">
+          <img src="../Imagens/Icons/adicionar-usuario.png" alt="Limpar">
+          Novo Servidor
+        </button>
       </div>
+
       </div>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Nome</th>
+              <th class="col-servidor">Nome</th>
               <th class="text-center">Matrícula</th>
               <th class="text-center">Status</th>
-              <th>Setor</th>
-              <th class="text-center">Última Atualização</th>
+              <th class="col-setor">Setor</th>
+              <th class="text-center col-atualizacao">Atualização</th>
               <th class="text-center">Ações</th>
             </tr>
           </thead>
@@ -116,7 +121,7 @@ $result = $conn->query($sql);
             <?php if ($result && $result->num_rows > 0): ?>
               <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
-                  <td>
+                  <td class="col-servidor">
                     <?php echo htmlspecialchars($row['nome']); ?>
                   </td>
                   <td class="text-center">
@@ -125,10 +130,10 @@ $result = $conn->query($sql);
                   <td class="text-center">
                     <?php echo htmlspecialchars($row['status']); ?>
                   </td>
-                  <td>
+                  <td class="col-setor">
                     <?php echo htmlspecialchars($row['setor_nome'] ?? ''); ?>
                   </td>
-                  <td class="text-center">
+                  <td class="text-center col-atualizacao">
                     <?php
                     if (!empty($row['updated_at']) && !empty($row['updated_by'])) {
                       echo date('d/m/Y', strtotime($row['updated_at']));
@@ -139,8 +144,16 @@ $result = $conn->query($sql);
                   </td>
 
                   <td class="text-center">
-                    <a href="#" class="btnEditar" onclick="editarServidor(<?php echo $row['id']; ?>); return false;">Editar</a> |
-                    <a href="excluir.php?id=<?php echo $row['id']; ?>" class="btnExcluir" onclick="return confirm('Confirma exclusão do servidor?');">Excluir</a>
+                    <a href="#" class="btn-acao btnEditar" onclick="editarServidor(<?php echo $row['id']; ?>); return false;">
+                      <img src="../Imagens/Icons/editar.png" alt="Editar">
+                      Editar
+                    </a>
+                    |
+                    <a href="excluir.php?id=<?php echo $row['id']; ?>" class="btn-acao btnExcluir" onclick="return confirm('Confirma exclusão do servidor?');">
+                      <img src="../Imagens/Icons/excluir.png" alt="Excluir">
+                      Excluir
+                    </a>
+
                   </td>
                 </tr>
               <?php endwhile; ?>
@@ -157,6 +170,7 @@ $result = $conn->query($sql);
 
   <!-- Modal (inicialmente escondido) -->
   <div id="modalServidor" class="modal">
+
     <div class="modal-conteudo">
       <h2 id="modalTitulo">Adicionar Servidor</h2><br>
 
@@ -166,17 +180,17 @@ $result = $conn->query($sql);
 
         <div class="form-campo">
           <label>Nome:</label>
-          <input type="text" name="nome" id="nome" required autocomplete="off" />
+          <input type="text" name="nome" id="nome" required autocomplete="off" placeholder="Insira o nome completo" />
         </div>
 
         <div class="form-campo">
           <label>Matrícula:</label>
-          <input type="text" name="matricula" id="matricula" maxlength="10" required autocomplete="off" />
+          <input type="text" name="matricula" id="matricula" maxlength="10" required autocomplete="off" placeholder="Insira a matrícula" />
         </div>
 
         <div class="form-lista">
           <label>Status:</label>
-          <select name="status" id="status">
+          <select name="status" id="status" required>  
             <option value="Disponível" selected>Disponível</option>
             <option value="Indisponível">Indisponível</option>
           </select>
@@ -197,8 +211,15 @@ $result = $conn->query($sql);
         </div>
 
         <div class="modal-botoes">
-          <button type="submit" class="btnSalvar">Salvar</button>
-          <button type="button" class="btnCancelar" id="btnFecharModal">Cancelar</button>
+          <button type="submit" class="btn-acao  btnSalvar">
+            <img src="../Imagens/Icons/salve.png" alt="Salvar">
+            Salvar
+          </button>
+
+          <button type="button" class="btn-acao btnCancelar" id="btnFecharModal">
+            <img src="../Imagens/Icons/cancelar.png" alt="Salvar">
+            Cancelar
+          </button>
         </div>
       </form>
     </div>
