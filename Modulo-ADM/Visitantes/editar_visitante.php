@@ -69,7 +69,7 @@ $visitante = $result->fetch_assoc();
                     <div class="info">
                         <div class="campo">
                             <label>CPF:</label>
-                            <input type="text" name="cpf" value="<?= $visitante['cpf'] ?>" required>
+                            <input type="text" name="cpf" value="<?= $visitante['cpf'] ?>" required readonly tabindex="-1">
                         </div>
 
                         <div class="campo">
