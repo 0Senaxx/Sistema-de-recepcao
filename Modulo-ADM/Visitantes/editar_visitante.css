@@ -1,0 +1,262 @@
+/* =================== RESET E VARIÁVEIS =================== */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CABEÇALHO E RODAPÉ*/
+
+:root {
+    --cor-primaria: #293264;
+    --cor-secundaria: #0A853D;
+    --cor-branco: #fff;
+    --cor-hover: rgba(255, 255, 255, 0.2);
+    --font-size: 11pt;
+    /* Tamanho de fonte padrão */
+    --spacing: 0.5rem;
+    /* Espaçamento padrão */
+}
+
+/* =================== LAYOUT GERAL =================== */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
+    /* Deixa espaço para a topbar */
+
+    /*FUNDO PONTILHADO*/
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+
+    background-attachment: fixed;
+}
+
+/* =================== CABECALHO =================== */
+.cabecalho {
+    /* Posicionamento fixo no topo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    /* Layout flexível */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Estilo visual */
+    background: linear-gradient(93deg, var(--cor-primaria) 19%, var(--cor-secundaria) 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Ajuste de padding com rem */
+}
+
+.cabecalho nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.cabecalho nav a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-size: var(--font-size);
+    /* Usando unidade relativa */
+    padding: 0.3125rem 0.625rem;
+    /* Ajustando padding */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cabecalho nav a:hover {
+    text-decoration: none;
+    background-color: var(--cor-hover);
+    border-color: var(--cor-branco);
+}
+
+/* =================== RODAPÉ =================== */
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    /* Ajustado para centralizar o conteúdo */
+    align-items: center;
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+    color: var(--cor-branco);
+    padding: var(--spacing) 1.875rem;
+    /* Usando variáveis e unidades relativas */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Container principal */
+main {
+    padding: 25px;
+    max-width: 2000px;
+}
+
+.card {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+
+}
+
+/* =================== INFORMAÇÕES DO VISITANTE =================== */
+
+/* Container dentro da section */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* =================== LADO ESQUERDO =================== */
+
+.info {
+    height: auto;
+    width: 450px;
+    min-width: 230px;
+}
+
+/* Campos editaveis */
+label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.campo input {
+    font-size: 14px;
+    padding: 10px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* BOTÕES */
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+.bnt-voltar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    border-radius: 4px;
+
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #218838;
+}
+
+/* =================== LADO ESQUERDO =================== */
+
+
+.foto {
+
+    width: 300px;
+    min-width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.foto img,
+.foto video,
+.camera-area canvas {
+    width: 250px;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.camera-area video,
+.camera-area img {
+    position: absolute;
+    width: 250px;
+    height: 270px;
+    border-radius: 8px;
+    border: 1px solid #ff0000;
+    object-fit: cover;
+}
+
+
+.foto-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+.foto-actions button,
+.foto-actions label.upload-label {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+
+}
+
+.foto-actions button:hover,
+.foto-actions label.upload-label:hover {
+    background-color: #218838;
+}
+
+.upload-label input[type="file"] {
+    display: none;
+}

@@ -38,6 +38,8 @@ body {
         linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
         var(--dot-color);
+
+          background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -151,6 +153,15 @@ main {
 }
 
 
+/* =================== ÁREA DA TABELA =================== */
+
+.table-container {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -158,18 +169,57 @@ table {
 
 th,
 td {
-    border: 1px solid #aaa;
-    padding: 8px;
+    padding: 12px 16px;
     text-align: left;
 }
 
+thead {
+    background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+}
+
 th {
-    background-color: #eee;
+    color: #eee;
+    background: transparent;
 }
 
 .text-center {
     text-align: center;
     vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+tbody tr:hover {
+    background-color: #e6e6e6;
+}
+
+.col-nome {
+    width: 20%;
+}
+
+.col-acoes {
+    width: 16%;
+}
+
+/* Classe base para todos os botões de ação */
+.btn-acao {
+  display: inline-flex;    /* Igual pra <a> e <button> */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
 }
 
 .modal {
@@ -237,7 +287,7 @@ th {
     color: #000;
 }
 .bntSalvar {
-    background-color: #28a745;
+    background-color: #293264;
     color: white;
 
     padding: 8px 15px;
@@ -249,7 +299,7 @@ th {
 }
 
 .bntSalvar:hover {
-    background-color: #218838;
+    background-color: #445096;
 }
 
 

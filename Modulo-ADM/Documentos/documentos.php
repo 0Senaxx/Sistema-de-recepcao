@@ -90,36 +90,47 @@ $result = $conn->query($sql);
     <main>
         <section class="Modulo">
             <div class="topo-modulo">
-                <h1>Gerenciador Documentos</h1>
-                <button onclick="abrirModal()" class="bntSalvar">Adicionar Novo Documento</button>
+                <h1>Gerenciador Documentos do Repositório</h1>
+                <button onclick="abrirModal()" class="btn-acao bntSalvar">
+                    <img src="../../Imagens/Icons/adicionar.png" alt="Adicionar">
+                    Novo Documento
+                </button>
             </div>
         </section>
 
         <section class="card">
-            <h2>Documentos Cadastrados</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th style="width: 850px;">Descrição</th>
-                        <th class="text-center">Data de Envio</th>
-                        <th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['nome_arquivo']); ?></td>
-                            <td><?php echo htmlspecialchars($row['descricao']); ?></td>
-                            <td class="text-center"><?php echo date('d/m/Y', strtotime($row['data_envio'])); ?></td>
-                            <td class="text-center">
-                                <a class="btnBaixar" href="<?php echo htmlspecialchars($row['caminho']); ?>" download>Baixar</a> |
-                                <a class="btnExcluir" href="?excluir=<?php echo $row['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este documento?');">Excluir</a>
-                            </td>
+                            <th class="col-nome">Nome</th>
+                            <th style="width: 850px;">Descrição</th>
+                            <th class="text-center">Atualizado</th>
+                            <th class="col-acoes text-center">Ações</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['nome_arquivo']); ?></td>
+                                <td><?php echo htmlspecialchars($row['descricao']); ?></td>
+                                <td class="text-center"><?php echo date('d/m/Y', strtotime($row['data_envio'])); ?></td>
+                                <td class="text-center">
+                                    <a class="btn-acao btnBaixar" href="<?php echo htmlspecialchars($row['caminho']); ?>" download>
+                                        <img src="../../Imagens/Icons/download.png" alt="Baixar">
+                                        Baixar
+                                    </a>
+                                    <a class="btn-acao btnExcluir" href="?excluir=<?php echo $row['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este documento?');">
+                                        <img src="../../Imagens/Icons/excluir.png" alt="Excluir">
+                                        Excluir
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
