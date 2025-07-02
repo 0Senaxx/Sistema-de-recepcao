@@ -48,11 +48,11 @@ $result = $conn->query($sql);
 <body class="container py-4">
 
     <header class="cabecalho">
-        <h1>Recepção SEAD</h1>
+        <h1>Painel de Gestão</h1>
         <nav>
             <a class="nav" href="../index.php">Início</a>
             <a class="nav" href="../Usuarios/usuarios.php">Usuários</a>
-            <a class="nav" href="../../04-Visitantes/visitantes.php">Visitantes</a>
+            <a class="nav" href="../Visitantes/visitantes.php">Visitantes</a>
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
@@ -85,7 +85,7 @@ $result = $conn->query($sql);
                             <th class="text-center">Data</th>
                             <th>Nome do Visitante</th>
                             <th class="text-center">CPF</th>
-                            <th>Setor</th>
+                            <th class="text-center">Setor</th>
                             <th>Servidor</th>
                             <th class="text-center">Entrada</th>
                             <th class="text-center">Saída</th>
@@ -107,7 +107,7 @@ $result = $conn->query($sql);
                             }
                             ?>
                             <tr>
-                                <td><?= date('d/m/Y', strtotime($row['data'])) ?></td>
+                                <td class="text-center"><?= date('d/m/Y', strtotime($row['data'])) ?></td>
 
                                 <td><?= $row['nome_visitante'] ?></td>
                                 <td class="text-center">
@@ -127,12 +127,12 @@ $result = $conn->query($sql);
                                     echo $cpf_masked;
                                     ?>
                                 </td>
-                                <td><?= $row['sigla_setor'] ?? '---' ?></td>
+                                <td class="text-center"><?= $row['sigla_setor'] ?? '---' ?></td>
                                 <td><?= $row['nome_servidor'] ?? '---' ?></td>
-                                <td><?= $row['hora'] ?></td>
-                                <td><?= $row['saida'] ?? '---' ?></td>
-                                <td><?= $duracao ?></td>
-                                <td><?= $row['nome_usuario'] ?? '---' ?></td>
+                                <td class="text-center"><?= $row['hora'] ?></td>
+                                <td class="text-center"><?= $row['saida'] ?? '---' ?></td>
+                                <td class="text-center"><?= $duracao ?></td>
+                                <td class="text-center"><?= $row['nome_usuario'] ?? '---' ?></td>
                             </tr>
                         <?php endwhile; ?>
 

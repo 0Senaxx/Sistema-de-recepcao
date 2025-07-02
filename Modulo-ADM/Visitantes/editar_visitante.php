@@ -46,15 +46,15 @@ $visitante = $result->fetch_assoc();
 <body class="container py-4">
 
     <header class="cabecalho">
-        <h1>Recepção SEAD</h1>
+        <h1>Painel de Gestão</h1>
         <nav>
-            <a href="../02-Inicio/index.php" onclick="fadeOut(event, this)">Início</a>
-            <a href="../03-Registrar/nova_visita.php" onclick="fadeOut(event, this)">+ Nova Visita</a>
-            <a href="../05-Visitas/visitas.php" onclick="fadeOut(event, this)">Lista de Visitas</a>
-            <a href="../04-Visitantes/visitantes.php" onclick="fadeOut(event, this)">Lista de Visitantes</a>
-            <a href="../06-Ramais/ramais.php" onclick="fadeOut(event, this)">Ramais SEAD</a>
-            <a href="../11-Repositorio/repositorio.php" onclick="fadeOut(event, this)">Repositório</a>
-            <a href="../Firewall/Auth/logout.php">Sair</a>
+            <a class="nav" href="../index.php">Início</a>
+            <a class="nav" href="../Usuarios/usuarios.php">Usuários</a>
+            <a class="nav" href="#.php">Visitantes</a>
+            <a class="nav" href="../Setores/index.php">Setores</a>
+            <a class="nav" href="../Visitas/visitas.php">Visitas</a>
+            <a class="nav" href="../Documentos/documentos.php">Repositório</a>
+            <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
 

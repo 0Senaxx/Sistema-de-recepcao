@@ -159,13 +159,12 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
 </head>
 
 <body>
-
     <header class="cabecalho">
-        <h1>Painel do Administrador</h1>
+        <h1>Painel de Gestão</h1>
         <nav>
             <a class="nav" href="index.php">Início</a>
             <a class="nav" href="Usuarios/usuarios.php">Usuários</a>
-            <a class="nav" href="../04-Visitantes/visitantes.php">Visitantes</a>
+            <a class="nav" href="Visitantes/visitantes.php">Visitantes</a>
             <a class="nav" href="Setores/index.php">Setores</a>
             <a class="nav" href="Visitas/visitas.php">Visitas</a>
             <a class="nav" href="Documentos/documentos.php">Repositório</a>
@@ -176,10 +175,10 @@ while ($row = $resultTempoMedio->fetch_assoc()) {
     <main>
         <div class="Topo">
             <div class="cards"><?= $visitasHoje ?><br><small>Visitas de Hoje</small></div>
-            <div class="cards"><?= $visitasRegistradas ?><br><small>Visitas Registradas</small></div>
-            <div class="cards"><?= $ocorrenciasMes ?><br><small>Ocorrências Registradas</small></div>
-            <div class="cards"><?= $totalServidores ?><br><small>Total de Servidores</small></div>
-            <div class="cards"><?= $setores ?><br><small>Setores</small></div>
+            <div class="cards"><?= $visitasRegistradas ?><br><small>Total de Visitas Cadastrada</small></div>
+            <div class="cards"><?= $ocorrenciasMes ?><br><small>Total de Ocorrências Registradas</small></div>
+            <div class="cards"><?= $totalServidores ?><br><small>Total de Servidores Cadastrados</small></div>
+            <div class="cards"><?= $setores ?><br><small>Total de Setores Cadastrados</small></div>
         </div>
 
         <div class="painel">

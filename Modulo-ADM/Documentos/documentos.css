@@ -175,6 +175,7 @@ td {
 
 thead {
     background: linear-gradient(93deg, #293264 19%, #0a853d 100%);
+    font-size: 16px;
 }
 
 th {

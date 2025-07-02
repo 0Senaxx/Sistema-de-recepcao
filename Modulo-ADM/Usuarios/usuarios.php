@@ -32,11 +32,11 @@ $result = $conn->query($sql);
 
 <body>
     <header class="cabecalho">
-        <h1>Painel do Administrador</h1>
+        <h1>Painel de Gestão</h1>
         <nav>
             <a class="nav" href="../index.php">Início</a>
             <a class="nav" href="../Usuarios/usuarios.php">Usuários</a>
-            <a class="nav" href="../../04-Visitantes/visitantes.php">Visitantes</a>
+            <a class="nav" href="../Visitantes/visitantes.php">Visitantes</a>
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
