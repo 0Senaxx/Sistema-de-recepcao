@@ -31,8 +31,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="visitantes.css">
 </head>
 
-<body class="container py-4">
-
+<body>
     <header class="cabecalho">
         <h1>Painel do Administrador</h1>
         <nav>
@@ -59,18 +58,19 @@ $result = $conn->query($sql);
         </section>
 
         <section class="card">
-                <div class="table-container">
+            <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>CPF</th>
-                            <th>Nome</th>
-                            <th>Órgão/Entidade</th>
-                            <th class="text-center">Atualizado por</th>
-                            <th class="text-center">Foto</th>
-                            <th class="text-center">Ação</th>
+                            <th class="col-cpf text-center">CPF</th>
+                            <th class="col-nome">Nome</th>
+                            <th class="col-orgao">Órgão/Entidade</th>
+                            <th class="col-update text-center">Atualizado</th>
+                            <th class="col-foto text-center">Foto</th>
+                            <th class="col-acao text-center">Ação</th>
                         </tr>
                     </thead>
+
                     <tbody id="tabela-corpo">
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
@@ -101,7 +101,7 @@ $result = $conn->query($sql);
                                 <td class="text-center"><?= $row['nome_usuario'] ?? '---' ?></td>
                                 <td class="text-center">
                                     <?php if ($row['foto']): ?>
-                                        <img src="<?= $row['foto'] ?>" alt="Foto" width="60">
+                                        <img src="<?= $row['foto'] ?>" alt="Foto" width="60" class="foto-visitante">
                                     <?php else: ?>
                                         Sem foto
                                     <?php endif; ?>
