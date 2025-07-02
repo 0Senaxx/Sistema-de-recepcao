@@ -104,7 +104,7 @@ body {
     text-align: center;
 }
 
-/* =================== FORMULÁRIO =================== */
+/* =================== CONTEUDO =================== */
 
 /* Container principal */
 main {
@@ -117,35 +117,10 @@ main {
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    /* Centraliza horizontalmente */
     padding: 25px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-.topo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-.txt-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.campo-buscar {
-    Width: 300px;
-    height: 40px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
 }
 
 .Modulo {
@@ -167,6 +142,21 @@ main {
     justify-content: space-between;
     align-items: center;
     padding-right: 25px;
+}
+
+.txt-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.campo-buscar {
+    Width: 300px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
 }
 
 /* =================== TABELA DE SETORES =================== */

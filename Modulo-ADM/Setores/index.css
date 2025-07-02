@@ -105,21 +105,30 @@ body {
     text-align: center;
 }
 
+/* =================== TITULO DO MÓDULO =================== */
 
 /* Container principal */
 main {
-    padding: 20px;
+    padding: 25px;
     max-width: 2000px;
 }
 
-/* =================== TITULO DO MÓDULO =================== */
+.card {
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
 .Modulo {
     position: relative;
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    /* Centraliza horizontalmente */
     padding-left: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -129,59 +138,15 @@ main {
     margin-bottom: 10px;
 }
 
-.card {
-    position: relative;
-    max-width: 1600px;
-    width: 100%;
-    margin: 0 auto;
-    /* Centraliza horizontalmente */
-    padding: 5px 25px 25px 25px;
 
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 20px;
+.topo-modulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 25px;
 }
 
 /* =================== BARRA DE PESQUISA E BOTÃO =================== */
-
-.cabecalho-visitas {
-    position: relative;
-    height: 60px;
-    /* ou a altura que quiser */
-    display: flex;
-    align-items: center;
-    /* centraliza verticalmente */
-
-    margin-bottom: 10px;
-}
-
-.bnt-nova {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #293264;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    /* tira o sublinhado do link */
-}
-
-.bnt-nova:hover {
-    background-color: #343f83;
-    /* cor diferente ao passar o mouse */
-}
-
 
 .txt-label {
     margin-bottom: 5px;
@@ -196,6 +161,33 @@ main {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+}
+
+:root {
+    --font-size: 0.875rem;
+    /* Tamanho de fonte padrão para botões */
+    --padding-horizontal: 20px;
+    --padding-vertical: 10px;
+    --border-radius: 6px;
+}
+
+
+.bnt-nova {
+    background-color: #293264;
+    font-size: var(--font-size);
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.bnt-nova:hover {
+    background-color: #343f83;
 }
 
 /* =================== TABELA DE SETORES =================== */
@@ -271,7 +263,7 @@ tbody tr:hover {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 10px;
+  padding: 12px 20px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 5px;

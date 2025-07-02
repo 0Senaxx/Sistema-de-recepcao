@@ -43,23 +43,21 @@ $res = $conn->query($sql);
 
     <main>
         <section class="Modulo">
-            <h1>Lista de Setores e Ramais</h1>
+            <div class="topo-modulo">
+                <h1>Lista de Setores e Ramais</h1>
+
+                <div>
+                    <label class="txt-label">Buscar: </label>
+                    <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..." onkeyup="filtrarTabela()">
+                    <button id="btnAbrirModal" class="btn-acao bnt-nova">
+                        <img src="../../Imagens/Icons/adicionar.png" alt="adicionar setor">
+                        Adicionar Setor
+                    </button>
+                </div>
+            </div>
         </section>
 
         <section class="card">
-            <div class="cabecalho-visitas">
-                <div>
-                    <label class="txt-label">Buscar: </label>
-                    <input class="campo-buscar" type="text" id="filtro" autocomplete="none" placeholder="Digite para buscar..."
-                        onkeyup="filtrarTabela()">
-                </div>
-
-                <button id="btnAbrirModal" class="btn-acao bnt-nova">
-                    <img src="../../Imagens/Icons/adicionar-usuario.png" alt="adicionar setor">
-                    Adicionar Setor
-                </button><br><br>
-            </div>
-
             <div class="table-container">
                 <table>
                     <thead>
@@ -87,7 +85,7 @@ $res = $conn->query($sql);
                                         data-localizacao="<?= htmlspecialchars($setor['localizacao']) ?>"
                                         data-ramal="<?= htmlspecialchars($setor['ramal']) ?>">
                                         <img src="../../Imagens/Icons/editar.png" alt="Editar setor">
-                                
+
                                         Editar
                                     </a>
                                     <a href="excluir.php?id=<?= $setor['id'] ?>" class="btn-acao bntExcluir" onclick="return confirm('Deseja excluir este setor?')">
