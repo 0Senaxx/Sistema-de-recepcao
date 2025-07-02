@@ -61,11 +61,10 @@ $result = $conn->query($sql);
     </header>
 
     <main>
+        <section class="Modulo">
+            <div class="topo-modulo">
+                <h1>Lista de Visitas</h1>
 
-        <section class="card">
-
-            <div class="topo">
-                <h2>Lista de Visitas</h2>
                 <div>
                     <label class="txt-label">Buscar: </label>
                     <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..."
@@ -73,6 +72,9 @@ $result = $conn->query($sql);
                     <button id="abrirModal" class="botao-relatorio">📊 Gerar Relatório</button>
                 </div>
             </div>
+        </section>
+
+        <section class="card">
             <div class="table-container">
                 <table>
                     <thead>
@@ -103,7 +105,7 @@ $result = $conn->query($sql);
                             ?>
                             <tr>
                                 <td><?= date('d/m/Y', strtotime($row['data'])) ?></td>
-                                
+
                                 <td><?= $row['nome_visitante'] ?></td>
                                 <td class="text-center">
                                     <?php
