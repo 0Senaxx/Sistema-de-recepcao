@@ -52,7 +52,7 @@ $result = $conn->query($sql);
 
                 <div>
                     <label class="txt-label">Buscar: </label>
-                    <input class="campo-buscar" type="text" id="filtro" autocomplete="none" placeholder="Digite para buscar..." onkeyup="filtrarTabela()">
+                    <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..." onkeyup="filtrarTabela()">
                 </div>
             </div>
         </section>
@@ -116,7 +116,7 @@ $result = $conn->query($sql);
                         <?php endwhile; ?>
 
                         <tr id="sem-resultados" style="display:none;">
-                            <td colspan="7" style="text-align:center; font-style: italic;">Nenhum visitante encontrado.</td>
+                            <td class="nenhum" colspan="7">Nenhum visitante encontrado.</td>
                         </tr>
                     </tbody>
                 </table>

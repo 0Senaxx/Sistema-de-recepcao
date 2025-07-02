@@ -198,7 +198,7 @@ tbody tr:hover {
 }
 
 .col-nome {
-    width: 22%;
+    width: 20%;
 }
 
 .col-orgao {
@@ -214,12 +214,18 @@ tbody tr:hover {
 }
 
 .col-acao {
-    width: 10%;
+    width: 7%;
 }
 
 .text-success {
     color: #28a745;
     font-weight: bold;
+}
+
+.nenhum {
+    color: #4b4b4b;
+    font-style: italic;
+    text-align: center;
 }
 
 /* =================== BOTÕES =================== */
