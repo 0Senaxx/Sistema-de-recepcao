@@ -68,7 +68,11 @@ $result = $conn->query($sql);
                 <div>
                     <label class="txt-label">Buscar: </label>
                     <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..." onkeyup="filtrarTabela()">
-                    <button id="abrirModal" class="botao-relatorio">📊 Gerar Relatório</button>
+                    
+                    <button id="abrirModal" class="btn-acao botao-relatorio">
+                        <img src="../../Imagens/Icons/relatorio.png" alt="Gerar Relatório" class="icon-relatorio">
+                        Gerar Relatório
+                    </button>
                 </div>
             </div>
         </section>

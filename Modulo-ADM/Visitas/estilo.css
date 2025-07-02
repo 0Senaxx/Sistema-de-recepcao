@@ -144,8 +144,14 @@ main {
     padding-right: 25px;
 }
 
+.topo-modulo > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .txt-label {
-    margin-bottom: 5px;
     font-weight: bold;
     margin-right: 5px;
 }
@@ -157,6 +163,29 @@ main {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+}
+
+.btn-acao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-acao img {
+    height: 14px;
+}
+
+.botao-relatorio {
+    background-color: #293264;
+    height: 40px;
 }
 
 /* =================== TABELA DE SETORES =================== */
@@ -283,24 +312,3 @@ tbody tr:hover {
 }
 
 /* =================== BOTÃO RELATÓRIO =================== */
-:root {
-    --font-size: 0.875rem;
-    /* Tamanho de fonte padrão para botões */
-    --padding-horizontal: 20px;
-    --padding-vertical: 10px;
-    --border-radius: 6px;
-}
-
-.botao-relatorio {
-    background-color: #293264;
-    font-size: var(--font-size);
-    padding: var(--padding-vertical) var(--padding-horizontal);
-    font-weight: 500;
-    color: rgb(255, 255, 255);
-    border: none;
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    margin-left: 10px;
-}

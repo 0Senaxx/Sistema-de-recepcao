@@ -146,10 +146,17 @@ main {
     padding-right: 25px;
 }
 
+
+.topo-modulo > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 /* =================== BARRA DE PESQUISA E BOTÃO =================== */
 
 .txt-label {
-    margin-bottom: 5px;
     font-weight: bold;
     margin-right: 5px;
 }
@@ -161,6 +168,24 @@ main {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+}
+
+.btn-acao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-acao img {
+  height: 14px;
 }
 
 :root {
@@ -258,24 +283,6 @@ tbody tr:hover {
 }
 
 /* Classe base para todos os botões de ação */
-.btn-acao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 12px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  border: none;
-}
-
-.btn-acao img {
-  height: 14px;
-}
-
 .btnEditar {
     background-color: #0A853D;
     padding: 8px 10px;
