@@ -36,7 +36,7 @@
 
                 <div class="campo-usuario">
                     <label for="matricula">Matrícula:</label>
-                    <input type="text" name="matricula" id="matricula" autocomplete="off" placeholder="Digite sua matrícula" maxlength="12" required>
+                    <input type="text" name="matricula" id="matricula" placeholder="Digite sua matrícula" maxlength="12" required>
                 </div>
 
                 <div class="campo-senha">

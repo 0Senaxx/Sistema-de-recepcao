@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <div class="btn-voltar">
+            <br><div class="btn-voltar">
                 <a href="login.php">Voltar</a>
             </div>
         </section>
