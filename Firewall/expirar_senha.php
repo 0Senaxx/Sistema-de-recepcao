@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("si", $hash, $id);
         $stmt->execute();
 
-        header("Location: ../../02-Inicio/index.php");
+        header("Location: login.php");
         exit;
     }
 }
@@ -38,25 +38,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Senha Expirada - SEAD</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 
 <body>
-    <h2>Senha Expirada</h2>
-    <p>Sua senha expirou. Para continuar, por favor, crie uma nova senha segura.</p>
+    <header class="cabecalho">
+        <h1>Recepção SEAD</h1>
+    </header>
 
-    <?php if ($erro): ?>
-        <p style="color:red"><?= $erro ?></p>
-    <?php endif; ?>
+    <main>
+        <section class="card">
+            <h2>Senha Expirada</h2>
+            <p>Sua senha expirou. Para continuar, por favor, crie uma nova senha segura.</p><br>
 
-    <form method="POST">
-        <label>Nova Senha:</label>
-        <input type="password" name="nova_senha" maxlength="10" required><br><br>
+            <?php if ($erro): ?>
+                <p style="color:red"><?= $erro ?></p>
+            <?php endif; ?>
 
-        <label>Confirmar Senha:</label>
-        <input type="password" name="confirmar" maxlength="10" required><br><br>
+            <form method="POST">
+                <label>Nova Senha:</label>
+                <input type="password" name="nova_senha" maxlength="10" required><br>
 
-        <button type="submit">Salvar Nova Senha</button>
-    </form>
+                <label>Confirmar Senha:</label>
+                <input type="password" name="confirmar" maxlength="10" required><br>
+
+                <button type="submit" class="btn-login">Salvar Nova Senha</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
+    </footer>
 </body>
 
 </html>
