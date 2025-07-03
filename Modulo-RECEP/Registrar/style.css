@@ -616,10 +616,6 @@ button:disabled {
   pointer-events: auto;
 }
 
-#popupToast.success {
-  background-color: #0a853d;
-}
-
 #popupToast.error {
   background-color: #cc2a2a;
 }
@@ -629,3 +625,6 @@ button:disabled {
   color: #000;
 }
 
+#popupToast.info {
+  background-color: #0a853d;
+}

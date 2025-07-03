@@ -23,22 +23,22 @@
 /* =================== LAYOUT GERAL =================== */
 
 body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  padding-top: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
 
-  /* Fundo pontilhado */
-  --dot-bg: #f8f8f8;
-  --dot-color: #293264;
-  --dot-size: 1px;
-  --dot-space: 26px;
-  background:
-    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    var(--dot-color);
+    /* Fundo pontilhado */
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
 
-  background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 
@@ -184,21 +184,22 @@ main {
 }
 
 .aviso {
-    display: none;
     position: fixed;
     bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f44336;
-    /* vermelho */
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    z-index: 1001;
     color: white;
-    padding: 12px 24px;
-    border-radius: 4px;
+    display: none;
+    bottom: 60px;
+    background-color: #f44336;
     font-family: Arial, sans-serif;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    z-index: 1001;
 }
-
 
 table {
     width: 100%;

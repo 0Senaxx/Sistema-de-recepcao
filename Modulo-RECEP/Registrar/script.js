@@ -80,6 +80,20 @@ setInterval(atualizarDataHora, 1000);
 atualizarDataHora();
 
 // ======================================================
+// MÁSCARA PARA CPF
+// ======================================================
+document.getElementById('cpf').addEventListener('input', function (e) {
+  let value = e.target.value.replace(/\D/g, '');
+  if (value.length > 11) value = value.slice(0, 11);
+
+  value = value.replace(/(\d{3})(\d)/, '$1.$2');
+  value = value.replace(/(\d{3})(\d)/, '$1.$2');
+  value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+  e.target.value = value;
+});
+
+// ======================================================
 // VALIDAÇÃO DE CPF 
 // ======================================================
 
@@ -118,28 +132,61 @@ function validarCPF() {
   }
 }
 
-// ======================================================
-// MÁSCARA PARA CPF
-// ======================================================
-document.getElementById('cpf').addEventListener('input', function (e) {
-  let value = e.target.value.replace(/\D/g, '');
-  if (value.length > 11) value = value.slice(0, 11);
 
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+// ======================================================
+// BUSCA CPF
+// ======================================================
+document.getElementById('btnBuscarCPF').addEventListener('click', function () {
+  const cpf = document.getElementById('cpf').value.trim();
 
-  e.target.value = value;
+  if (cpf === '') {
+    mostrarPopup('Por favor, preencha o CPF para buscar.', 'warning');
+    return;
+  }
+
+  if (cpf.length !== 14) {
+    mostrarPopup('CPF inválido.', 'error');
+    return;
+  }
+
+  fetch(`buscar_visitante.php?cpf=${cpf}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.encontrado) {
+  mostrarPopup('CPF já cadastrado.', 'info');
+
+  document.getElementById('nome').value = data.nome;
+  document.getElementById('social').value = data.social;
+  document.getElementById('orgao').value = data.orgao;
+
+  if (data.foto) {
+    fotoBox.style.background = `url(${data.foto}) center/cover no-repeat`;
+    video.style.display = 'none';
+    canvas.style.display = 'none';
+    fotoTexto.style.display = 'none';
+  }
+
+  btnFoto.textContent = 'Alterar';
+  modo = 'ligar';
+} else {
+  mostrarPopup('CPF não cadastrado.', 'warning');
+}
+
+    })
+    .catch(error => {
+      console.error('Erro ao buscar visitante:', error);
+      mostrarPopup('Erro ao buscar CPF.', 'error');
+    });
 });
 
 // ======================================================
 // POP-UP CUSTOMIZADO
 // ======================================================
-function mostrarPopup(mensagem, tipo = 'success', duracao = 3000) {
+function mostrarPopup(mensagem, tipo = 'success', duracao = 5000) {
   const popup = document.getElementById('popupToast');
   popup.textContent = mensagem;
 
-  popup.classList.remove('success', 'error', 'warning');
+  popup.classList.remove('success', 'error', 'warning', 'info');
   popup.classList.add(tipo);
   popup.classList.add('show');
 
@@ -148,44 +195,6 @@ function mostrarPopup(mensagem, tipo = 'success', duracao = 3000) {
   popup._timeout = setTimeout(() => {
     popup.classList.remove('show');
   }, duracao);
-}
-
-// ======================================================
-// VALIDAÇÃO DE CPF
-// ======================================================
-function validarCPF() {
-  const cpfInput = document.getElementById('cpf');
-  const cpf = cpfInput.value.replace(/\D/g, '');
-
-  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
-    mostrarPopup('CPF inválido.', 'error');
-    cpfInput.classList.add('input-erro', 'cpf-invalido');
-    return false;
-  }
-
-  // Cálculo dos dígitos verificadores
-  let soma = 0;
-  for (let i = 0; i < 9; i++) {
-    soma += parseInt(cpf.charAt(i)) * (10 - i);
-  }
-  let resto = 11 - (soma % 11);
-  let dig1 = resto >= 10 ? 0 : resto;
-
-  soma = 0;
-  for (let i = 0; i < 10; i++) {
-    soma += parseInt(cpf.charAt(i)) * (11 - i);
-  }
-  resto = 11 - (soma % 11);
-  let dig2 = resto >= 10 ? 0 : resto;
-
-  if (parseInt(cpf.charAt(9)) === dig1 && parseInt(cpf.charAt(10)) === dig2) {
-    cpfInput.classList.remove('input-erro', 'cpf-invalido');
-    return true;
-  } else {
-    mostrarPopup('CPF inválido.', 'error');
-    cpfInput.classList.add('input-erro', 'cpf-invalido');
-    return false;
-  }
 }
 
 // ======================================================
@@ -218,50 +227,6 @@ function limparCampos() {
   btnFoto.textContent = 'Fotografar';
   modo = 'ligar';
 }
-
-// ======================================================
-// BUSCA CPF
-// ======================================================
-document.getElementById('btnBuscarCPF').addEventListener('click', function () {
-  const cpf = document.getElementById('cpf').value.trim();
-
-  if (cpf === '') {
-    mostrarPopup('Por favor, preencha o CPF para buscar.', 'warning');
-    return;
-  }
-
-  if (cpf.length !== 14) {
-    mostrarPopup('CPF inválido.', 'error');
-    return;
-  }
-
-  fetch(`buscar_visitante.php?cpf=${cpf}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.encontrado) {
-        document.getElementById('nome').value = data.nome;
-        document.getElementById('social').value = data.social;
-        document.getElementById('orgao').value = data.orgao;
-
-        if (data.foto) {
-          fotoBox.style.background = `url(${data.foto}) center/cover no-repeat`;
-          video.style.display = 'none';
-          canvas.style.display = 'none';
-          fotoTexto.style.display = 'none';
-        }
-
-        btnFoto.textContent = 'Alterar';
-        modo = 'ligar';
-      } else {
-        mostrarPopup('CPF não cadastrado.', 'warning');
-
-      }
-    })
-    .catch(error => {
-      console.error('Erro ao buscar visitante:', error);
-      mostrarPopup('Erro ao buscar CPF.', 'error');
-    });
-});
 
 // ======================================================
 // FORMULÁRIO - ENVIO

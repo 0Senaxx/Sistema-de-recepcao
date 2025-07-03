@@ -44,9 +44,9 @@
     </section>
   </main>
 
-  <footer class="rodape">
-    Copyright © 2025 SEAD | EPP. Todos os direitos reservados
-  </footer>
+    <footer class="rodape">
+        2025 SEAD | EPP. Todos os direitos reservados
+    </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
   <script>

@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
     </main>
     <footer class="rodape">
-        Copyright © 2025 SEAD | EPP. Todos os direitos reservados
+        2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 
     <?php if (isset($sucesso) && $sucesso): ?>

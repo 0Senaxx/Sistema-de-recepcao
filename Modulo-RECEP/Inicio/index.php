@@ -123,7 +123,7 @@ $result = $stmt->get_result();
     </main>
 
     <footer class="rodape">
-        2025 SEAD | Todos os direitos reservados
+        2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 </body>
 

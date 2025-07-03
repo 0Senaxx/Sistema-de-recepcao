@@ -190,7 +190,7 @@ $result = $conn->query($sql);
 
         <div class="form-lista">
           <label>Status:</label>
-          <select name="status" id="status" required>  
+          <select name="status" id="status" required>
             <option value="Disponível" selected>Disponível</option>
             <option value="Indisponível">Indisponível</option>
           </select>
@@ -226,7 +226,7 @@ $result = $conn->query($sql);
   </div>
 
   <footer class="rodape">
-    2025 SEAD | Todos os direitos reservados
+    2025 SEAD | EPP. Todos os direitos reservados
   </footer>
   <script src="script.js"></script>
   </script>

@@ -40,7 +40,7 @@ $resultSetores = $conn->query($sqlSetores);
     </header>
 
     <main>
-        
+
         <section class="card">
             <div class="topo">
                 <h2>Lista de Ramais SEAD</h2>
@@ -113,7 +113,7 @@ $resultSetores = $conn->query($sqlSetores);
     </main>
 
     <footer class="rodape">
-        2025 SEAD | Todos os direitos reservados
+        2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 
     <div class="aviso" id="popup-aviso" style="display:none;">Nenhum resultado encontrado.</div>

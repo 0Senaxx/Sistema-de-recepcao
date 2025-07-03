@@ -193,8 +193,9 @@ $result = $conn->query($sql);
     </div>
 
     <footer class="rodape">
-        2025 SEAD | Todos os direitos reservados
+        2025 SEAD | EPP. Todos os direitos reservados
     </footer>
+    
     <script src="script.js"></script>
 </body>
 
