@@ -132,7 +132,6 @@ function validarCPF() {
   }
 }
 
-
 // ======================================================
 // BUSCA CPF
 // ======================================================
@@ -153,24 +152,24 @@ document.getElementById('btnBuscarCPF').addEventListener('click', function () {
     .then(response => response.json())
     .then(data => {
       if (data.encontrado) {
-  mostrarPopup('CPF já cadastrado.', 'info');
+        mostrarPopup('CPF já cadastrado.', 'info');
 
-  document.getElementById('nome').value = data.nome;
-  document.getElementById('social').value = data.social;
-  document.getElementById('orgao').value = data.orgao;
+        document.getElementById('nome').value = data.nome;
+        document.getElementById('social').value = data.social;
+        document.getElementById('orgao').value = data.orgao;
 
-  if (data.foto) {
-    fotoBox.style.background = `url(${data.foto}) center/cover no-repeat`;
-    video.style.display = 'none';
-    canvas.style.display = 'none';
-    fotoTexto.style.display = 'none';
-  }
+        if (data.foto) {
+          fotoBox.style.background = `url(${data.foto}) center/cover no-repeat`;
+          video.style.display = 'none';
+          canvas.style.display = 'none';
+          fotoTexto.style.display = 'none';
+        }
 
-  btnFoto.textContent = 'Alterar';
-  modo = 'ligar';
-} else {
-  mostrarPopup('CPF não cadastrado.', 'warning');
-}
+        btnFoto.textContent = 'Alterar';
+        modo = 'ligar';
+      } else {
+        mostrarPopup('CPF não cadastrado.', 'warning');
+      }
 
     })
     .catch(error => {
@@ -228,6 +227,11 @@ function limparCampos() {
   modo = 'ligar';
 }
 
+// Função para limpar todos os campos do formulário
+document.getElementById('btnLimpar').addEventListener('click', () => {
+  location.reload();
+});
+
 // ======================================================
 // FORMULÁRIO - ENVIO
 // ======================================================
@@ -249,7 +253,6 @@ form.addEventListener('submit', function (event) {
     form.submit();
   }, 2500);
 });
-
 
 // ======================================================
 // AUTOCOMPLETE MANUAL PARA O SETOR
@@ -329,11 +332,3 @@ selectServidor.addEventListener('change', function () {
   }
 });
 
-
-
-
-
-// Função para limpar todos os campos do formulário
-document.getElementById('btnLimpar').addEventListener('click', () => {
-  location.reload();
-});

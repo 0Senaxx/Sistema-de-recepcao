@@ -56,7 +56,7 @@ $result = $conn->query($sql);
             <a class="nav" href="../Setores/index.php">Setores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
-            <a class="nav" href="../../01-Login/Auth/logout.php">Sair</a>
+            <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
 
@@ -68,7 +68,7 @@ $result = $conn->query($sql);
                 <div>
                     <label class="txt-label">Buscar: </label>
                     <input class="campo-buscar" type="text" id="filtro" autocomplete="off" placeholder="Digite para buscar..." onkeyup="filtrarTabela()">
-                    
+
                     <button id="abrirModal" class="btn-acao botao-relatorio">
                         <img src="../../Imagens/Icons/relatorio.png" alt="Gerar Relatório" class="icon-relatorio">
                         Gerar Relatório
@@ -154,6 +154,7 @@ $result = $conn->query($sql);
             <br>
 
             <form action="Relatorios/gerar_relatorio.php" method="get" target="_blank">
+                <!-- Linha 1: Data Início e Fim -->
                 <div class="form-linha">
                     <div class="form-campo">
                         <label for="data_inicio">Data Início:</label>
@@ -164,7 +165,9 @@ $result = $conn->query($sql);
                         <input type="date" id="data_fim" name="data_fim">
                     </div>
                 </div>
-                <div class="form-linha">
+
+                <!-- Linha 2: Setor (em coluna) -->
+                <div class="form-linha coluna">
                     <div class="form-campo">
                         <label for="setor">Setor Visitado:</label>
                         <select id="setor" name="setor">
@@ -174,6 +177,10 @@ $result = $conn->query($sql);
                             <?php endwhile; ?>
                         </select>
                     </div>
+                </div>
+
+                <!-- Linha 3: Servidor (em coluna) -->
+                <div class="form-linha coluna">
                     <div class="form-campo">
                         <label for="servidor">Servidor Visitado:</label>
                         <select id="servidor" name="servidor">
@@ -184,6 +191,7 @@ $result = $conn->query($sql);
                         </select>
                     </div>
                 </div>
+                
                 <div class="form-botoes">
                     <button class="bnt-pdf" type="submit">📄 Gerar PDF</button>
                     <button class="bnt-excel" type="submit" formaction="Relatorios/exportar_excel.php">📥 Exportar Excel</button>
@@ -195,7 +203,7 @@ $result = $conn->query($sql);
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 

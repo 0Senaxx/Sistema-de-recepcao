@@ -24,22 +24,22 @@
 /* =================== LAYOUT GERAL =================== */
 
 body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  padding-top: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
 
-  /* Fundo pontilhado */
-  --dot-bg: #f8f8f8;
-  --dot-color: #293264;
-  --dot-size: 1px;
-  --dot-space: 26px;
-  background:
-    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    var(--dot-color);
+    /* Fundo pontilhado */
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
 
-  background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -116,7 +116,6 @@ main {
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    /* Centraliza horizontalmente */
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -283,13 +282,9 @@ main {
 
 .choices__inner {
     background-color: #ffffff !important;
-    /* Cor de fundo vermelha */
     border: 1px solid #ccc !important;
-    /* Verde */
     border-radius: 5px !important;
-    /* Arredondado */
     color: #000000 !important;
-    /* Texto branco */
     font-size: 14px;
     padding: 10px;
 }
@@ -310,7 +305,7 @@ main {
 
 
 /* ===========================
-   QUARTA LINHA DO FORMULÁRIO
+    QUARTA LINHA DO FORMULÁRIO
    =========================== */
 .quarta-linha {
     display: grid;
@@ -410,34 +405,35 @@ main {
 }
 
 .btn.Limpar {
-background-color: rgb(82, 109, 133); 
-color: #fff;
+    background-color: rgb(82, 109, 133);
+    color: #fff;
 
 }
 
 .btn.Limpar:hover {
-    background-color: rgb(73, 96, 116); 
+    background-color: rgb(73, 96, 116);
 }
 
 
 /* Classe base para todos os botões de ação */
 .btn-acao {
-  display: inline-flex;    /* Igual pra <a> e <button> */
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 15px;
-  height: 40px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  border: none;
+    display: inline-flex;
+    /* Igual pra <a> e <button> */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 15px;
+    height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    border: none;
 }
 
 .btn-acao img {
-  height: 14px;
+    height: 14px;
 }
 
 .btn.foto {
@@ -529,12 +525,6 @@ button:disabled {
     object-fit: cover;
 }
 
-
-
-/* =================== POPUPS =================== */
-
-
-
 /* =================== RESPONSIVIDADE =================== */
 
 /* ===== Responsividade para tablets e celulares ===== */
@@ -590,41 +580,41 @@ button:disabled {
 }
 
 /* ===========================
-   POPUP TOAST NO RODAPÉ
+    POPUP TOAST NO RODAPÉ
 =========================== */
 
 #popupToast {
-  position: fixed;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 20px;
-  font-size: 1rem;
-  border-radius: 8px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1001;
-  color: #fff;
-  max-width: 90%;
-  text-align: center;
-  word-wrap: break-word;
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1001;
+    color: #fff;
+    max-width: 90%;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 #popupToast.show {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #popupToast.error {
-  background-color: #cc2a2a;
+    background-color: #cc2a2a;
 }
 
 #popupToast.warning {
-  background-color: #e0a800;
-  color: #000;
+    background-color: #e0a800;
+    color: #000;
 }
 
 #popupToast.info {
-  background-color: #0a853d;
+    background-color: #0a853d;
 }

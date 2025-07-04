@@ -23,23 +23,23 @@
 /* =================== LAYOUT GERAL =================== */
 
 body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  padding-top: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding-top: 55px;
 
-  /* Fundo pontilhado */
-  --dot-bg: #f8f8f8;
-  --dot-color: #293264;
-  --dot-size: 1px;
-  --dot-space: 26px;
-  
-  background:
-    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-    var(--dot-color);
+    /* Fundo pontilhado */
+    --dot-bg: #f8f8f8;
+    --dot-color: #293264;
+    --dot-size: 1px;
+    --dot-space: 26px;
 
-  background-attachment: fixed;
+    background:
+        linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+
+    background-attachment: fixed;
 }
 
 /* =================== CABECALHO =================== */
@@ -104,7 +104,6 @@ body {
     width: 100%;
     text-align: center;
 }
-
 
 /* Container principal */
 main {
@@ -182,7 +181,6 @@ main {
     /* cor diferente ao passar o mouse */
 }
 
-
 .txt-label {
     margin-bottom: 5px;
     font-weight: bold;
@@ -236,11 +234,11 @@ tbody tr:hover {
     background-color: #e6e6e6;
 }
 
-.col-sigla{
+.col-sigla {
     width: 8%;
 }
 
-.col-setor{
+.col-setor {
     width: 35%;
 }
 
@@ -267,21 +265,21 @@ tbody tr:hover {
 
 /* Classe base para todos os botões de ação */
 .btn-acao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 10px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    border: none;
 }
 
 .btn-acao img {
-  height: 14px;
+    height: 14px;
 }
 
 .btnEditar {
@@ -328,7 +326,6 @@ tbody tr:hover {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    /* fundo escuro */
 }
 
 .modal-conteudo {
@@ -396,7 +393,6 @@ tbody tr:hover {
     margin-bottom: 10px;
 }
 
-
 .form-campo input {
     padding: 10px;
     border-radius: 5px;
@@ -417,4 +413,3 @@ input#inputSigla,
 input#inputNome {
     text-transform: uppercase;
 }
-

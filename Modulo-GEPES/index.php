@@ -19,6 +19,7 @@ include '../conexao.php';
 $setor_filter = $_GET['setor'] ?? '';
 
 // Busca (opcional)
+
 $busca = $_GET['busca'] ?? '';
 
 // Consulta SQL com filtro e busca

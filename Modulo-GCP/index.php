@@ -100,10 +100,9 @@ $res = $conn->query($sql);
                     </tbody>
                 </table>
             </div>
-
-
         </section>
     </main>
+
     <!-- Modal -->
     <div id="modalAdicionar" class="modal">
         <div class="modal-conteudo">
@@ -153,9 +152,11 @@ $res = $conn->query($sql);
             </form>
         </div>
     </div>
+    
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
+
     <script>
         const modal = document.getElementById('modalAdicionar');
         const btnAbrir = document.getElementById('btnAbrirModal');
@@ -177,7 +178,6 @@ $res = $conn->query($sql);
         inputNome.addEventListener('input', function() {
             this.value = this.value.toUpperCase();
         });
-
 
         // Abrir modal para adicionar (limpa campos)
         btnAbrir.addEventListener('click', function(e) {
@@ -256,5 +256,4 @@ $res = $conn->query($sql);
         }
     </script>
 </body>
-
 </html>

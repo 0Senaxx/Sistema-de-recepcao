@@ -141,7 +141,7 @@
             // Espera 10 segundos e redireciona
             setTimeout(() => {
               window.location.href = 'index.php';
-            }, 5000);
+            }, 10000);
 
           } else {
             resultado.textContent = "Erro ao registrar saída.";
