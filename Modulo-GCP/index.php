@@ -25,6 +25,8 @@ $res = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <title>Setores</title>
 </head>
 
@@ -65,6 +67,7 @@ $res = $conn->query($sql);
                             <th>Nome</th>
                             <th class="text-center">Localização</th>
                             <th class="text-center">Ramal</th>
+                            <th class="text-center">Telefone</th>
                             <th class="text-center">Atualizado</th>
                             <th class="text-center">Ações</th>
                         </tr>
@@ -76,17 +79,20 @@ $res = $conn->query($sql);
                                 <td class="col-setor"><?= htmlspecialchars($setor['nome']) ?></td>
                                 <td class="col-local  text-center"><?= htmlspecialchars($setor['localizacao']) ?></td>
                                 <td class="col-ramal text-center"><?= htmlspecialchars($setor['ramal']) ?></td>
+                                <td class="col-telefone text-center"><?= htmlspecialchars($setor['telefone']) ?></td>
                                 <td class="col-atualizacao  text-center"><?= date('d/m/Y', strtotime($setor['updated_at'])) ?></td>
                                 <td class="col-acao text-center">
-                                    <a href="#" class="btn-acao btnEditar" data-id="<?= $setor['id'] ?>"
+                                    <a href="#" class="btn-acao btnEditar"
+                                        data-id="<?= $setor['id'] ?>"
                                         data-sigla="<?= htmlspecialchars($setor['sigla']) ?>"
                                         data-nome="<?= htmlspecialchars($setor['nome']) ?>"
                                         data-localizacao="<?= htmlspecialchars($setor['localizacao']) ?>"
-                                        data-ramal="<?= htmlspecialchars($setor['ramal']) ?>">
+                                        data-ramal="<?= htmlspecialchars($setor['ramal']) ?>"
+                                        data-telefone="<?= htmlspecialchars($setor['telefone']) ?>">
                                         <img src="../Imagens/Icons/editar.png" alt="Editar setor">
-                                
                                         Editar
                                     </a>
+
                                     <a href="excluir.php?id=<?= $setor['id'] ?>" class="btn-acao bntExcluir" onclick="return confirm('Deseja excluir este setor?')">
                                         <img src="../Imagens/Icons/excluir.png" alt="excluir setor">
                                         Excluir
@@ -134,9 +140,14 @@ $res = $conn->query($sql);
 
                 <div class="form-campo">
                     <label>Ramal:</label>
-                    <input type="text" name="ramal" id="inputRamal" maxlength="100" placeholder="3182 - 0000 / 0000" />
-                    <small>* Separe os ramais com " / "</small>
+                    <input type="text" name="ramal" id="inputRamal" maxlength="100" placeholder="Separe os ramais com /" />
+                </div>
+
+                <div class="form-campo">
+                    <label>Telefonia móvel (celulares corporativo):</label>
+                    <input type="text" name="telefone" id="inputTelefone" maxlength="15" placeholder="Se aplicavel">
                 </div><br><br>
+
 
                 <div class="modal-botoes">
                     <button class="btn-acao bntSalvar" type="submit" id="btnSalvar">
@@ -152,7 +163,7 @@ $res = $conn->query($sql);
             </form>
         </div>
     </div>
-    
+
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
@@ -169,6 +180,7 @@ $res = $conn->query($sql);
         const inputNome = document.getElementById('inputNome');
         const inputLocalizacao = document.getElementById('inputLocalizacao');
         const inputRamal = document.getElementById('inputRamal');
+        const inputTelefone = document.getElementById('inputTelefone');
 
         // Força caixa alta em tempo real
         inputSigla.addEventListener('input', function() {
@@ -189,6 +201,7 @@ $res = $conn->query($sql);
             inputNome.value = '';
             inputLocalizacao.value = '';
             inputRamal.value = '';
+            inputTelefone.value = '';
             modal.style.display = 'block';
         });
 
@@ -205,6 +218,7 @@ $res = $conn->query($sql);
                 inputNome.value = this.dataset.nome;
                 inputLocalizacao.value = this.dataset.localizacao;
                 inputRamal.value = this.dataset.ramal;
+                inputTelefone.value = this.dataset.telefone;
 
                 modal.style.display = 'block';
             });
@@ -214,13 +228,6 @@ $res = $conn->query($sql);
         btnFechar.addEventListener('click', function(e) {
             e.preventDefault();
             modal.style.display = 'none';
-        });
-
-        // Fechar modal ao clicar fora da área do modal
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
         });
 
         // Máscara para ramal no formato 0000 - 0000
@@ -254,6 +261,11 @@ $res = $conn->query($sql);
             // Mostrar ou esconder a linha de "Nenhum resultado"
             document.getElementById('sem-resultados').style.display = encontrou ? 'none' : '';
         }
+
+        $(document).ready(function() {
+            $('#inputTelefone').mask('(00) 00000-0000');
+        });
     </script>
 </body>
+
 </html>

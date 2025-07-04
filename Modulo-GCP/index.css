@@ -239,23 +239,27 @@ tbody tr:hover {
 }
 
 .col-setor {
-    width: 35%;
+    width: 30%;
 }
 
 .col-local {
-    width: 15%;
-}
-
-.col-ramal {
-    width: 15%;
-}
-
-.col-atualizacao {
     width: 10%;
 }
 
+.col-ramal {
+    width: 10%;
+}
+
+.col-telefone {
+    width: 10%;
+}
+
+.col-atualizacao {
+    width: 8%;
+}
+
 .col-acao {
-    width: 20%;
+    width: 15%;
 }
 
 .text-center {
