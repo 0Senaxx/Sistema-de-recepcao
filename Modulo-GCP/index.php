@@ -263,7 +263,7 @@ $res = $conn->query($sql);
         }
 
         $(document).ready(function() {
-            $('#inputTelefone').mask('(00) 00000-0000');
+            $('#inputTelefone').mask('(00) 0 0000-0000');
         });
     </script>
 </body>
