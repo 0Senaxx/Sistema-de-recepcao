@@ -35,12 +35,12 @@ $res = $conn->query($sql);
             <a class="nav" href="../Usuarios/usuarios.php">Usuários</a>
             <a class="nav" href="../Visitantes/visitantes.php">Visitantes</a>
             <a class="nav" href="../Setores/index.php">Setores</a>
+            <a class="nav" href="../Servidores/index.php">Servidores</a>
             <a class="nav" href="../Visitas/visitas.php">Visitas</a>
             <a class="nav" href="../Documentos/documentos.php">Repositório</a>
             <a class="nav" href="../../Firewall/Auth/logout.php">Sair</a>
         </nav>
     </header>
-
     <main>
         <section class="Modulo">
             <div class="topo-modulo">
