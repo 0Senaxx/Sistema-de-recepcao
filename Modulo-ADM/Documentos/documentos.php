@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['documento'])) {
     $nome_original = $_FILES['documento']['name'];
     $nome_arquivo = $_POST['nome_arquivo'] ?? pathinfo($nome_original, PATHINFO_FILENAME);
     $descricao = $_POST['descricao'] ?? '';
-    $caminho = '../../uploads/' . basename($nome_original);
+    $caminho = 'uploads/' . basename($nome_original);
 
 
     if (move_uploaded_file($_FILES['documento']['tmp_name'], $caminho)) {

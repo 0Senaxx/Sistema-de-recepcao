@@ -1,6 +1,6 @@
 <?php
-require_once '../Firewall/Auth/autenticacao.php';
-require_once '../conexao.php';
+require_once '../../Firewall/Auth/autenticacao.php';
+require_once '../../conexao.php';
 
 if (!isset($_GET['id'])) {
     die('Arquivo não especificado.');
@@ -16,10 +16,13 @@ $result = $stmt->get_result();
 if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-    // Defina o diretório de uploads
-    $uploadDir = __DIR__ . '';
-    $filename = $row['caminho']; // Ex.: carta_de_servicos.pdf
-    $filepath = $uploadDir . $filename;
+    $uploadDir = realpath(__DIR__ . '/../../Modulo-ADM/Documentos/Uploads/');
+    if ($uploadDir === false) {
+        die('Pasta de uploads não encontrada.');
+    }
+
+    $filename = basename($row['caminho']); // Use só o nome do arquivo
+    $filepath = $uploadDir . DIRECTORY_SEPARATOR . $filename;
 
     if (file_exists($filepath)) {
         $mime = mime_content_type($filepath);
