@@ -34,13 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Buscar ocorrências com JOIN no nome do usuário
+$usuario_id = $_SESSION['usuario_id']; // ID do usuário logado
+
 $sqlOcorrencias = "
     SELECT o.id, o.data_hora, o.descricao, u.nome AS responsavel
     FROM ocorrencias o
     JOIN usuarios u ON o.usuario_id = u.id
+    WHERE o.usuario_id = ?
     ORDER BY o.data_hora DESC
 ";
-$resultOcorrencias = $conn->query($sqlOcorrencias);
+
+$stmtOcorrencias = $conn->prepare($sqlOcorrencias);
+$stmtOcorrencias->bind_param("i", $usuario_id);
+$stmtOcorrencias->execute();
+$resultOcorrencias = $stmtOcorrencias->get_result();
 ?>
 
 <!DOCTYPE html>
