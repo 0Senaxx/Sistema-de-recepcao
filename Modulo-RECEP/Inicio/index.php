@@ -61,7 +61,7 @@ $result = $stmt->get_result();
                 <h2 class="bem-vindo">Bem-vindo(a), <?= $_SESSION['nome']; ?>!</h2>
 
                 <h2 class="titulo-centro">Visitas do Dia: <?= date('d/m/Y') ?></h2>
-                
+
                 <div class="controle-botoes">
                     <a href="../Registrar/nova_visita.php" class="btn-acao  bnt-nova">
                         <img src="../../Imagens/Icons/adicionar.png" alt="Nova Visita">
@@ -90,7 +90,7 @@ $result = $stmt->get_result();
                             <th class="text-center">Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="visitas-tbody">
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td class="text-center"><?= $row['hora'] ?></td>
@@ -124,7 +124,65 @@ $result = $stmt->get_result();
 
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
-    </footer>
+    </footer>]
+    <script>
+        function maskCpf(cpf) {
+            const partes = cpf.split('.');
+            if (partes.length === 3 && partes[2].includes('-')) {
+                const subpartes = partes[2].split('-');
+                return '***.' + partes[1] + '.' + subpartes[0] + '-**';
+            } else {
+                return 'CPF inválido';
+            }
+        }
+
+        function atualizarTabela() {
+            fetch('listar_visitas.php')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('visitas-tbody');
+                    tbody.innerHTML = ''; // Limpa tudo
+
+                    data.forEach(visita => {
+                        const tr = document.createElement('tr');
+
+                        // Entrada
+                        tr.innerHTML += `<td class="text-center">${visita.hora}</td>`;
+
+                        // Nome ou social
+                        const nome = visita.social && visita.social.trim() !== '' ? visita.social : visita.nome;
+                        tr.innerHTML += `<td>${nome}</td>`;
+
+                        // CPF mascarado
+                        tr.innerHTML += `<td class="text-center">${maskCpf(visita.cpf)}</td>`;
+
+                        // Setor
+                        tr.innerHTML += `<td>${visita.nome_setor || '---'}</td>`;
+
+                        // Servidor
+                        tr.innerHTML += `<td>${visita.nome_servidor || '---'}</td>`;
+
+                        // Saída
+                        tr.innerHTML += `<td class="text-center">${visita.saida ? visita.saida : '---'}</td>`;
+
+                        // Status
+                        const status = visita.saida ?
+                            '<span class="text-success">Encerrada</span>' :
+                            '<span class="text-warning">Em Andamento</span>';
+                        tr.innerHTML += `<td class="text-center">${status}</td>`;
+
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar visitas:', error));
+        }
+
+        // Atualiza a tabela a cada 10 segundos
+        setInterval(atualizarTabela, 10000);
+
+        // Chama logo que a página carrega
+        atualizarTabela();
+    </script>
 </body>
 
 </html>
