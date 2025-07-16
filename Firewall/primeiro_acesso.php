@@ -12,20 +12,13 @@ $erro = "";
 // Função para validar CPF completo
 function validaCPF($cpf)
 {
-    // Remove caracteres não numéricos
     $cpf = preg_replace('/\D/', '', $cpf);
-
-    // Verifica se tem 11 dígitos
     if (strlen($cpf) != 11) {
         return false;
     }
-
-    // Verifica se todos os dígitos são iguais (CPF inválido)
     if (preg_match('/(\d)\1{10}/', $cpf)) {
         return false;
     }
-
-    // Cálculo do primeiro dígito verificador
     for ($t = 9; $t < 11; $t++) {
         $soma = 0;
         for ($i = 0; $i < $t; $i++) {
@@ -39,7 +32,6 @@ function validaCPF($cpf)
             return false;
         }
     }
-
     return true;
 }
 
@@ -48,20 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmar = $_POST['confirmar'];
     $cpf = $_POST['cpf'];
 
-    // Limpar CPF: só números
+    // ➕ Novo campo do pop-up: status do termo (aceito ou recusado)
+    $status_termo = isset($_POST['status_termo']) ? $_POST['status_termo'] : 'recusado';
+
     $cpf_numeros = preg_replace('/\D/', '', $cpf);
 
-    // Validar CPF completo
     if (!validaCPF($cpf_numeros)) {
         $erro = "CPF inválido. Digite um CPF válido.";
-    }
-    // Validação de senha
-    elseif ($nova_senha !== $confirmar) {
+    } elseif ($nova_senha !== $confirmar) {
         $erro = "As senhas não coincidem.";
     } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/', $nova_senha)) {
         $erro = "A senha deve conter no mínimo 6 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.";
     } else {
-        // Formatar CPF com pontuação: 000.000.000-00
         $cpf_formatado = substr($cpf_numeros, 0, 3) . '.' .
             substr($cpf_numeros, 3, 3) . '.' .
             substr($cpf_numeros, 6, 3) . '-' .
@@ -70,10 +60,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_SESSION['usuario_id'];
         $hash = password_hash($nova_senha, PASSWORD_DEFAULT);
 
+        // Atualiza senha, CPF e marca senha_temporaria como 0
         $sql = "UPDATE usuarios SET senha = ?, cpf = ?, senha_temporaria = 0, data_ultima_troca = NOW() WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssi", $hash, $cpf_formatado, $id);
         $stmt->execute();
+
+        // ➕ Inserir histórico do termo de uso
+        $sql_termo = "INSERT INTO historico_termo_uso (usuario_id, status) VALUES (?, ?)";
+        $stmt_termo = $conn->prepare($sql_termo);
+        $stmt_termo->bind_param("is", $id, $status_termo);
+        $stmt_termo->execute();
 
         header("Location: Auth/verificar_login.php");
         exit;
@@ -126,6 +123,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <button type="submit" id="btn-submit" class="btn-login" disabled>Salvar e Acessar</button>
 
+                <input type="hidden" name="status_termo" id="status_termo">
+
             </form>
         </section>
     </main>
@@ -134,6 +133,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
+
+    <!-- Modal Termo de Uso e Privacidade -->
+    <div id="termoModal" class="modal">
+        <div class="modal-content">
+            <h2>Termo de Uso e Política de Privacidade</h2>
+            <div class="termo-texto">
+                <p>Leia atentamente o nosso Termo de Uso e Política de Privacidade.</p>
+                <p>[Insira aqui o texto completo do termo ou um link para leitura]</p>
+            </div>
+            <div class="modal-botoes">
+                <button id="aceitarTermo">Aceitar</button>
+                <button id="recusarTermo">Recusar</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
@@ -188,6 +202,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         return true;
+    }
+
+    // Exibir modal se necessário
+    window.onload = function() {
+        const termoStatus = localStorage.getItem("termoStatus"); // Ou pegue do banco
+        if (termoStatus !== "aceito") {
+            document.getElementById("termoModal").style.display = "block";
+        }
+    }
+
+    // Botão Aceitar
+    document.getElementById("aceitarTermo").onclick = function() {
+        localStorage.setItem("termoStatus", "aceito");
+        document.getElementById("status_termo").value = "aceito";
+        document.getElementById("termoModal").style.display = "none";
+    };
+
+    document.getElementById("recusarTermo").onclick = function() {
+        localStorage.setItem("termoStatus", "recusado");
+        document.getElementById("status_termo").value = "recusado";
+        document.getElementById("termoModal").style.display = "none";
+    };
+
+
+    // Exemplo de função para registrar no backend
+    function registrarHistorico(status) {
+        fetch('/registrar-termo.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usuarioId: 123,
+                status: status,
+                data: new Date().toISOString()
+            })
+        });
     }
 </script>
 
