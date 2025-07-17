@@ -97,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="card">
 
             <h2>Primeiro Acesso</h2>
-            <p>Para proteger sua conta, altere sua senha e cadastre seu CPF.</p>
 
             <?php if ($erro): ?>
                 <p style="color:red"><?= htmlspecialchars($erro) ?></p>
@@ -107,13 +106,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="campo-senha">
                     <label>Nova Senha:</label>
-                    <input type="password" name="nova_senha" maxlength="10" required>
+                    <input type="password" id="senha" name="nova_senha" minlength="6" maxlength="10" placeholder="Crie uma nova senha" required>
+
+                    <ul id="requisitos-senha">
+                        <li id="letra-maiuscula" class="invalido">▪ Pelo menos uma letra maiúscula</li>
+                        <li id="letra-minuscula" class="invalido">▪ Pelo menos uma letra minúscula</li>
+                        <li id="numero" class="invalido">▪ Pelo menos um número</li>
+                        <li id="simbolo" class="invalido">▪ Pelo menos um símbolo (ex: ! @ # $ %)</li>
+                        <li id="comprimento" class="invalido">▪ Entre 6 e 10 caracteres</li>
+                    </ul>
                 </div>
 
                 <div class="campo-senha">
                     <label>Confirmar Senha:</label>
-                    <input type="password" name="confirmar" maxlength="10" required>
+                    <input type="password" id="confirmar" name="confirmar" maxlength="10" required placeholder="Digite a senha novamente" disabled>
+                    <small id="erro-confirmar" style="color: red; display: none;">As senhas não coincidem.</small>
                 </div>
+
 
                 <div class="campo-senha">
                     <label>CPF:</label>
@@ -133,22 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
-
-    <!-- Modal Termo de Uso e Privacidade -->
-    <div id="termoModal" class="modal">
-        <div class="modal-content">
-            <h2>Termo de Uso e Política de Privacidade</h2>
-            <div class="termo-texto">
-                <p>Leia atentamente o nosso Termo de Uso e Política de Privacidade.</p>
-                <p>[Insira aqui o texto completo do termo ou um link para leitura]</p>
-            </div>
-            <div class="modal-botoes">
-                <button id="aceitarTermo">Aceitar</button>
-                <button id="recusarTermo">Recusar</button>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 <script>
@@ -181,11 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Mesma lógica de validação de CPF no JS
     function validaCPF(cpf) {
         if (cpf.length != 11) return false;
-
-        // Verifica se todos são iguais (ex: 111.111.111-11)
         if (/(\d)\1{10}/.test(cpf)) return false;
 
         for (let t = 9; t < 11; t++) {
@@ -195,7 +185,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             let digito = (10 * soma) % 11;
             if (digito == 10) digito = 0;
-
             if (parseInt(cpf[t]) !== digito) {
                 return false;
             }
@@ -204,43 +193,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return true;
     }
 
-    // Exibir modal se necessário
-    window.onload = function() {
-        const termoStatus = localStorage.getItem("termoStatus"); // Ou pegue do banco
-        if (termoStatus !== "aceito") {
-            document.getElementById("termoModal").style.display = "block";
+    const inputSenha = document.getElementById('senha');
+    const inputConfirmar = document.getElementsByName('confirmar')[0];
+    const erroConfirmar = document.getElementById('erro-confirmar');
+    const listaRequisitos = document.getElementById('requisitos-senha');
+
+    listaRequisitos.style.display = 'none';
+
+    inputSenha.addEventListener('focus', () => {
+        listaRequisitos.style.display = 'block';
+    });
+
+    inputSenha.addEventListener('input', function() {
+        const senha = this.value;
+
+        const temMaiuscula = /[A-Z]/.test(senha);
+        const temMinuscula = /[a-z]/.test(senha);
+        const temNumero = /[0-9]/.test(senha);
+        const temSimbolo = /[\W_]/.test(senha);
+        const tamanhoValido = senha.length >= 6 && senha.length <= 10;
+
+        document.getElementById('letra-maiuscula').className = temMaiuscula ? 'valido' : 'invalido';
+        document.getElementById('letra-minuscula').className = temMinuscula ? 'valido' : 'invalido';
+        document.getElementById('numero').className = temNumero ? 'valido' : 'invalido';
+        document.getElementById('simbolo').className = temSimbolo ? 'valido' : 'invalido';
+        document.getElementById('comprimento').className = tamanhoValido ? 'valido' : 'invalido';
+
+        if (senha.length < 6) {
+            inputConfirmar.disabled = true;
+            inputConfirmar.classList.add('desabilitado');
+        } else {
+            inputConfirmar.disabled = false;
+            inputConfirmar.classList.remove('desabilitado');
+        }
+
+        verificarSenhasIguais();
+    });
+
+    inputConfirmar.addEventListener('input', verificarSenhasIguais);
+
+    function verificarSenhasIguais() {
+        if (inputConfirmar.value && inputSenha.value !== inputConfirmar.value) {
+            erroConfirmar.style.display = 'block';
+        } else {
+            erroConfirmar.style.display = 'none';
         }
     }
-
-    // Botão Aceitar
-    document.getElementById("aceitarTermo").onclick = function() {
-        localStorage.setItem("termoStatus", "aceito");
-        document.getElementById("status_termo").value = "aceito";
-        document.getElementById("termoModal").style.display = "none";
-    };
-
-    document.getElementById("recusarTermo").onclick = function() {
-        localStorage.setItem("termoStatus", "recusado");
-        document.getElementById("status_termo").value = "recusado";
-        document.getElementById("termoModal").style.display = "none";
-    };
-
-
-    // Exemplo de função para registrar no backend
-    function registrarHistorico(status) {
-        fetch('/registrar-termo.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                usuarioId: 123,
-                status: status,
-                data: new Date().toISOString()
-            })
-        });
-    }
 </script>
+
 
 
 </html>
