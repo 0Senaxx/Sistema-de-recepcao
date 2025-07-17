@@ -126,17 +126,17 @@ $result = $conn->query($sql);
                 <input type="hidden" name="id" id="usuarioId" value="">
                 <div class="form-campo">
                     <label>Nome:</label><br>
-                    <input type="text" name="nome" id="nome" required>
+                    <input type="text" name="nome" id="nome" placeholder="Insira o nome do usuário" required>
                 </div>
 
                 <div class="form-campo">
                     <label>Matrícula:</label><br>
-                    <input type="text" name="matricula" id="matricula" required>
+                    <input type="text" name="matricula" id="matricula" placeholder="000.000-0 A" required>
                 </div>
 
                 <div class="form-campo">
                     <label>Senha:</label><br>
-                    <input type="password" name="senha" id="senha" maxlength="10">
+                    <input type="password" name="senha" id="senha" placeholder="Insiar uma senha" maxlength="10">
                 </div>
 
                 <div class="form-perfil">
@@ -148,7 +148,6 @@ $result = $conn->query($sql);
                         <option value="GCP">GCP</option>
                     </select>
                 </div>
-
 
                 <label>Status do perfil:</label><br>
                 <label>
