@@ -138,10 +138,10 @@
             const checkmark = document.getElementById('checkmark');
             checkmark.style.display = 'block';
 
-            // Espera 10 segundos e redireciona
+            // Espera 3 segundos e redireciona
             setTimeout(() => {
               window.location.href = 'index.php';
-            }, 10000);
+            }, 3000);
 
           } else {
             resultado.textContent = "Erro ao registrar saída.";
