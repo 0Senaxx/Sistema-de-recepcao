@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 
 ?>
 
@@ -66,6 +66,11 @@
                     pattern: /[A-Za-z]/
                 }
             }
+        });
+
+        // Converte para maiúsculas ao digitar
+        $('#matricula').on('input', function() {
+            this.value = this.value.toUpperCase();
         });
     </script>
 
