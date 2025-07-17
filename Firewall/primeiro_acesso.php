@@ -76,6 +76,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+$mostrar_termo_modal = true;
+
+$sql_termo = "SELECT status FROM historico_termo_uso 
+              WHERE usuario_id = ? 
+              ORDER BY data_acao DESC LIMIT 1";
+$stmt = $conn->prepare($sql_termo);
+$stmt->bind_param("i", $_SESSION['usuario_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($row = $result->fetch_assoc()) {
+    if ($row['status'] === 'aceito') {
+        $mostrar_termo_modal = false;
+    }
+}
+
+$status_termo = $_POST['status_termo'] ?? 'recusado';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -142,6 +162,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
+
+    <!-- Modal Termo de Uso e Privacidade -->
+    <?php if ($mostrar_termo_modal): ?>
+        <!-- Modal Termo de Uso e Privacidade -->
+        <div id="termoModal" class="modal" style="display:block;">
+            <div class="modal-content">
+                <h2>🔒 Termo de Uso e Política de Privacidade</h2><br>
+                <p>
+                    Para continuar, leia com atenção o nosso
+                    <a href="termo-de-uso.pdf" target="_blank">Termo de Uso</a> e
+                    <a href="termo-de-uso.pdf" target="_blank">Política de Privacidade</a>.
+                </p><br>
+                <div class="modal-botoes">
+                    <button type="button" class="btn-aceitar" id="aceitarTermo">Aceitar</button>
+                    <button type="button" class="btn-recusar" id="recusarTermo">Recusar</button>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
 </body>
 
 <script>
@@ -192,6 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         return true;
     }
+    // VERIFICAÇÃO DOS REQUISITOS DA SENHA
 
     const inputSenha = document.getElementById('senha');
     const inputConfirmar = document.getElementsByName('confirmar')[0];
@@ -239,8 +281,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             erroConfirmar.style.display = 'none';
         }
     }
+    document.getElementById('aceitarTermo')?.addEventListener('click', () => {
+        document.getElementById('status_termo').value = 'aceito';
+        document.getElementById('termoModal').style.display = 'none';
+    });
+
+    document.getElementById('recusarTermo')?.addEventListener('click', () => {
+        document.getElementById('status_termo').value = 'recusado';
+        document.getElementById('termoModal').style.display = 'none';
+    });
 </script>
-
-
 
 </html>

@@ -268,13 +268,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 </body>
 <script>
-    $('#matricula').mask('000.000-0 A', {
-        translation: {
-            'A': {
-                pattern: /[A-Za-z]/
+        $('#matricula').mask('000.000-0 A', {
+            translation: {
+                'A': {
+                    pattern: /[A-Za-z]/
+                }
             }
-        }
-    });
+        });
+
+        // Converte para maiúsculas ao digitar
+        $('#matricula').on('input', function() {
+            this.value = this.value.toUpperCase();
+        });
 </script>
 
 </html>

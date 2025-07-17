@@ -133,7 +133,7 @@ input {
     padding-left: 0;
     margin-top: 10px;
     font-size: 14px;
-    text-align: left; 
+    text-align: left;
 }
 
 #requisitos-senha li {
@@ -146,9 +146,9 @@ input {
 }
 
 input:disabled {
-    background-color: #f0f0f0; 
-    color: #999;             
-    cursor: not-allowed;       
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
 }
 
 .btn-login {
@@ -184,6 +184,65 @@ input:disabled {
 }
 
 
+/* TELA DE PRIMEIRO ACESSO */
+
+/* Modal fundo */
+.modal {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.modal-botoes {
+    margin-top: 15px;
+    text-align: right;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.modal-botoes button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    user-select: none;
+
+}
+
+.btn-aceitar {
+    background-color: #28a745;
+}
+
+.btn-aceitar:hover {
+    background-color: #218838;
+}
+
+.btn-recusar {
+    background-color: #ee0030;
+}
+
+.btn-recusar:hover {
+    background-color: #c50028;
+}
 
 @media (max-width: 480px) {
     .card {

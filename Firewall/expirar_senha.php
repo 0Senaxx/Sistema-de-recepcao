@@ -71,5 +71,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         2025 SEAD | EPP. Todos os direitos reservados
     </footer>
 </body>
-
 </html>
