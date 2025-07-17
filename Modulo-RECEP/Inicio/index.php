@@ -124,7 +124,8 @@ $result = $stmt->get_result();
 
     <footer class="rodape">
         2025 SEAD | EPP. Todos os direitos reservados
-    </footer>]
+    </footer>
+
     <script>
         function maskCpf(cpf) {
             const partes = cpf.split('.');

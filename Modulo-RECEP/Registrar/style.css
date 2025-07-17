@@ -618,3 +618,5 @@ button:disabled {
 #popupToast.info {
     background-color: #0a853d;
 }
+
+#popupToast.success { background-color: #4CAF50; }

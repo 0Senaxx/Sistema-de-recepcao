@@ -55,7 +55,6 @@ $resultCrachas = $conn->query($sqlCrachas);
     </nav>
   </header>
 
-
   <main>
     <section class="card">
       <h2>Registrar visita</h2>
@@ -173,9 +172,7 @@ $resultCrachas = $conn->query($sqlCrachas);
                 <option value="COMPANHIA AMAZONENSE DE DESENVOLVIMENTO E MOBILIZAÇÃO DE ATIVOS – CADA">COMPANHIA AMAZONENSE DE DESENVOLVIMENTO E MOBILIZAÇÃO DE ATIVOS – CADA</option>
                 <option value="AGÊNCIA AMAZONENSE DE DESENVOLVIMENTO ECONÔMICO, SOCIAL E AMBIENTAL – AADESAM">AGÊNCIA AMAZONENSE DE DESENVOLVIMENTO ECONÔMICO, SOCIAL E AMBIENTAL – AADESAM</option>
                 <option value="AGÊNCIA AMAZONENSE DE DESENVOLVIMENTO CULTURAL – AADC">AGÊNCIA AMAZONENSE DE DESENVOLVIMENTO CULTURAL – AADC</option>
-
               </datalist>
-
             </div>
 
             <div class="form-control">
@@ -224,7 +221,6 @@ $resultCrachas = $conn->query($sqlCrachas);
             </div>
           </div>
 
-
           <!-- Botões de ação -->
           <div class="form-actions">
             <button type="submit" class="btn-acao  btn salvar" id="btnSalvar" disabled>
@@ -267,12 +263,10 @@ $resultCrachas = $conn->query($sqlCrachas);
       </form>
     </section>
   </main>
-  <div id="popupToast"></div>
-
-
   <footer class="rodape">
     2025 SEAD | EPP. Todos os direitos reservados
   </footer>
+    <div id="popupToast"></div>
 
   <script src="script.js"></script>
 </body>
