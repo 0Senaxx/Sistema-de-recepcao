@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_termo->bind_param("is", $id, $status_termo);
         $stmt_termo->execute();
 
-        header("Location: Auth/verificar_login.php");
+        header("Location: login.php");
         exit;
     }
 }

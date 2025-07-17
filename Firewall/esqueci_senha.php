@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmtInsert->execute();
 
             // Criar link para redefinir senha
-            $linkGerado = "http://" . $_SERVER['HTTP_HOST'] . "/controle-visitas/Firewall/redefinir_senha.php?token=$token";
+            $linkGerado = "https://" . $_SERVER['HTTP_HOST'] . "/controle-visitas/Firewall/redefinir_senha.php?token=$token";
         } else {
             $mensagem = "Últimos 4 dígitos do CPF incorretos.";
         }
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <br><div class="btn-voltar">
+            <div class="btn-voltar">
                 <a href="login.php">Voltar</a>
             </div>
         </section>
