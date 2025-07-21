@@ -6,8 +6,29 @@ class PDF extends FPDF
 {
     function Header()
     {
-        $this->Image('../../../uploads/Timbrado-SEAD.png', 0, 0, 297, 210); // A4 horizontal
+        // Imagem de fundo (timbrado)
+        $this->Image('../../../Imagens/Timbrado-SEAD-Paisagem.png', 0, 0, 297, 210); // A4 horizontal
         $this->SetY(40);
+
+        // Título
+        $this->SetFont('Arial', 'B', 12);
+        $this->Cell(0, 10, utf8_decode('Relatório de Visitas - SEAD'), 0, 1, 'C');
+        $this->Ln(5);
+
+        // Cabeçalhos da tabela
+        $this->SetFont('Arial', 'B', 8);
+        $this->SetFillColor(215, 215, 215);
+        $this->SetTextColor(0, 0, 0);
+
+        $this->Cell(20, 8, utf8_decode('Data'), 1, 0, 'C', true);
+        $this->Cell(20, 8, utf8_decode('Entrada'), 1, 0, 'C', true);
+        $this->Cell(60, 8, utf8_decode('Visitante'), 1, 0, 'C', true);
+        $this->Cell(25, 8, 'CPF', 1, 0, 'C', true);
+        $this->Cell(25, 8, utf8_decode('Setor'), 1, 0, 'C', true);
+        $this->Cell(70, 8, utf8_decode('Servidor'), 1, 0, 'C', true);
+        $this->Cell(20, 8, utf8_decode('Saída'), 1, 0, 'C', true);
+        $this->Cell(20, 8, utf8_decode('Duração'), 1, 0, 'C', true);
+        $this->Cell(25, 8, utf8_decode('Registrado por'), 1, 1, 'C', true);
     }
 
     function Footer()
@@ -17,6 +38,7 @@ class PDF extends FPDF
         $this->Cell(0, 10, utf8_decode('Página ') . $this->PageNo(), 0, 0, 'C');
     }
 }
+
 
 // Filtros
 $data_inicio = $_GET['data_inicio'] ?? '';
@@ -56,28 +78,9 @@ $result = $conn->query($sql);
 
 $pdf = new PDF('L');
 $pdf->SetMargins(5, 100, 5);
-$pdf->SetAutoPageBreak(true, 20);
+$pdf->SetAutoPageBreak(true, 30);
 $pdf->AddPage();
 
-// Título
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(0, 10, utf8_decode('Relatório de Visitas - SEAD'), 0, 1, 'C');
-$pdf->Ln(5);
-
-// Cabeçalhos - com fundo cinza escuro e texto branco
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->SetFillColor(215, 215, 215); // cinza escuro (RGB)
-$pdf->SetTextColor(0, 0, 0); // texto branco
-
-$pdf->Cell(20, 8, utf8_decode('Data'), 1, 0, 'C', true);
-$pdf->Cell(20, 8, utf8_decode('Entrada'), 1, 0, 'C', true);
-$pdf->Cell(60, 8, utf8_decode('Visitante'), 1, 0, 'C', true);
-$pdf->Cell(25, 8, 'CPF', 1, 0, 'C', true);
-$pdf->Cell(25, 8, utf8_decode('Setor'), 1, 0, 'C', true);
-$pdf->Cell(70, 8, utf8_decode('Servidor'), 1, 0, 'C', true);
-$pdf->Cell(20, 8, utf8_decode('Saída'), 1, 0, 'C', true);
-$pdf->Cell(20, 8, utf8_decode('Duração'), 1, 0, 'C', true);
-$pdf->Cell(25, 8, utf8_decode('Registrado por'), 1, 1, 'C', true);
 
 // Resetar cores para o conteúdo
 $pdf->SetFillColor(255, 255, 255); // fundo branco normal
