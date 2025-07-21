@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmtUpdate->execute();
 
             // Salva o novo hash no histórico
-            $sqlInsertHistorico = "INSERT INTO historico_senhas (usuario_id, senha_hash) VALUES (?, ?)";
+            $sqlInsertHistorico = "INSERT INTO historico_senhas (usuario_id, senha_hash, data_troca) VALUES (?, ?, NOW())";
             $stmtInsertHistorico = $conn->prepare($sqlInsertHistorico);
             $stmtInsertHistorico->bind_param("is", $usuario['id'], $hash);
             $stmtInsertHistorico->execute();
@@ -194,11 +194,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </ul>
 
                 <label for="confirmar">Confirmar Senha:</label>
-                <input type="password" name="confirmar" id="confirmar" maxlength="10" required>
+                <input type="password" name="confirmar" id="confirmar" placeholder="Confirme sua senha" maxlength="10" required>
                 <small id="erro-confirmar" style="color: red; display: none;">As senhas não coincidem.</small>
 
                 <button class="btn-login" type="submit">Alterar Senha</button>
             </form>
+
+            <div class="btn-voltar">
+                <a href="login.php">Voltar</a>
+            </div>
 
         </section>
 
@@ -223,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="modal-content">
                 <h2>🔒 Termo de Uso e Política de Privacidade</h2><br>
                 <p>
-                    Para continuar, leia com atenção o nosso
+                    Estamos comprometidos com a sua privacidade. Antes de continuar, pedimos que leia com atenção nosso:
                     <a href="termo-de-uso.pdf" target="_blank">Termo de Uso</a> e
                     <a href="termo-de-uso.pdf" target="_blank">Política de Privacidade</a>.
                 </p><br>
@@ -333,6 +337,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         document.getElementById('status_termo').value = 'recusado';
         document.getElementById('termoModal').style.display = 'none';
     });
-
 </script>
+
 </html>

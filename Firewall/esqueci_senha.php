@@ -253,7 +253,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php if ($linkGerado): ?>
                 <div class="link-box">
                     <p>Token gerado com sucesso! Use o link abaixo para redefinir sua senha. O link expira em 1 hora.</p><br>
-                    <a href="<?= htmlspecialchars($linkGerado) ?>" target="_blank"><?= htmlspecialchars($linkGerado) ?></a>
+                    <a href="<?= htmlspecialchars($linkGerado) ?>"><?= htmlspecialchars($linkGerado) ?></a>
+
                 </div>
             <?php endif; ?>
 

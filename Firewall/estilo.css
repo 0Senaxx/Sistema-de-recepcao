@@ -183,6 +183,17 @@ input:disabled {
     color: #646464;
 }
 
+.btn-voltar {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.btn-voltar a {
+    text-decoration: none;
+    color: #646464;
+}
+
 
 /* TELA DE PRIMEIRO ACESSO */
 
