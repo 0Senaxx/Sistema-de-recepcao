@@ -288,13 +288,13 @@ tbody tr:hover {
 }
 
 /* Botão desativar */
-.btn-inativo {
+.btn-desbloquear {
     background-color: #FFFF00;
     color: #000;
     /* Texto preto no amarelo */
 }
 
-.btn-inativo:hover {
+.btn-desbloquear:hover {
     background-color: #e6e600;
 }
 

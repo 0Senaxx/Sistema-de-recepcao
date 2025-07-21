@@ -15,7 +15,7 @@ include '../../conexao.php';
 // ------[ FIM DA ÁREA DE PARAMETROS DE SEGURANÇA ]------
 
 // Buscar usuários
-$sql = "SELECT id, nome, cpf, matricula, perfil, ativo, ultimo_login FROM usuarios";
+$sql = "SELECT id, nome, matricula, perfil, ativo, tentativas_erradas, bloqueado, ultimo_login FROM usuarios";
 $result = $conn->query($sql);
 ?>
 
@@ -67,6 +67,7 @@ $result = $conn->query($sql);
                             <th class="col-nome">Nome</th>
                             <th class="col-matricula text-center">Matrícula</th>
                             <th class="text-center">Perfil</th>
+
                             <th th class=" text-center">Status</th>
                             <th th class="text-center">Último Login</th>
                             <th th class="text-center col-acoes"">Ações</th>
@@ -78,8 +79,14 @@ $result = $conn->query($sql);
                                 <td><?= htmlspecialchars($user['nome']) ?></td>
                                 <td class=" text-center"><?= htmlspecialchars($user['matricula']) ?></td>
                             <td class="text-center"><?= htmlspecialchars($user['perfil']) ?></td>
-                            <td class="col-status text-center"><?= $user['ativo'] ? 'Ativo' : 'Inativo' ?></td>
+
+                            <td class="text-center">
+                                <?= $user['bloqueado'] ? 'Bloqueado' : ($user['ativo'] ? 'Ativo' : 'Inativo') ?>
+                            </td>
+
                             <td class="text-center"><?= $user['ultimo_login'] ? date('d/m/Y H:i', strtotime($user['ultimo_login'])) : '-' ?></td>
+
+
                             <td class="text-center">
 
                                 <button class="btn-acao btnEditar" data-id="<?= $user['id'] ?>">
@@ -94,15 +101,12 @@ $result = $conn->query($sql);
                                     <img src="../../Imagens/Icons/excluir.png" alt="Excluir">
                                 </a>
 
-                                <?php if ($user['ativo']): ?>
-                                    <a class="btn-acao btn-inativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=desativar" onclick="return confirm('Deseja desativar este usuário?');">
-                                        Desativar
-                                    </a>
-                                <?php else: ?>
-                                    <a class="btn-acao btn-ativo" href="alterar_status.php?id=<?= $user['id'] ?>&acao=ativar" onclick="return confirm('Deseja ativar este usuário?');">
-                                        Ativar
+                                <?php if ($user['bloqueado']): ?>
+                                    <a class="btn-acao btn-desbloquear" href="desbloquear_usuario.php?id=<?= $user['id'] ?>" onclick="return confirm('Deseja desbloquear este usuário?');">
+                                        Desbloquear
                                     </a>
                                 <?php endif; ?>
+
                             </td>
                         </tr>
                     <?php endwhile; ?>

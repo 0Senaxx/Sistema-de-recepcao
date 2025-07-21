@@ -219,13 +219,6 @@ $res = $conn->query($sql);
             modal.style.display = 'none';
         });
 
-        // Fechar modal ao clicar fora da área do modal
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        });
-
         // Máscara para ramal no formato 0000 - 0000
         inputRamal.addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9\/ -]/g, ''); // permite números, traço, espaço e barra

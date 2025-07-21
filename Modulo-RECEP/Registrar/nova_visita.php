@@ -269,6 +269,7 @@ $resultCrachas = $conn->query($sqlCrachas);
     <div id="popupToast"></div>
 
   <script src="script.js"></script>
+  
 </body>
 
 </html>
